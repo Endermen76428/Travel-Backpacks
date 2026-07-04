@@ -8,13 +8,38 @@ Using **1 chest, 4 leather and 4 strings** you can craft a **Leather Backpack** 
 
 ![image](doc/1.0%20-%20Craft%20Backpack.png)
 
+With a Backpack in hands, you can interact to open it.
+To place your Backpack on the ground you just need to crouch and interact with a block.
+
 ![image](doc/1.1%20-%20Open%20Backpack.gif)
+
+# Upgrade Template
+
+To craft any upgrades you will need an **Upgrade Template**.
+
 ![image](doc/2.0%20-%20Craft%20Template%20Upgrade.png)
+
+# Upgrade Tiers
+
+To increase the storage space of your backpacks you can craft **Upgrades Tier**.
+
 ![image](doc/2.1%20-%20Craft%20Copper%20Upgrade.png)
 ![image](doc/2.2%20-%20Craft%20Iron%20Upgrade.png)
 ![image](doc/2.3%20-%20Craft%20Gold%20Upgrade.png)
 ![image](doc/2.4%20-%20Craft%20Diamond%20Upgrade.png)
 ![image](doc/2.5%20-%20Craft%20Netherite%20Upgrade.png)
+
+Hold the upgrade on your hand and interact with the backpack to upgrade its tier.
+TIP: You don't need to follow the tier progress, you can craft the last tier and apply it in a letter backpack.
+
 ![image](doc/2.6%20-%20Upgrade%20Backpack.gif)
+
+# Inventory UI
+
+each backpack has a custom UI that is compatible with other custom UIs.
+
 ![image](doc/3.0%20-%20Backpack%20Inventory.gif)
+
+If you are playing in a cell phone your UI will be changed, to use a scrolling panel.
+
 ![image](doc/3.1%20-%20Backpack%20Inventory%20Mobile.png)
