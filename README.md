@@ -8,8 +8,8 @@ Using **1 chest, 4 leather and 4 strings** you can craft a **Leather Backpack** 
 
 ![image](doc/1.0%20-%20Craft%20Backpack.png)
 
-With a Backpack in hands, you can interact to open it.
-To place your Backpack on the ground you just need to crouch and interact with a block.
+With a Backpack in hands, you can **interact to open it**.
+To place your Backpack on the ground you just need to **crouch and interact with a block**.
 
 ![image](doc/1.1%20-%20Open%20Backpack.gif)
 
@@ -36,7 +36,7 @@ TIP: You don't need to follow the tier progress, you can craft the last tier and
 
 # Inventory UI
 
-each backpack has a custom UI that is compatible with other custom UIs.
+Each backpack has a custom UI that is compatible with other custom UIs.
 
 ![image](doc/3.0%20-%20Backpack%20Inventory.gif)
 
