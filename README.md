@@ -48,4 +48,6 @@ TIP: You don't need to follow the tier progress, you can craft the last tier and
 
 The craft upgrade unlock an craft panel on your backpack that works as a vanilla crafting table **(It's compatible with any addon's recipes)**.
 
-![image](doc/2.7%20-%20Craft%20Craft%20Upgrade.png)
+![image](doc/4.0%20-%20Craft%20Craft%20Upgrade.png)
+
+![image](doc/4.1%20-%20Craft%20Upgrade.gif)
