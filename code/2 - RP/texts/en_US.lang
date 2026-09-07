@@ -1,0 +1,86 @@
+## --------------------------------------------------
+## Block
+## --------------------------------------------------
+
+## Backpack
+tile.travel_backpack:leather_backpack.name=Leather Backpack
+tile.travel_backpack:copper_backpack.name=Copper Backpack
+tile.travel_backpack:iron_backpack.name=Iron Backpack
+tile.travel_backpack:gold_backpack.name=Gold Backpack
+tile.travel_backpack:diamond_backpack.name=Diamond Backpack
+tile.travel_backpack:netherite_backpack.name=Netherite Backpack
+
+
+
+## --------------------------------------------------
+## Entity
+## --------------------------------------------------
+
+entity.travel_backpack:backpack.name=Backpack
+entity.travel_backpack:chunk_loader.name=Chunk Loader
+
+
+
+## --------------------------------------------------
+## Item
+## --------------------------------------------------
+
+item.bedrock_awakening:travel_backpack=§kTravel Backpack
+
+item.travel_backpack:lock_slot=Lock Slot
+
+## Backpack
+item.travel_backpack:leather_backpack=Leather Backpack\n§9Travel Backpacks
+item.travel_backpack:copper_backpack=Copper Backpack\n§9Travel Backpacks
+item.travel_backpack:iron_backpack=Iron Backpack\n§9Travel Backpacks
+item.travel_backpack:gold_backpack=Gold Backpack\n§9Travel Backpacks
+item.travel_backpack:diamond_backpack=Diamond Backpack\n§9Travel Backpacks
+item.travel_backpack:netherite_backpack=Netherite Backpack\n§9Travel Backpacks
+
+## upgrade
+item.travel_backpack:upgrade_template=Template Upgrade\n§9Travel Backpacks
+
+## Upgrade Tier
+item.travel_backpack:copper_upgrade_tier=Copper Upgrade Tier\n§9Travel Backpacks
+item.travel_backpack:iron_upgrade_tier=Iron Upgrade Tier\n§9Travel Backpacks
+item.travel_backpack:gold_upgrade_tier=Gold Upgrade Tier\n§9Travel Backpacks
+item.travel_backpack:diamond_upgrade_tier=Diamond Upgrade Tier\n§9Travel Backpacks
+item.travel_backpack:netherite_upgrade_tier=Netherite Upgrade Tier\n§9Travel Backpacks
+
+## Upgrade Functions
+item.travel_backpack:craft_upgrade=§c§r§a§f§t§rCraft Upgrade\n§9Travel Backpacks
+
+
+
+## --------------------------------------------------
+## Item Catalog
+## --------------------------------------------------
+
+travel_backpack:itemGroup.name.backpacks=Backpacks
+travel_backpack:itemGroup.name.upgrade_tier=Upgrades Tier
+
+
+
+## --------------------------------------------------
+## Item Lore
+## --------------------------------------------------
+
+lore.travel_backpack:backpack.id=Backpack: %1
+
+
+
+## --------------------------------------------------
+## UI
+## --------------------------------------------------
+
+## Custom Chest
+ui.travel_backpack:backpack.size.0=Leather Backpack
+ui.travel_backpack:backpack.size.1=Copper Backpack
+ui.travel_backpack:backpack.size.2=Iron Backpack
+ui.travel_backpack:backpack.size.3=Gold Backpack
+ui.travel_backpack:backpack.size.4=Diamond Backpack
+ui.travel_backpack:backpack.size.5=Netherite Backpack
+
+
+
+pack.description=§5Endermen76428§r don't write descriptions.

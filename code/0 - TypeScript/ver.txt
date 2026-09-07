@@ -1,0 +1,47 @@
+Bolar um jeito de atualizar a ui pra pc e celular sem precisar duplicar o codigo
+se a mochila tiver cheia e usar o shift pra colocar um upgrade ele não atualiza a UI
+a backpack da pontos de armadura, dependendo do material pra compensar o peitoral que vai faltar
+upgrade de dynamic light
+upgrade de devolver um items quando acabar (tipo, to usando pedra e acaba, pra não precisar abrir a mochila, ele automaticamente puxa de lá (O cara pediu pra fazer com a mão esquerda, tipo os totem, mas seila, é uma opção))
+Upgrade de void, pra deletar os itens que passarem de um ponto
+E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void upgrade)
+
+Travel Backpacks v0.2.4 Alpha
+> Changed:
+- The backpack retrieval and loading system has been changed to avoid issues with older versions;
+> Fixed:
+- Fixed an incompatibility with the "Archaism Trinkets" addon;
+> Removed:
+- Removed an chunk loader system that is no longer used.
+
+Travel Backpacks v0.2.2 Alpha
+> Additions:
+- Added a craft to convert wools into strings;
+> Fixed:
+- Fixed the desynchronization that occurred if you had more than one backpacks;
+- Fixed a problem that occurred if multiple Craft Upgrades were active.
+
+Travel Backpacks v0.2.1 Alpha
+> Fixed:
+- Upgrade slots will no longer be randomly selected when upgrading your Backpack.
+
+Travel Backpacks v0.2.0 Alpha
+> Additions:
+- Added Upgrade Slots;
+- Added Craft Upgrade, compatible with any addon;
+- Now backpacks can be placed in your chestplate or off hand (only visual);
+> Fixed:
+- It is no longer possible to store one backpack inside another;
+- Backpacks no longer can be killed by commands.
+
+Travel Backpacks v0.1 - v0.1.2 Alpha
+
+> Additions:
+- Added 6 Backpacks;
+- Added 5 Backpack Upgrade Tier;
+- Added a custom UI compatible with other custom UIs;
+> Fixed:
+- Fixed an issue where the backpacks could reset in other dimensions.
+
+mklink /J "%AppData%\Minecraft Bedrock\Users\Shared\games\com.mojang\development_behavior_packs/Travel Backpacks (Addon)" "C:\Backup\0 - MCPEDL\0 - GITHUB\Travel Backpacks\code\1 - BP"
+mklink /J "%AppData%\Minecraft Bedrock\Users\Shared\games\com.mojang\development_resource_packs/Travel Backpacks (Texture)" "C:\Backup\0 - MCPEDL\0 - GITHUB\Travel Backpacks\code\2 - RP"

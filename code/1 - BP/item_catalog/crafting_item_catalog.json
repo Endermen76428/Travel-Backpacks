@@ -1,0 +1,33 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:crafting_items_catalog": {
+    "categories": [
+      {
+        "category_name": "equipment",
+        "groups": [
+          {
+            "group_identifier": { "name": "travel_backpack:itemGroup.name.backpacks", "icon": "travel_backpack:leather_backpack" },
+            "items": [
+              "travel_backpack:leather_backpack",
+              "travel_backpack:copper_backpack",
+              "travel_backpack:iron_backpack",
+              "travel_backpack:gold_backpack",
+              "travel_backpack:diamond_backpack",
+              "travel_backpack:netherite_backpack"
+            ]
+          },
+          {
+            "group_identifier": { "name": "travel_backpack:itemGroup.name.upgrade_tier", "icon": "travel_backpack:diamond_upgrade_tier" },
+            "items": [
+              "travel_backpack:copper_upgrade_tier",
+              "travel_backpack:iron_upgrade_tier",
+              "travel_backpack:gold_upgrade_tier",
+              "travel_backpack:diamond_upgrade_tier",
+              "travel_backpack:netherite_upgrade_tier"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
