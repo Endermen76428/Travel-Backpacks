@@ -1,4 +1,5 @@
-import { system } from "@minecraft/server";
+import { system, EntityComponentTypes } from "@minecraft/server";
+import { backpackSizeTier } from "../lib/variables";
 system.afterEvents.scriptEventReceive.subscribe(({ id, message, sourceEntity, sourceBlock }) => {
     const exe = scriptEventFunctions[id];
     if (exe)
@@ -14,9 +15,29 @@ const scriptEventFunctions = {
         entity.teleport(pos);
     },
     "travel_backpack:archive": (message, entity) => {
-        entity?.remove();
+        if (entity?.isValid) {
+            entity.addTag("can_remove");
+            entity?.remove();
+        }
     },
-    "travel_backpack:remove_chunk_loader": (message, entity) => {
-        entity?.remove();
+    "travel_backpack:update_level": (message, entity) => {
+        if (!entity)
+            return;
+        let level = entity.getProperty("travel_backpack:level");
+        if (typeof level != "number")
+            return;
+        if (level == -1) {
+            const inv = entity.getComponent(EntityComponentTypes.Inventory)?.container;
+            if (inv == undefined)
+                return;
+            const tier = backpackSizeTier[inv.size];
+            if (tier == undefined)
+                return;
+            console.warn("§cTier inválido!");
+            level = tier;
+            entity.triggerEvent(`travel_backpack:inventory${tier}`);
+        }
+        console.warn(level);
+        entity.nameTag = `ui.travel_backpack:backpack.size.${level}`;
     }
 };

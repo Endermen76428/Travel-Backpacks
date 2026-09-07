@@ -1,18 +1,18 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Travel Backpacks v0.2.4 (Texture / Alpha)",
+    "name": "Travel Backpacks v0.3 (Texture / Alpha)",
     "description": "pack.description",
     "uuid": "41f521d3-0f86-453a-9d0b-fce0bd42b730",
     "min_engine_version": [1, 26, 20],
-    "version": [0, 2, 4],
+    "version": [0, 3, 0],
     "pack_scope": "world"
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "f4989130-586a-4d2c-be4c-b3d94ec081cc",
-      "version": [0, 2, 4]
+      "version": [0, 3, 0]
     }
   ],
   "metadata": {
@@ -24,7 +24,7 @@
   "dependencies": [
     {
       "uuid": "2a1d71a5-b994-4fc9-b833-fa107522262e",
-      "version": [0, 2, 4]
+      "version": [0, 3, 0]
     }
   ]
 }

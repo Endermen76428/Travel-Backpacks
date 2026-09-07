@@ -10,7 +10,7 @@
       "minecraft:tags": { "tags": [ "travel_backpack:backpack" ] },
       "minecraft:max_stack_size": 1,
       "minecraft:allow_off_hand": true,
-      "minecraft:wearable": { "slot": "slot.armor.chest" },
+      "minecraft:wearable": { "slot": "slot.armor.chest", "protection": 7 },
       "minecraft:block_placer": {
         "block": "travel_backpack:diamond_backpack",
         "replace_block_item": true

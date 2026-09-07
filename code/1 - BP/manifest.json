@@ -1,24 +1,24 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Travel Backpacks v0.2.4 (Addon / Alpha)",
+    "name": "Travel Backpacks v0.3 (Addon / Alpha)",
     "description": "pack.description",
     "uuid": "2a1d71a5-b994-4fc9-b833-fa107522262e",
     "min_engine_version": [1, 26, 30],
-    "version": [0, 2, 4]
+    "version": [0, 3, 0]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "4149cca6-cf65-450e-8189-38beb13103ea",
-      "version": [0, 2, 4]
+      "version": [0, 3, 0]
     },
     {
       "type": "script",
       "language": "javascript",
       "entry": "scripts/travel_backpack/main.js",
       "uuid": "35f0f0d6-c806-454e-ad3b-ac37613da131",
-      "version": [0, 2, 4]
+      "version": [0, 3, 0]
     }
   ],
   "metadata": {
@@ -29,7 +29,7 @@
   "dependencies": [
     {
       "uuid": "41f521d3-0f86-453a-9d0b-fce0bd42b730",
-      "version": [0, 2, 4]
+      "version": [0, 3, 0]
     },
     {
       "module_name": "@minecraft/server",

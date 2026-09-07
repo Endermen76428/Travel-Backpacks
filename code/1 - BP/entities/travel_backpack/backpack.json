@@ -7,7 +7,8 @@
       "is_spawnable": false,
       "is_experimental": false,
       "properties": {
-        "travel_backpack:on_ground": { "type": "bool", "default": false }
+        "travel_backpack:on_ground": { "type": "bool", "default": false },
+        "travel_backpack:level": { "type": "int", "range": [-1, 5], "default": -1 }
       }
     },
 
@@ -80,12 +81,59 @@
       "travel_backpack:add_timer": { "add": { "component_groups": [ "travel_backpack:timer" ] } },
       "travel_backpack:remove_timer": { "remove": { "component_groups": [ "travel_backpack:timer" ] } },
 
-      "travel_backpack:inventory0": { "add": { "component_groups": [ "travel_backpack:inventory0" ] } },
-      "travel_backpack:inventory1": { "add": { "component_groups": [ "travel_backpack:inventory1" ] } },
-      "travel_backpack:inventory2": { "add": { "component_groups": [ "travel_backpack:inventory2" ] } },
-      "travel_backpack:inventory3": { "add": { "component_groups": [ "travel_backpack:inventory3" ] } },
-      "travel_backpack:inventory4": { "add": { "component_groups": [ "travel_backpack:inventory4" ] } },
-      "travel_backpack:inventory5": { "add": { "component_groups": [ "travel_backpack:inventory5" ] } }
+      "travel_backpack:inventory0": {
+        "add": { "component_groups": [ "travel_backpack:inventory0" ] },
+        "set_property": { "travel_backpack:level": 0 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      },
+      "travel_backpack:inventory1": {
+        "remove": { "component_groups": [ "travel_backpack:inventory0" ] },
+        "add": { "component_groups": [ "travel_backpack:inventory1" ] },
+        "set_property": { "travel_backpack:level": 1 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      },
+      "travel_backpack:inventory2": {
+        "remove": { "component_groups": [
+          "travel_backpack:inventory0",
+          "travel_backpack:inventory1"
+        ] },
+        "add": { "component_groups": [ "travel_backpack:inventory2" ] },
+        "set_property": { "travel_backpack:level": 2 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      },
+      "travel_backpack:inventory3": {
+        "remove": { "component_groups": [
+          "travel_backpack:inventory0",
+          "travel_backpack:inventory1",
+          "travel_backpack:inventory2"
+        ] },
+        "add": { "component_groups": [ "travel_backpack:inventory3" ] },
+        "set_property": { "travel_backpack:level": 3 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      },
+      "travel_backpack:inventory4": {
+        "remove": { "component_groups": [
+          "travel_backpack:inventory0",
+          "travel_backpack:inventory1",
+          "travel_backpack:inventory2",
+          "travel_backpack:inventory3"
+        ] },
+        "add": { "component_groups": [ "travel_backpack:inventory4" ] },
+        "set_property": { "travel_backpack:level": 4 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      },
+      "travel_backpack:inventory5": {
+        "remove": { "component_groups": [
+          "travel_backpack:inventory0",
+          "travel_backpack:inventory1",
+          "travel_backpack:inventory2",
+          "travel_backpack:inventory3",
+          "travel_backpack:inventory4"
+        ] },
+        "add": { "component_groups": [ "travel_backpack:inventory5" ] },
+        "set_property": { "travel_backpack:level": 5 },
+        "queue_command": { "command": "scriptevent travel_backpack:update_level" }
+      }
     }
   }
 }

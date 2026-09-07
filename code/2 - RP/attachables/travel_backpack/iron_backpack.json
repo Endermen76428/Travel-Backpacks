@@ -14,7 +14,6 @@
         "controller.render.travel_backpack.backpack.tier"
       ],
       "animations": {
-        "first_person": "animation.travel_backpack.attachables.backpack.first_person_hold",
         "third_person": "animation.travel_backpack.attachables.backpack.third_person_hold"
       },
       "scripts": {

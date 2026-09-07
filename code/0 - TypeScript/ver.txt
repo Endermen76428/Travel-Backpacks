@@ -6,6 +6,12 @@ upgrade de devolver um items quando acabar (tipo, to usando pedra e acaba, pra n
 Upgrade de void, pra deletar os itens que passarem de um ponto
 E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void upgrade)
 
+Travel Backpacks v0.2.5 Alpha
+> Changed:
+- Slightly increased the size of the backpack on the back;
+> Fixed:
+- Fixed backpack downgrade tier. (i really hope)
+
 Travel Backpacks v0.2.4 Alpha
 > Changed:
 - The backpack retrieval and loading system has been changed to avoid issues with older versions;
