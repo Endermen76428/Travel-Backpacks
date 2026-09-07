@@ -9,6 +9,7 @@ E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void
 Travel Backpacks v0.2.5 Alpha
 > Changed:
 - Slightly increased the size of the backpack on the back;
+- Reduced backpack's UI size to fit small screens;
 > Fixed:
 - Fixed backpack downgrade tier. (i really hope)
 

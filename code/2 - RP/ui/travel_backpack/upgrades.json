@@ -31,11 +31,6 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#current_text = #preserved_hover_text)",
-        "target_property_name": "#equal_text"
-      },
-      {
-        "binding_type": "view",
         "source_property_name": "(((#current_text = #preserved_hover_text) or (#current_text = '')) and #has_item)", /* Se-(texto-atual-for-igual-ao-texto-preservado-ou-o-texto-atual-é-vazio)-e-tem-um-item-no-slot-ele-deixará-o-painel-ativo-sem-alteração-no-preserved-text */
         "target_property_name": "#visible"
       }
@@ -89,30 +84,6 @@
       }
     ]
   },
-  "hover_text_craft_output_data_control": {
-    "collection_index": "$index",
-    "type": "panel",
-    "size": [ 0, 0 ],
-    "bindings": [
-      {
-        "binding_type": "collection",
-        "binding_name": "#item_id_aux",
-        "binding_collection_name": "container_items"
-      },
-      {
-        "binding_type": "collection",
-        "binding_name": "#hover_text",
-        "binding_name_override": "#preserved_hover_text",
-        "binding_condition": "visibility_changed",
-        "binding_collection_name": "container_items"
-      },
-      {
-        "binding_type": "view",
-        "source_property_name": "(#item_id_aux = -1)",
-        "target_property_name": "#visible"
-      }
-    ]
-  },
 
   "upgrade_slots_panel@travel_backpack-common.backpack_background": {
     "size": [ 32, "100%c +10px" ],
@@ -157,11 +128,6 @@
     "controls": [
       {
         "slots_panel": {
-          "$slot_visibility_1": "($inventory_size < 36)",
-          "$slot_visibility_2": "($inventory_size < 54)",
-          "$slot_visibility_3": "($inventory_size < 81)",
-          "$slot_visibility_4": "($inventory_size < 100)",
-          "$slot_visibility_5": "($inventory_size < 120)",
           "type": "stack_panel",
           "orientation": "vertical",
           "collection_name": "container_items",
@@ -172,7 +138,6 @@
             { "hover_data_control_4@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +3)" } },
             { "hover_data_control_5@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +4)" } },
             { "hover_data_control_6@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +5)" } },
-            { "hover_data_control_craft_output@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +20)" } },
             {
               "upgrades_panel": {
                 "type": "panel",
@@ -204,11 +169,6 @@
     "controls": [
       {
         "slots_panel": {
-          "$slot_visibility_1": "($inventory_size < 36)",
-          "$slot_visibility_2": "($inventory_size < 54)",
-          "$slot_visibility_3": "($inventory_size < 81)",
-          "$slot_visibility_4": "($inventory_size < 100)",
-          "$slot_visibility_5": "($inventory_size < 120)",
           "type": "stack_panel",
           "orientation": "vertical",
           "collection_name": "container_items",
@@ -219,7 +179,6 @@
             { "hover_data_control_4@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +3)" } },
             { "hover_data_control_5@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +4)" } },
             { "hover_data_control_6@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +5)" } },
-            { "hover_data_control_craft_output@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +20)" } },
             {
               "upgrades_panel": {
                 "type": "panel",
@@ -350,7 +309,7 @@
                         {
                           "output@common.container_item": {
                             "size": [ 26, 26 ],
-                            "$button_ref": "travel_backpack-upgrades.button_teste",
+                            "$button_ref": "travel_backpack-upgrades.output_button",
                             "$cell_image_size": [ 26, 26 ],
                             "$item_collection_name": "container_items",
                             "collection_index": "($inventory_size +20)"
@@ -419,7 +378,7 @@
     ]
   },
 
-  "button_teste@common.container_slot_button_prototype": {
+  "output_button@common.container_slot_button_prototype": {
     "button_mappings": [
       {
         "from_button_id": "button.menu_select",

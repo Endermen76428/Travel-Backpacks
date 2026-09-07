@@ -21,12 +21,12 @@
             {
               "inventory_panel": {
                 "type": "panel",
-                "size": [ 176, 94 ],
+                "size": [ 176, 85 ],
                 "anchor_from": "bottom_middle",
                 "anchor_to": "bottom_middle",
                 "controls": [
                   { "background@common.dialog_background_opaque": {} },
-                  { "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {} },
+                  { "inventory_panel_bottom_half@common.inventory_panel": {} },
                   { "hotbar_grid@common.hotbar_grid_template": {} },
                   { "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {} },
                   { "flying_item_renderer@common.flying_item_renderer": { "layer": 15 } }
@@ -40,7 +40,7 @@
                 "anchor_from": "top_middle",
                 "anchor_to": "top_middle",
                 "controls": [
-                  { "close@common.close_button": { "offset": [ -1, -8] } },
+                  { "close@common.close_button": { "offset": [ -1, -8 ] } },
                   { "upgrade_slots@travel_backpack-upgrades.upgrade_slots_panel": {} },
                   { "upgrade_functions@travel_backpack-upgrades.upgrade_functions_panel": { "ignored": "(not $is_desktop)" } },
                   { "upgrade_functions_mobile@travel_backpack-upgrades.upgrade_functions_mobile_panel": { "ignored": "$is_desktop" } },
