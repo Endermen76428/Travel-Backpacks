@@ -8,7 +8,8 @@
       "is_experimental": false,
       "properties": {
         "travel_backpack:on_ground": { "type": "bool", "default": false },
-        "travel_backpack:level": { "type": "int", "range": [-1, 5], "default": -1 }
+        "travel_backpack:level": { "type": "int", "range": [-1, 5], "default": -1 },
+        "travel_backpack:color": { "type": "int", "range": [0, 16], "default": 0 }
       }
     },
 
@@ -133,7 +134,25 @@
         "add": { "component_groups": [ "travel_backpack:inventory5" ] },
         "set_property": { "travel_backpack:level": 5 },
         "queue_command": { "command": "scriptevent travel_backpack:update_level" }
-      }
+      },
+
+      "travel_backpack:no_color":          { "set_property": { "travel_backpack:color": 0 } },
+      "travel_backpack:white_color":       { "set_property": { "travel_backpack:color": 1 } },
+      "travel_backpack:light_gray_color":  { "set_property": { "travel_backpack:color": 2 } },
+      "travel_backpack:gray_color":        { "set_property": { "travel_backpack:color": 3 } },
+      "travel_backpack:black_color":       { "set_property": { "travel_backpack:color": 4 } },
+      "travel_backpack:brown_color":       { "set_property": { "travel_backpack:color": 5 } },
+      "travel_backpack:red_color":         { "set_property": { "travel_backpack:color": 6 } },
+      "travel_backpack:orange_color":      { "set_property": { "travel_backpack:color": 7 } },
+      "travel_backpack:yellow_color":      { "set_property": { "travel_backpack:color": 8 } },
+      "travel_backpack:light_green_color": { "set_property": { "travel_backpack:color": 9 } },
+      "travel_backpack:green_color":       { "set_property": { "travel_backpack:color": 10 } },
+      "travel_backpack:cyan_color":        { "set_property": { "travel_backpack:color": 11 } },
+      "travel_backpack:light_blue_color":  { "set_property": { "travel_backpack:color": 12 } },
+      "travel_backpack:blue_color":        { "set_property": { "travel_backpack:color": 13 } },
+      "travel_backpack:purple_color":      { "set_property": { "travel_backpack:color": 14 } },
+      "travel_backpack:magenta_color":     { "set_property": { "travel_backpack:color": 15 } },
+      "travel_backpack:pink_color":        { "set_property": { "travel_backpack:color": 16 } }
     }
   }
 }

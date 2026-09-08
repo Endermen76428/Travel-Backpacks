@@ -64,8 +64,8 @@
             "$screen_content": "travel_backpack-backpack.backpack_panel",
             "$screen_bg_content": "common.screen_background",
             "$inventory_size": 100,
-            "$root_panel_size": [ 176, 278 ],
-            "$backpack_panel_size": [ 194, 189 ],
+            "$root_panel_size": [ 176, 277 ],
+            "$backpack_panel_size": [ 194, 191 ],
             "$grid_panel_size": [ 180, 180 ],
             "$grid_panel_dimension": [ 10, 10 ]
           },
@@ -84,8 +84,8 @@
             "$screen_content": "travel_backpack-backpack.backpack_panel",
             "$screen_bg_content": "common.screen_background",
             "$inventory_size": 120,
-            "$root_panel_size": [ 176, 278 ],
-            "$backpack_panel_size": [ 230, 189 ],
+            "$root_panel_size": [ 176, 277 ],
+            "$backpack_panel_size": [ 230, 191 ],
             "$grid_panel_size": [ 216, 180 ],
             "$grid_panel_dimension": [ 12, 10 ]
           },
