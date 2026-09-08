@@ -1,5 +1,4 @@
-import { world, system, Block, Entity, StructureSaveMode, EntityComponentTypes } from "@minecraft/server"
-import { backpackSizeEvent } from "../functions/place"
+import { system, Block, Entity, EntityComponentTypes } from "@minecraft/server"
 import { backpackSizeTier } from "../lib/variables"
 
 system.afterEvents.scriptEventReceive.subscribe(({id, message, sourceEntity, sourceBlock}) => {

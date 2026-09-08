@@ -10,6 +10,14 @@ export const backpackSizeFill = {
     4: 105,
     5: 126
 };
+export const backpackTypeTier = {
+    0: "travel_backpack:leather_backpack",
+    1: "travel_backpack:copper_backpack",
+    2: "travel_backpack:iron_backpack",
+    3: "travel_backpack:gold_backpack",
+    4: "travel_backpack:diamond_backpack",
+    5: "travel_backpack:netherite_backpack"
+};
 export const backpackSizeTier = {
     49: 0,
     57: 1,
@@ -25,6 +33,25 @@ export const backpackUpgradesIndex = {
     102: [81, 4],
     121: [100, 5],
     141: [120, 6]
+};
+export const dyesList = {
+    "minecraft:ink_sac": "undye",
+    "minecraft:white_dye": "white",
+    "minecraft:light_gray_dye": "light_gray",
+    "minecraft:gray_dye": "gray",
+    "minecraft:black_dye": "black",
+    "minecraft:brown_dye": "brown",
+    "minecraft:red_dye": "red",
+    "minecraft:orange_dye": "orange",
+    "minecraft:yellow_dye": "yellow",
+    "minecraft:lime_dye": "lime",
+    "minecraft:green_dye": "green",
+    "minecraft:cyan_dye": "cyan",
+    "minecraft:light_blue_dye": "light_blue",
+    "minecraft:blue_dye": "blue",
+    "minecraft:purple_dye": "purple",
+    "minecraft:magenta_dye": "magenta",
+    "minecraft:pink_dye": "pink"
 };
 system.run(() => {
     world.gameRules.showTags = false;

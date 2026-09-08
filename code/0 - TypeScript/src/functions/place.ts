@@ -53,12 +53,3 @@ const offsetDirection: Record<Direction, Vector3> = {
   "Up":    { x:  0, y:  1, z:  0 },
   "Down":  { x:  0, y: -1, z:  0 }
 }
-
-export const backpackSizeEvent: { [key: string]: number } = {
-  "travel_backpack:leather_backpack":   0,
-  "travel_backpack:copper_backpack":    1,
-  "travel_backpack:iron_backpack":      2,
-  "travel_backpack:gold_backpack":      3,
-  "travel_backpack:diamond_backpack":   4,
-  "travel_backpack:netherite_backpack": 5,
-}
