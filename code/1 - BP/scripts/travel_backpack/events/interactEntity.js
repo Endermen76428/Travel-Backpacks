@@ -5,6 +5,7 @@ world.beforeEvents.playerInteractWithEntity.subscribe(ev => {
     if (target.typeId != "travel_backpack:backpack")
         return;
     if (itemStack) {
+        console.warn(JSON.stringify(itemStack.getTags()));
         if (itemStack.hasTag("travel_backpack:upgrade")) {
             const upgraded = upgradeBackpackTier.install(player, target, itemStack);
             if (upgraded)

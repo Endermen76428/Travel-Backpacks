@@ -145,7 +145,7 @@
       "travel_backpack:red_color":         { "set_property": { "travel_backpack:color": 6 } },
       "travel_backpack:orange_color":      { "set_property": { "travel_backpack:color": 7 } },
       "travel_backpack:yellow_color":      { "set_property": { "travel_backpack:color": 8 } },
-      "travel_backpack:light_green_color": { "set_property": { "travel_backpack:color": 9 } },
+      "travel_backpack:lime_color": { "set_property": { "travel_backpack:color": 9 } },
       "travel_backpack:green_color":       { "set_property": { "travel_backpack:color": 10 } },
       "travel_backpack:cyan_color":        { "set_property": { "travel_backpack:color": 11 } },
       "travel_backpack:light_blue_color":  { "set_property": { "travel_backpack:color": 12 } },

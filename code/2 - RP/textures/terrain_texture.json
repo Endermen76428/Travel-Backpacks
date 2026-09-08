@@ -16,7 +16,7 @@
     "travel_backpack:backpack_base_red": { "textures": "textures/travel_backpack/blocks/backpack_base_red" },
     "travel_backpack:backpack_base_orange": { "textures": "textures/travel_backpack/blocks/backpack_base_orange" },
     "travel_backpack:backpack_base_yellow": { "textures": "textures/travel_backpack/blocks/backpack_base_yellow" },
-    "travel_backpack:backpack_base_light_green": { "textures": "textures/travel_backpack/blocks/backpack_base_light_green" },
+    "travel_backpack:backpack_base_lime": { "textures": "textures/travel_backpack/blocks/backpack_base_lime" },
     "travel_backpack:backpack_base_green": { "textures": "textures/travel_backpack/blocks/backpack_base_green" },
     "travel_backpack:backpack_base_cyan": { "textures": "textures/travel_backpack/blocks/backpack_base_cyan" },
     "travel_backpack:backpack_base_light_blue": { "textures": "textures/travel_backpack/blocks/backpack_base_light_blue" },
