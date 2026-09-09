@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.travel_backpack.attachables.backpack.third_person_hold": {
+    "animation.travel_backpack.backpack.chestplate_hold": {
       "loop": true,
       "bones": {
         "body": {
