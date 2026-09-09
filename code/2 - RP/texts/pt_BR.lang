@@ -251,6 +251,7 @@ item.travel_backpack:netherite_upgrade_tier=Melhoria de Nível de Netherita\n§9
 
 ## Upgrade Functions
 item.travel_backpack:craft_upgrade=§c§r§a§f§t§rMelhoria de Craft\n§9Travel Backpacks
+item.travel_backpack:furnace_upgrade=§f§u§r§n§a§rMelhoria de Fornalha\n§9Travel Backpacks
 
 ### Warn
 
@@ -265,6 +266,7 @@ item.warn.travel_backpack:backpack.need_shift.remove=§cVocê precisa estar agac
 
 travel_backpack:itemGroup.name.backpacks=Mochilas
 travel_backpack:itemGroup.name.upgrade_tier=Melhorias de Nível
+travel_backpack:itemGroup.name.upgrade_functions=Melhorias Funcionais
 
 
 

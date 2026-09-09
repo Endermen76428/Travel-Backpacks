@@ -25,6 +25,13 @@
               "travel_backpack:diamond_upgrade_tier",
               "travel_backpack:netherite_upgrade_tier"
             ]
+          },
+          {
+            "group_identifier": { "name": "travel_backpack:itemGroup.name.upgrade_functions", "icon": "travel_backpack:craft_upgrade" },
+            "items": [
+              "travel_backpack:craft_upgrade",
+              "travel_backpack:furnace_upgrade"
+            ]
           }
         ]
       }

@@ -13,6 +13,7 @@
     "travel_backpack:netherite_upgrade_tier": { "textures": "textures/travel_backpack/items/upgrade_tier/netherite_tier" },
 
     // Upgrade Function
-    "travel_backpack:craft_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/craft_upgrade" }
+    "travel_backpack:craft_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/craft_upgrade" },
+    "travel_backpack:furnace_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/furnace_upgrade" }
   }
 }

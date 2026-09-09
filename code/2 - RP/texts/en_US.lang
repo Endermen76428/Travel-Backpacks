@@ -251,6 +251,7 @@ item.travel_backpack:netherite_upgrade_tier=Netherite Upgrade Tier\n§9Travel Ba
 
 ## Upgrade Functions
 item.travel_backpack:craft_upgrade=§c§r§a§f§t§rCraft Upgrade\n§9Travel Backpacks
+item.travel_backpack:furnace_upgrade=§f§u§r§n§a§rFurnace Upgrade\n§9Travel Backpacks
 
 ### Warn
 
@@ -265,6 +266,7 @@ item.warn.travel_backpack:backpack.need_shift.remove=§cYou need to be crouching
 
 travel_backpack:itemGroup.name.backpacks=Backpacks
 travel_backpack:itemGroup.name.upgrade_tier=Upgrades Tier
+travel_backpack:itemGroup.name.upgrade_functions=Functional Upgrades
 
 
 
