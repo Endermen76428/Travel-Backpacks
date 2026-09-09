@@ -252,6 +252,11 @@ item.travel_backpack:netherite_upgrade_tier=Melhoria de Nível de Netherita\n§9
 ## Upgrade Functions
 item.travel_backpack:craft_upgrade=§c§r§a§f§t§rMelhoria de Craft\n§9Travel Backpacks
 
+### Warn
+
+item.warn.travel_backpack:backpack.need_shift.place=§cVocê precisa estar agachado para colocar a mochila no chão.
+item.warn.travel_backpack:backpack.need_shift.remove=§cVocê precisa estar agachado para remover a mochila do chão.
+
 
 
 ## --------------------------------------------------

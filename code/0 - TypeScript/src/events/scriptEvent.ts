@@ -12,6 +12,7 @@ const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, 
     if(!entity) return
 
     const pos = entity.getDynamicProperty("pos")
+    console.warn(entity.typeId, JSON.stringify(entity.location), JSON.stringify(pos))
     if(typeof pos != "object") return
 
     entity.teleport(pos)

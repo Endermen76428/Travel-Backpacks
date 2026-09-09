@@ -252,6 +252,11 @@ item.travel_backpack:netherite_upgrade_tier=Netherite Upgrade Tier\n§9Travel Ba
 ## Upgrade Functions
 item.travel_backpack:craft_upgrade=§c§r§a§f§t§rCraft Upgrade\n§9Travel Backpacks
 
+### Warn
+
+item.warn.travel_backpack:backpack.need_shift.place=§cYou need to be crouching down to put your backpack on the ground.
+item.warn.travel_backpack:backpack.need_shift.remove=§cYou need to be crouching down to lift the backpack off the ground.
+
 
 
 ## --------------------------------------------------
