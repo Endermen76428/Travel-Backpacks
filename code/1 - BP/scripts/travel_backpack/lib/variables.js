@@ -34,25 +34,6 @@ export const backpackUpgradesIndex = {
     121: [100, 5],
     141: [120, 6]
 };
-export const dyesList = {
-    "minecraft:ink_sac": "undye",
-    "minecraft:white_dye": "white",
-    "minecraft:light_gray_dye": "light_gray",
-    "minecraft:gray_dye": "gray",
-    "minecraft:black_dye": "black",
-    "minecraft:brown_dye": "brown",
-    "minecraft:red_dye": "red",
-    "minecraft:orange_dye": "orange",
-    "minecraft:yellow_dye": "yellow",
-    "minecraft:lime_dye": "lime",
-    "minecraft:green_dye": "green",
-    "minecraft:cyan_dye": "cyan",
-    "minecraft:light_blue_dye": "light_blue",
-    "minecraft:blue_dye": "blue",
-    "minecraft:purple_dye": "purple",
-    "minecraft:magenta_dye": "magenta",
-    "minecraft:pink_dye": "pink"
-};
 system.run(() => {
     world.gameRules.showTags = false;
     const players = world.getAllPlayers();

@@ -1,5 +1,6 @@
 import { system, EntityComponentTypes } from "@minecraft/server";
 import { backpackSizeTier } from "../lib/variables";
+import { paintBackpack } from "../functions/paint";
 system.afterEvents.scriptEventReceive.subscribe(({ id, message, sourceEntity, sourceBlock }) => {
     const exe = scriptEventFunctions[id];
     if (exe)
@@ -37,7 +38,11 @@ const scriptEventFunctions = {
             level = tier;
             entity.triggerEvent(`travel_backpack:inventory${tier}`);
         }
-        console.warn(level);
         entity.nameTag = `ui.travel_backpack:backpack.size.${level}`;
+    },
+    "travel_backpack:paint": (message, entity) => {
+        if (!entity)
+            return;
+        paintBackpack(entity, message);
     }
 };
