@@ -125,7 +125,7 @@
           "collection_name": "container_items"
         }
       },
-      { "padding": { "type": "panel", "size": [ 0, 1 ] } }
+      { "padding@common.empty_panel": { "size": [ 0, 1 ] } }
     ]
   }
 }

@@ -111,7 +111,7 @@
                         {
                           "output@common.container_item": {
                             "size": [ 26, 26 ],
-                            "$button_ref": "travel_backpack-upgrade_craft.output_button",
+                            "$button_ref": "travel_backpack-upgrade_general.output_button",
                             "$cell_image_size": [ 26, 26 ],
                             "$item_collection_name": "container_items",
                             "collection_index": "($inventory_size +20)"
@@ -176,51 +176,6 @@
         "binding_type": "view",
         "source_property_name": "((('%.21s' * #info_1) = '§f§c§r§a§f§t§r') or (('%.21s' * #info_2) = '§f§c§r§a§f§t§r') or (('%.21s' * #info_3) = '§f§c§r§a§f§t§r') or (('%.21s' * #info_4) = '§f§c§r§a§f§t§r') or (('%.21s' * #info_5) = '§f§c§r§a§f§t§r') or (('%.21s' * #info_6) = '§f§c§r§a§f§t§r'))", /* Cada-combinação-de-§-considerá-como-3-e-possui-um-§f-no-inicio-de-todo-hover_text-por-algum-motivo,-sofri-pra-descobrir-isso-:( */
         "target_property_name": "#visible"
-      }
-    ]
-  },
-
-  "output_button@common.container_slot_button_prototype": {
-    "button_mappings": [
-      {
-        "from_button_id": "button.menu_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_ok",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_secondary_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.controller_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_auto_place",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.controller_secondary_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_inventory_drop",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_inventory_drop_all",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
       }
     ]
   }

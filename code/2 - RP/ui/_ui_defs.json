@@ -4,6 +4,7 @@
     "ui/travel_backpack/common.json",
     "ui/travel_backpack/upgrades.json",
     "ui/travel_backpack/upgrades/craft.json",
-    "ui/travel_backpack/upgrades/furnace.json"
+    "ui/travel_backpack/upgrades/furnace.json",
+    "ui/travel_backpack/upgrades/general.json"
   ]
 }

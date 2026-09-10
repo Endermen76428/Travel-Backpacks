@@ -58,19 +58,19 @@
                             "size": [ 18, 20 ],
                             "controls": [
                               {
+                                "empty_flame": {
+                                  "type": "image",
+                                  "texture": "textures/ui/flame_empty_image",
+                                  "size": [ 13, 13 ]
+                                }
+                              },
+                              {
                                 "flame_stack": {
                                   "type": "stack_panel",
-                                  "offset": [ 2.5, 0 ],
+                                  "offset": [ 1.5, -0.5 ],
                                   "collection_name": "container_items",
                                   "controls": [
-                                    // { "flame@chest.chest_grid_item": { "collection_index": "($inventory_size +28)" } }
-                                    {
-                                      "flame": {
-                                        "type": "image",
-                                        "texture": "textures/ui/flame_empty_image",
-                                        "size": [ 13, 13 ]
-                                      }
-                                    }
+                                    { "flame@travel_backpack-upgrade_general.item_visual": { "collection_index": "($inventory_size +28)" } }
                                   ]
                                 }
                               }
@@ -83,19 +83,26 @@
                   },
                   {
                     "column_2@common.empty_panel": {
-                      "type": "stack_panel",
-                      "size": [ 22, 22 ],
-                      "offset": [ 11, 22.5 ],
-                      "collection_name": "container_items",
                       "controls": [
                         {
                           "arrow": {
                             "type": "image",
-                            "texture": "textures/ui/arrow_active",
-                            "size": [ 22, 15 ]
+                            "texture": "textures/ui/arrow_inactive",
+                            "size": [ 22, 15 ],
+                            "offset": [ 11, 19 ]
+                          }
+                        },
+                        {
+                          "arrow_stack": {
+                            "type": "stack_panel",
+                            "size": [ 22, 22 ],
+                            "offset": [ 11, 19 ],
+                            "collection_name": "container_items",
+                            "controls": [
+                              { "arrow@travel_backpack-upgrade_general.item_visual": { "collection_index": "($inventory_size +29)", "$item_render_size": [ 22, 22 ] } }
+                            ]
                           }
                         }
-                        // { "arrow@chest.chest_grid_item": { "collection_index": "($inventory_size +29)" } }
                       ]
                     }
                   },
@@ -108,7 +115,7 @@
                         {
                           "output@common.container_item": {
                             "size": [ 26, 26 ],
-                            "$button_ref": "travel_backpack-upgrade_furnace.output_button",
+                            "$button_ref": "travel_backpack-upgrade_general.output_button",
                             "$cell_image_size": [ 26, 26 ],
                             "$item_collection_name": "container_items",
                             "collection_index": "($inventory_size +27)"
@@ -181,51 +188,6 @@
         "binding_type": "view",
         "source_property_name": "((('%.21s' * #info_1) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_2) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_3) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_4) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_5) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_6) = '§f§f§u§r§n§a§r'))", /* Cada-combinação-de-§-considerá-como-3-e-possui-um-§f-no-inicio-de-todo-hover_text-por-algum-motivo,-sofri-pra-descobrir-isso-:( */
         "target_property_name": "#visible"
-      }
-    ]
-  },
-
-  "output_button@common.container_slot_button_prototype": {
-    "button_mappings": [
-      {
-        "from_button_id": "button.menu_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_ok",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_secondary_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.controller_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_auto_place",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.controller_secondary_select",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_inventory_drop",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
-      },
-      {
-        "from_button_id": "button.menu_inventory_drop_all",
-        "to_button_id": "button.container_auto_place",
-        "mapping_type": "pressed"
       }
     ]
   }

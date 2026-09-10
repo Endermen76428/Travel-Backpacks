@@ -1,4 +1,4 @@
-import { system, EntityComponentTypes } from "@minecraft/server";
+import { EntityComponentTypes, system } from "@minecraft/server";
 import { backpackUpgradesIndex, lockSlotItem } from "../../lib/variables";
 import { craftUpgradeFunctions } from "./craft/upCraftHandler";
 const backpackPlayersListenList = {};
@@ -12,7 +12,7 @@ function startInverval(executeTime = 0) {
         const [key, info] = players[i] ?? [];
         if (key == undefined || info == undefined)
             continue;
-        const { player, backpack, playerInv, backpackInv, slots, upgrades } = info;
+        const { player, backpack, backpackInv, slots, upgrades } = info;
         if (!player.isValid || !backpack.isValid) {
             invalidPlayers++;
             backpackPlayersListenList[key];
@@ -104,7 +104,6 @@ const removeFunctions = {
         let upgradesEnabled = -1;
         for (let i = 0, len = oldUpgrades.length; i < len; i++) {
             const upgrade = oldUpgrades[i];
-            console.warn(upgrade);
             if (upgrade == "travel_backpack:craft_upgrade")
                 upgradesEnabled++;
         }
@@ -112,7 +111,6 @@ const removeFunctions = {
             return;
         for (let i = firstSlot + 10, len = firstSlot + 19; i < len; i++) {
             const item = inventory.getItem(i);
-            console.warn(item?.typeId);
             item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location);
             inventory.setItem(i, lockSlotItem);
         }

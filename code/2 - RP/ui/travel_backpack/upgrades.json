@@ -185,9 +185,9 @@
                 "type": "panel",
                 "controls": [
                   {
-                    "buttons_stack": {
+                    "upgrade_toggles": {
                       "type": "stack_panel",
-                      "size": [ 20, "100%c" ],
+                      "size": [ 21, 21 ],
                       "anchor_from": "top_middle",
                       "anchor_to": "top_middle",
                       "controls": [
