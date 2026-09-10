@@ -116,9 +116,7 @@ const addFunctions: { [key: string]: (entity: Entity, inventory: Container, firs
     // Evita de substituir os itens do craft terminal caso coloque outro upgrade de craft
     if(inventory.getItem(firstSlot +10)?.typeId != "travel_backpack:lock_slot") return
 
-    for(let i = firstSlot +10, len = firstSlot +19; i < len; i++){
-      inventory.setItem(i, undefined)
-    }
+    for(let i = firstSlot +10, len = firstSlot +19; i < len; i++) inventory.setItem(i, undefined)
 
     craftUpgradeFunctions.add(entity, inventory, firstSlot)
   }
@@ -129,12 +127,14 @@ const removeFunctions: { [key: string]: (player: Player, entity: Entity, invento
     let upgradesEnabled = -1 // -1 porque o oldUpgrades mostra os ativos então o script soma esse valor pra no final ser algum numero igual a 0 ou maior pra inciar a quantia certa de upgrades ativo
     for(let i = 0, len = oldUpgrades.length; i < len; i++){
       const upgrade = oldUpgrades[i]
+      console.warn(upgrade)
       if(upgrade == "travel_backpack:craft_upgrade") upgradesEnabled++
     }
     if(upgradesEnabled > 0) return
 
     for(let i = firstSlot +10, len = firstSlot +19; i < len; i++){
       const item = inventory.getItem(i)
+      console.warn(item?.typeId)
       item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location)
       inventory.setItem(i, lockSlotItem)
     }

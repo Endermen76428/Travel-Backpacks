@@ -1,5 +1,5 @@
 ## --------------------------------------------------
-## Block
+## #region Block
 ## --------------------------------------------------
 
 ## Backpack
@@ -110,20 +110,18 @@ tile.travel_backpack:blue_netherite_backpack.name=Mochila de Netherita Azul
 tile.travel_backpack:purple_netherite_backpack.name=Mochila de Netherita Roxo
 tile.travel_backpack:magenta_netherite_backpack.name=Mochila de Netherita Magenta
 tile.travel_backpack:pink_netherite_backpack.name=Mochila de Netherita Rosa
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Entity
+## #region Entity
 ## --------------------------------------------------
 
 entity.travel_backpack:backpack.name=Mochila
 entity.travel_backpack:chunk_loader.name=Carregador de Chunk
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item
+## #region Item
 ## --------------------------------------------------
 
 item.bedrock_awakening:travel_backpack=§kTravel Backpack
@@ -257,29 +255,26 @@ item.travel_backpack:furnace_upgrade=§f§u§r§n§a§rMelhoria de Fornalha\n§9
 
 item.warn.travel_backpack:backpack.need_shift.place=§cVocê precisa estar agachado para colocar a mochila no chão.
 item.warn.travel_backpack:backpack.need_shift.remove=§cVocê precisa estar agachado para remover a mochila do chão.
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item Catalog
+## #region Item Catalog
 ## --------------------------------------------------
 
 travel_backpack:itemGroup.name.backpacks=Mochilas
 travel_backpack:itemGroup.name.upgrade_tier=Melhorias de Nível
 travel_backpack:itemGroup.name.upgrade_functions=Melhorias Funcionais
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item Lore
+## #region Item Lore
 ## --------------------------------------------------
 
 lore.travel_backpack:backpack.id=Mochila: %1
-
-
+## #endregion
 
 ## --------------------------------------------------
-## UI
+## #region UI
 ## --------------------------------------------------
 
 ## Custom Chest
@@ -289,6 +284,7 @@ ui.travel_backpack:backpack.size.2=Mochila de Ferro
 ui.travel_backpack:backpack.size.3=Mochila de Ouro
 ui.travel_backpack:backpack.size.4=Mochila de Diamante
 ui.travel_backpack:backpack.size.5=Mochila de Netherita
+## #endregion
 
 
 

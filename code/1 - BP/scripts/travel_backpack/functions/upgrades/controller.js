@@ -94,9 +94,8 @@ const addFunctions = {
     "travel_backpack:craft_upgrade": (entity, inventory, firstSlot) => {
         if (inventory.getItem(firstSlot + 10)?.typeId != "travel_backpack:lock_slot")
             return;
-        for (let i = firstSlot + 10, len = firstSlot + 19; i < len; i++) {
+        for (let i = firstSlot + 10, len = firstSlot + 19; i < len; i++)
             inventory.setItem(i, undefined);
-        }
         craftUpgradeFunctions.add(entity, inventory, firstSlot);
     }
 };
@@ -105,6 +104,7 @@ const removeFunctions = {
         let upgradesEnabled = -1;
         for (let i = 0, len = oldUpgrades.length; i < len; i++) {
             const upgrade = oldUpgrades[i];
+            console.warn(upgrade);
             if (upgrade == "travel_backpack:craft_upgrade")
                 upgradesEnabled++;
         }
@@ -112,6 +112,7 @@ const removeFunctions = {
             return;
         for (let i = firstSlot + 10, len = firstSlot + 19; i < len; i++) {
             const item = inventory.getItem(i);
+            console.warn(item?.typeId);
             item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location);
             inventory.setItem(i, lockSlotItem);
         }

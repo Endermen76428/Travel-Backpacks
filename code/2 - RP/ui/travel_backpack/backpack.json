@@ -2,7 +2,7 @@
   "namespace": "travel_backpack-backpack",
 
   "backpack_panel": {
-    "$inventory_size|default": 49, /*Se não colocar |default o valor não é alterado pelos elementos anteriores, legal saber*/
+    "$inventory_size|default": 27, /*Se não colocar |default o valor não é alterado pelos elementos anteriores, legal saber*/
     "$root_panel_size|default": [ 176, 162 ],
     "$backpack_panel_size|default": [ 176, 68 ],
     "$grid_panel_size|default": [ 162, 54 ],

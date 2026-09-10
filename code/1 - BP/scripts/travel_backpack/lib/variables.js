@@ -19,20 +19,20 @@ export const backpackTypeTier = {
     5: "travel_backpack:netherite_backpack"
 };
 export const backpackSizeTier = {
-    49: 0,
-    57: 1,
-    75: 2,
-    102: 3,
-    121: 4,
-    141: 5
+    62: 0,
+    74: 1,
+    89: 2,
+    116: 3,
+    135: 4,
+    155: 5
 };
 export const backpackUpgradesIndex = {
-    49: [27, 1],
-    57: [36, 2],
-    75: [54, 3],
-    102: [81, 4],
-    121: [100, 5],
-    141: [120, 6]
+    62: [27, 1],
+    74: [36, 2],
+    89: [54, 3],
+    116: [81, 4],
+    135: [100, 5],
+    155: [120, 6]
 };
 system.run(() => {
     world.gameRules.showTags = false;

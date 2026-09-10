@@ -1,6 +1,6 @@
 ## --------------------------------------------------
-## Block
-## --------------------------------------------------
+## #region Block
+## ------------------------------------------------
 
 ## Backpack
 tile.travel_backpack:leather_backpack.name=Leather Backpack
@@ -110,20 +110,18 @@ tile.travel_backpack:blue_netherite_backpack.name=Blue Netherite Backpack
 tile.travel_backpack:purple_netherite_backpack.name=Purple Netherite Backpack
 tile.travel_backpack:magenta_netherite_backpack.name=Magenta Netherite Backpack
 tile.travel_backpack:pink_netherite_backpack.name=Pink Netherite Backpack
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Entity
+## #region Entity
 ## --------------------------------------------------
 
 entity.travel_backpack:backpack.name=Backpack
 entity.travel_backpack:chunk_loader.name=Chunk Loader
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item
+## #region Item
 ## --------------------------------------------------
 
 item.bedrock_awakening:travel_backpack=§kTravel Backpack
@@ -257,29 +255,28 @@ item.travel_backpack:furnace_upgrade=§f§u§r§n§a§rFurnace Upgrade\n§9Trave
 
 item.warn.travel_backpack:backpack.need_shift.place=§cYou need to be crouching down to put your backpack on the ground.
 item.warn.travel_backpack:backpack.need_shift.remove=§cYou need to be crouching down to lift the backpack off the ground.
-
-
+## #endregion
 
 ## --------------------------------------------------
-## Item Catalog
+## #region Item Catalog
 ## --------------------------------------------------
 
 travel_backpack:itemGroup.name.backpacks=Backpacks
 travel_backpack:itemGroup.name.upgrade_tier=Upgrades Tier
 travel_backpack:itemGroup.name.upgrade_functions=Functional Upgrades
 
-
+## #endregion
+## #endregion
 
 ## --------------------------------------------------
-## Item Lore
+## #region Item Lore
 ## --------------------------------------------------
 
 lore.travel_backpack:backpack.id=Backpack: %1
-
-
+## #endregion
 
 ## --------------------------------------------------
-## UI
+## #region UI
 ## --------------------------------------------------
 
 ## Custom Chest
@@ -289,6 +286,7 @@ ui.travel_backpack:backpack.size.2=Iron Backpack
 ui.travel_backpack:backpack.size.3=Gold Backpack
 ui.travel_backpack:backpack.size.4=Diamond Backpack
 ui.travel_backpack:backpack.size.5=Netherite Backpack
+## #endregion
 
 
 

@@ -23,21 +23,21 @@ export const backpackTypeTier: { [key: number]: string } = {
 }
 
 export const backpackSizeTier: { [key: number]: number } = {
-  49:  0,
-  57:  1,
-  75:  2,
-  102: 3,
-  121: 4,
-  141: 5
+  62:  0,
+  74:  1,
+  89:  2,
+  116: 3,
+  135: 4,
+  155: 5
 }
 
 export const backpackUpgradesIndex: { [key: number]: [number, number] } = {
-  49:  [27,  1], // Backpack Size, Upgrade Amount
-  57:  [36,  2],
-  75:  [54,  3],
-  102: [81,  4],
-  121: [100, 5],
-  141: [120, 6]
+  62:  [27,  1], // Backpack Size, Upgrade Amount
+  74:  [36,  2],
+  89:  [54,  3],
+  116: [81,  4],
+  135: [100, 5],
+  155: [120, 6]
 }
 
 system.run(() => {

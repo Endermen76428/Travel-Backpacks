@@ -5,6 +5,7 @@ upgrade de dynamic light
 upgrade de devolver um items quando acabar (tipo, to usando pedra e acaba, pra não precisar abrir a mochila, ele automaticamente puxa de lá (O cara pediu pra fazer com a mão esquerda, tipo os totem, mas seila, é uma opção))
 Upgrade de void, pra deletar os itens que passarem de um ponto
 E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void upgrade)
+adicionar block_culling nas backpack
 
 Travel Backpacks v0.2.5 Alpha
 > Changed:

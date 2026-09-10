@@ -14,6 +14,46 @@
 
     // Upgrade Function
     "travel_backpack:craft_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/craft_upgrade" },
-    "travel_backpack:furnace_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/furnace_upgrade" }
+    "travel_backpack:furnace_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/furnace_upgrade" },
+
+    // Furnace - Arrow
+    "travel_backpack:arrow_0": { "textures": "textures/null" },
+    "travel_backpack:arrow_1": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_1" },
+    "travel_backpack:arrow_2": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_2" },
+    "travel_backpack:arrow_3": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_3" },
+    "travel_backpack:arrow_4": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_4" },
+    "travel_backpack:arrow_5": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_5" },
+    "travel_backpack:arrow_6": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_6" },
+    "travel_backpack:arrow_7": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_7" },
+    "travel_backpack:arrow_8": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_8" },
+    "travel_backpack:arrow_9": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_9" },
+    "travel_backpack:arrow_10": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_10" },
+    "travel_backpack:arrow_11": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_11" },
+    "travel_backpack:arrow_12": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_12" },
+    "travel_backpack:arrow_13": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_13" },
+    "travel_backpack:arrow_14": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_14" },
+    "travel_backpack:arrow_15": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_15" },
+    "travel_backpack:arrow_16": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_16" },
+    "travel_backpack:arrow_17": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_17" },
+    "travel_backpack:arrow_18": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_18" },
+    "travel_backpack:arrow_19": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_19" },
+    "travel_backpack:arrow_20": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_20" },
+    "travel_backpack:arrow_21": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_21" },
+
+    // Furnace - Flame
+    "travel_backpack:flame_0": { "textures": "textures/null" },
+    "travel_backpack:flame_1": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_1" },
+    "travel_backpack:flame_2": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_2" },
+    "travel_backpack:flame_3": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_3" },
+    "travel_backpack:flame_4": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_4" },
+    "travel_backpack:flame_5": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_5" },
+    "travel_backpack:flame_6": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_6" },
+    "travel_backpack:flame_7": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_7" },
+    "travel_backpack:flame_8": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_8" },
+    "travel_backpack:flame_9": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_9" },
+    "travel_backpack:flame_10": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_10" },
+    "travel_backpack:flame_11": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_11" },
+    "travel_backpack:flame_12": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_12" },
+    "travel_backpack:flame_13": { "textures": "textures/travel_backpack/ui/upgrades/furnace/flame/flame_13" }
   }
 }
