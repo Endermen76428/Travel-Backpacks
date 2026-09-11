@@ -1,5 +1,6 @@
 import { EntityComponentTypes, system } from "@minecraft/server";
 import { backpackUpgradesIndex, lockSlotItem } from "../../lib/variables";
+import { furnaceUpgradeFunctions } from "./furnace/upFurnaceHandler";
 import { craftUpgradeFunctions } from "./craft/upCraftHandler";
 const backpackPlayersListenList = {};
 let amountOfListeners = 0;
@@ -49,7 +50,7 @@ function startInverval(executeTime = 0) {
                     continue;
                 }
                 const exe = addFunctions[change];
-                exe && exe(backpack, backpackInv, firstSlot, upgrades);
+                exe && exe(backpack, backpackInv, firstSlot);
                 upgrades[slot] = change;
             }
         }
@@ -69,7 +70,7 @@ export function addPlayerUpgradeListen(player, backpack) {
     if (info == undefined)
         return;
     const [firstSlot, size] = info;
-    const upgradesToEnable = { craft: false };
+    const upgradesToEnable = { craft: false, furnace: false };
     const upgrades = ["", "", "", "", "", ""];
     for (let i = firstSlot, len = firstSlot + size; i < len; i++) {
         const item = backpackInv.getItem(i);
@@ -91,12 +92,22 @@ export function removePlayerUpgradeListen(player) {
     delete backpackPlayersListenList[player.id];
 }
 const addFunctions = {
-    "travel_backpack:craft_upgrade": (entity, inventory, firstSlot) => {
-        if (inventory.getItem(firstSlot + 10)?.typeId != "travel_backpack:lock_slot")
+    "travel_backpack:craft_upgrade": (entity, inventory, endSlot) => {
+        const firstSlot = endSlot + 10;
+        if (inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot")
             return;
-        for (let i = firstSlot + 10, len = firstSlot + 19; i < len; i++)
+        for (let i = firstSlot, len = firstSlot + 9; i < len; i++)
             inventory.setItem(i, undefined);
         craftUpgradeFunctions.add(entity, inventory, firstSlot);
+    },
+    "travel_backpack:furnace_upgrade": (entity, inventory, endSlot) => {
+        const firstSlot = endSlot + 25;
+        if (inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot")
+            return;
+        for (let i = firstSlot, len = firstSlot + 3; i < len; i++)
+            inventory.setItem(i, undefined);
+        entity.addTag("furnace");
+        furnaceUpgradeFunctions.add(entity, inventory, firstSlot);
     }
 };
 const removeFunctions = {
@@ -115,6 +126,22 @@ const removeFunctions = {
             inventory.setItem(i, lockSlotItem);
         }
         craftUpgradeFunctions.remove(entity);
+    },
+    "travel_backpack:furnace_upgrade": (player, entity, inventory, firstSlot, oldUpgrades) => {
+        let upgradesEnabled = -1;
+        for (let i = 0, len = oldUpgrades.length; i < len; i++) {
+            const upgrade = oldUpgrades[i];
+            if (upgrade == "travel_backpack:furnace_upgrade")
+                upgradesEnabled++;
+        }
+        if (upgradesEnabled > 0)
+            return;
+        for (let i = firstSlot + 25, len = firstSlot + 28; i < len; i++) {
+            const item = inventory.getItem(i);
+            item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location);
+            inventory.setItem(i, lockSlotItem);
+        }
+        furnaceUpgradeFunctions.remove(entity);
     }
 };
 const enableUpgrades = {
@@ -122,6 +149,12 @@ const enableUpgrades = {
         if (upgrades.craft == true)
             return;
         upgrades.craft = true;
-        craftUpgradeFunctions.add(entity, inventory, firstSlot);
+        craftUpgradeFunctions.add(entity, inventory, firstSlot + 10);
+    },
+    "travel_backpack:furnace_upgrade": (upgrades, entity, inventory, firstSlot) => {
+        if (upgrades.furnace == true)
+            return;
+        upgrades.furnace = true;
+        furnaceUpgradeFunctions.add(entity, inventory, firstSlot + 25);
     }
 };

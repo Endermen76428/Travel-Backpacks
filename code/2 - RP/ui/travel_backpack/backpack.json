@@ -9,6 +9,7 @@
     "$grid_panel_dimension|default": [ 9, 3 ],
 
     "type": "panel",
+    "offset": [ 0, 3 ],
     "controls": [
       { "container_gamepad_helpers@common.container_gamepad_helpers": {} },
       { "selected_item_details_factory@common.selected_item_details_factory": { "control_name": "@chest.selected_item_details" } },

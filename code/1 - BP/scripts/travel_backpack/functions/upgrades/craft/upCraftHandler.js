@@ -1,4 +1,4 @@
-import { system, ItemStack } from "@minecraft/server";
+import { ItemStack, system } from "@minecraft/server";
 import { craftUpgradeRecipes } from "./recipes";
 const craftListenList = {};
 let amountOfListeners = 0;
@@ -14,7 +14,7 @@ function startInverval() {
         const { backpack, backpackInv, firstSlot, lastItem } = info;
         if (!backpack.isValid) {
             invalidPlayers++;
-            craftListenList[key];
+            delete craftListenList[key];
             continue;
         }
         let craftPattern = "";
@@ -68,7 +68,7 @@ function startInverval() {
 }
 export const craftUpgradeFunctions = new class CraftUpgradeFunctions {
     add(backpack, backpackInv, firstSlot) {
-        craftListenList[backpack.id] = { backpack, backpackInv, firstSlot: firstSlot + 10 };
+        craftListenList[backpack.id] = { backpack, backpackInv, firstSlot };
         amountOfListeners == 0 && startInverval();
     }
     remove(backpack) {

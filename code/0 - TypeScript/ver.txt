@@ -6,13 +6,16 @@ upgrade de devolver um items quando acabar (tipo, to usando pedra e acaba, pra n
 Upgrade de void, pra deletar os itens que passarem de um ponto
 E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void upgrade)
 adicionar block_culling nas backpack
+alterar a backpack de diamante e netherite pra ter 1 scrolling e somente 9 linhas igual a backpack de ouro
+acho que ficara mais otimizado se eu fazer um unico loop global para todos os upgrades, (tipo vai ficar do jeito que tá, mas ao invez da logica do upgrade ficar dentro do loop, vai ficar em uma função que se o upgrade estiver ativo ele vai executar somente as funções certas no loop principal, tipo um sistema de threads)
 
 Travel Backpacks v0.2.5 Alpha
 > Changed:
 - Slightly increased the size of the backpack on the back;
 - Reduced backpack's UI size to fit small screens;
 > Fixed:
-- Fixed backpack downgrade tier. (i really hope)
+- Fixed backpack downgrade tier; (i really hope)
+- Fixed a problem with the craft terminal loop system.
 
 Travel Backpacks v0.2.4 Alpha
 > Changed:

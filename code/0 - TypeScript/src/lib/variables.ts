@@ -1,4 +1,5 @@
-import { world, system, EntityComponentTypes, EquipmentSlot, ItemStack } from "@minecraft/server"
+import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@minecraft/server"
+import { createFurnaceIcons } from "../functions/upgrades/furnace/visual"
 import { addPlayerHoldListen } from "../functions/hold"
 
 export const globalBackpackPos = {x: 0.5, y: 384, z: 0.5}
@@ -46,6 +47,7 @@ system.run(() => {
   const players = world.getAllPlayers()
 
   lockSlotItem = new ItemStack("travel_backpack:lock_slot")
+  createFurnaceIcons()
 
   if(players.length > 0){
     // Adiciona os jogadores ao Listener caso executem um /reload

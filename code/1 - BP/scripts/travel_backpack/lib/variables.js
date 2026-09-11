@@ -1,4 +1,5 @@
-import { world, system, EntityComponentTypes, EquipmentSlot, ItemStack } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@minecraft/server";
+import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
 import { addPlayerHoldListen } from "../functions/hold";
 export const globalBackpackPos = { x: 0.5, y: 384, z: 0.5 };
 export let lockSlotItem;
@@ -38,6 +39,7 @@ system.run(() => {
     world.gameRules.showTags = false;
     const players = world.getAllPlayers();
     lockSlotItem = new ItemStack("travel_backpack:lock_slot");
+    createFurnaceIcons();
     if (players.length > 0) {
         for (let i = 0, len = players.length; i < len; i++) {
             const player = players[i];
