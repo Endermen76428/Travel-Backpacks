@@ -1,8 +1,7 @@
 {
   "namespace": "travel_backpack-upgrade_furnace",
 
-  "upgrade_furnace_panel": {
-    "type": "panel",
+  "upgrade_furnace_panel@common.root_panel": {
     "size": [ "100%cm", "100%cm" ],
     "controls": [
       {

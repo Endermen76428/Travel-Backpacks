@@ -14,8 +14,9 @@ Travel Backpacks v0.2.5 Alpha
 - Slightly increased the size of the backpack on the back;
 - Reduced backpack's UI size to fit small screens;
 > Fixed:
-- Fixed backpack downgrade tier; (i really hope)
-- Fixed a problem with the craft terminal loop system.
+- Fixed backpack downgrade tier; (I really hope)
+- Fixed a problem with the craft terminal loop system;
+- Clicking on the backpack's edges UI or in epty spaces of Craft Terminal with an item will not throw it out.
 
 Travel Backpacks v0.2.4 Alpha
 > Changed:

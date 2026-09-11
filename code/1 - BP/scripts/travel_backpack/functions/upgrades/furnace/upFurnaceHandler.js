@@ -23,10 +23,8 @@ function startInverval() {
         if (fuelTime > 0) {
             const levelOld = Math.floor(((fuelTime + 1) * fuelMax) * 13);
             const level = Math.floor((fuelTime * fuelMax) * 13);
-            if (level != levelOld) {
+            if (level != levelOld)
                 backpackInv.setItem(firstSlot + 3, furnaceFlameIcons[level]);
-                console.warn("§aFuel:§r", level);
-            }
             info.fuelTime--;
         }
         const input = backpackInv.getItem(firstSlot);
@@ -40,7 +38,7 @@ function startInverval() {
         }
         if (input == undefined) {
             if (progress > 0) {
-                console.warn("§cItem Removido, Progresso Resetado");
+                backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[0]);
                 info.progress = 0;
             }
             continue;
@@ -51,10 +49,8 @@ function startInverval() {
                 if (progress > 0) {
                     const levelOld = Math.floor(((progress + 1) * inverseProgress) * 22);
                     const level = Math.floor((progress * inverseProgress) * 22);
-                    if (level != levelOld) {
+                    if (level != levelOld)
                         backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[level]);
-                        console.warn("§cProgress:§r", level);
-                    }
                     info.progress -= 2;
                 }
                 continue;
@@ -64,10 +60,8 @@ function startInverval() {
                 if (progress > 0) {
                     const levelOld = Math.floor(((progress + 1) * inverseProgress) * 22);
                     const level = Math.floor((progress * inverseProgress) * 22);
-                    if (level != levelOld) {
+                    if (level != levelOld)
                         backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[level]);
-                        console.warn("§cProgress:§r", level);
-                    }
                     info.progress -= 2;
                 }
                 continue;
@@ -91,18 +85,16 @@ function startInverval() {
         }
         if (output != undefined && expectedOutput != output.typeId) {
             if (progress > 0) {
-                console.warn("§cOutput não correspondente, Progresso Resetado");
+                backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[0]);
                 info.progress = 0;
             }
             continue;
         }
-        info.progress++;
         const levelOld = Math.floor(((progress - 1) * inverseProgress) * 22);
         const level = Math.floor((progress * inverseProgress) * 22);
-        if (level != levelOld) {
+        if (level != levelOld)
             backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[level]);
-            console.warn("§aProgress:§r", level);
-        }
+        info.progress++;
         if (info.progress == 200) {
             if (output == undefined) {
                 output = new ItemStack(expectedOutput);

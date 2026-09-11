@@ -1,8 +1,7 @@
 {
   "namespace": "travel_backpack-upgrade_craft",
 
-  "upgrade_craft_panel": {
-    "type": "panel",
+  "upgrade_craft_panel@common.root_panel": {
     "size": [ "100%cm", "100%cm" ],
     "controls": [
       {

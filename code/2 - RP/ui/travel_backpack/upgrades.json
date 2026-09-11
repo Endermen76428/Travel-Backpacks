@@ -87,9 +87,6 @@
 
   "upgrade_slots_panel@travel_backpack-common.backpack_background": {
     "size": [ 32, "100%c +10px" ],
-    "offset": [ -25, 0 ],
-    "anchor_from": "top_left",
-    "anchor_to": "top_left",
     "controls": [
       {
         "slots_panel": {
@@ -139,8 +136,7 @@
             { "hover_data_control_5@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +4)" } },
             { "hover_data_control_6@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +5)" } },
             {
-              "upgrades_panel": {
-                "type": "panel",
+              "upgrades_panel@common.empty_panel": {
                 "controls": [
                   {
                     "upgrade_toggles": {
@@ -181,8 +177,7 @@
             { "hover_data_control_5@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +4)" } },
             { "hover_data_control_6@travel_backpack-upgrades.hover_text_mobile_data_control": { "$index": "($inventory_size +5)" } },
             {
-              "upgrades_panel": {
-                "type": "panel",
+              "upgrades_panel@common.empty_panel": {
                 "controls": [
                   {
                     "upgrade_toggles": {
