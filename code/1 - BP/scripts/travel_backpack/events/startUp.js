@@ -1,4 +1,4 @@
-import { system, Player } from "@minecraft/server";
+import { Player, system } from "@minecraft/server";
 import { placeBackpack } from "../functions/place";
 system.beforeEvents.startup.subscribe(({ itemComponentRegistry: customI }) => {
     customI.registerCustomComponent("travel_backpack:backpack", {

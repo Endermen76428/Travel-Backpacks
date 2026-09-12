@@ -136,7 +136,7 @@ const removeFunctions = {
         }
         if (upgradesEnabled > 0)
             return;
-        for (let i = firstSlot + 25, len = firstSlot + 28; i < len; i++) {
+        for (let i = firstSlot + 25, len = firstSlot + 30; i < len; i++) {
             const item = inventory.getItem(i);
             item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location);
             inventory.setItem(i, lockSlotItem);

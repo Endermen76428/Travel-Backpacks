@@ -38,6 +38,7 @@ function startInverval() {
         }
         if (input == undefined) {
             if (progress > 0) {
+                console.warn("Acabou");
                 backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[0]);
                 info.progress = 0;
             }
@@ -105,6 +106,7 @@ function startInverval() {
             backpackInv.setItem(firstSlot + 2, output);
             if (input.amount - 1 == 0) {
                 backpackInv.setItem(firstSlot, undefined);
+                backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[0]);
             }
             else {
                 input.amount--;

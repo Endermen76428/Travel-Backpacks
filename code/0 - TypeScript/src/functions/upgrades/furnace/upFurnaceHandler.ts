@@ -48,6 +48,7 @@ function startInverval(): void {
     // Se não tiver mais um item no input ele reseta o progresso
     if(input == undefined){
       if(progress > 0){
+        console.warn("Acabou")
         backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
         info.progress = 0
       }
@@ -121,6 +122,7 @@ function startInverval(): void {
       backpackInv.setItem(firstSlot +2, output)
       if(input.amount -1 == 0){
         backpackInv.setItem(firstSlot, undefined)
+        backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
       } else {
         input.amount--
         backpackInv.setItem(firstSlot, input)
