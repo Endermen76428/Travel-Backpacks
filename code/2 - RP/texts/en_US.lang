@@ -117,7 +117,6 @@ tile.travel_backpack:pink_netherite_backpack.name=Pink Netherite Backpack
 ## --------------------------------------------------
 
 entity.travel_backpack:backpack.name=Backpack
-entity.travel_backpack:chunk_loader.name=Chunk Loader
 
 ### Action
 
