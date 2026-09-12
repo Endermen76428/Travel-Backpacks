@@ -24,7 +24,6 @@
       {
         "custom_toggle@common_toggles.light_text_toggle": {
           "size": "$toggle_size",
-          // "offset": [ 5, 0 ],
           "$default_texture": "$off_texture",
           "$pressed_texture": "$off_hover_texture",
           "$hover_texture": "$on_texture",
@@ -38,25 +37,6 @@
           "$hover_border_visible": false
         }
       }
-      // {
-      //   "display_name": {
-      //     "type": "panel",
-      //     "size": [ "100%c", "100%" ],
-      //     "anchor_from": "center",
-      //     "anchor_to": "right_middle",
-      //     "controls": [
-      //       {
-      //         "toggle_display_name": {
-      //           "type": "label",
-      //           "text": "$display_name",
-      //           "offset": [ 10, 0 ],
-      //           "shadow": true,
-      //           "layer": 10
-      //         }
-      //       }
-      //     ]
-      //   }
-      // }
     ]
   }
 }

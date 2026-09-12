@@ -21,7 +21,6 @@
           "controls": [
             {
               "inventory_panel@common.root_panel": {
-                // "type": "panel",
                 "size": [ 176, 85 ],
                 "anchor_from": "bottom_middle",
                 "anchor_to": "bottom_middle",
@@ -36,7 +35,6 @@
             },
             {
               "backpack_panel@common.root_panel": {
-                // "type": "panel",
                 "size": "$backpack_panel_size",
                 "anchor_from": "top_middle",
                 "anchor_to": "top_middle",
