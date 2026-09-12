@@ -10,6 +10,6 @@ world.afterEvents.entityHitEntity.subscribe(({damagingEntity: player, hitEntity:
   if(player.isSneaking){
     removeBackpack.remove(player, entity)
   } else {
-    apiWarn.notify(player, "item.warn.travel_backpack:backpack.need_shift.remove", {type: "actionbar", sound: "warn.ender_addon_pack:bass"})
+    apiWarn.notify(player, "item.warn.travel_backpack:backpack.need_shift.remove", {type: "action_bar", sound: "warn.ender_addon_pack:bass"})
   }
 })

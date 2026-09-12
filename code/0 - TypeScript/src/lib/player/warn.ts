@@ -30,7 +30,7 @@ const notifyTypes = new class notifyTypes {
 
   "chat"(player: Player, message: Message): void { player.sendMessage(typeof message == "string" ? {translate: message} : message) }
 
-  "actionbar"(player: Player, message: Message): void { player.onScreenDisplay.setActionBar(typeof message == "string" ? {translate: message} : message) }
+  "action_bar"(player: Player, message: Message): void { player.onScreenDisplay.setActionBar(typeof message == "string" ? {translate: message} : message) }
 
   "title"(player: Player, message: Message): void { player.onScreenDisplay.setTitle(typeof message == "string" ? {translate: message} : message) }
 }
@@ -38,7 +38,7 @@ const notifyTypes = new class notifyTypes {
 type Message = string | RawMessage
 
 interface NotifyOptions extends SoundOptions {
-  type?: "chat" | "actionbar" | "title"
+  type?: "chat" | "action_bar" | "title"
   sound?: string
   particle?: { id: string, pos: Vector3, dimension?: string, map?: MolangVariableMap }
   delayParticle?: number
