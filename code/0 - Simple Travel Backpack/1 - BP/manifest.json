@@ -1,0 +1,43 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Simple Travel Backpacks v1.2 (Addon)",
+    "description": "pack.description",
+    "uuid": "3361e017-447a-4f00-a9aa-f4d27eda45c6",
+    "min_engine_version": [1, 26, 30],
+    "version": [1, 2, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "80ab6874-3148-44e4-9c3a-237f2153078d",
+      "version": [1, 2, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/travel_backpack/main.js",
+      "uuid": "1bae1d69-c14f-4318-90d9-0f7c1f2255d3",
+      "version": [1, 2, 0]
+    }
+  ],
+  "metadata": {
+    "product_type": "addon",
+    "authors": ["§bEndermen76428§r & §5Heartiorn"],
+    "url": "https://www.curseforge.com/minecraft-bedrock/addons/travel-backpacks"
+  },
+  "dependencies": [
+    {
+      "uuid": "a3a14b76-86e2-4278-9331-b057b8698bf1",
+      "version": [1, 2, 0]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.8.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.1.0"
+    }
+  ]
+}

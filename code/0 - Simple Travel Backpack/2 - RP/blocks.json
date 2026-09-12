@@ -1,0 +1,10 @@
+{
+  "format_version": "1.21.40",
+
+  "travel_backpack:leather_backpack": { "sound": "cloth" },
+  "travel_backpack:copper_backpack": { "sound": "cloth" },
+  "travel_backpack:iron_backpack": { "sound": "cloth" },
+  "travel_backpack:gold_backpack": { "sound": "cloth" },
+  "travel_backpack:diamond_backpack": { "sound": "cloth" },
+  "travel_backpack:netherite_backpack": { "sound": "cloth" }
+}

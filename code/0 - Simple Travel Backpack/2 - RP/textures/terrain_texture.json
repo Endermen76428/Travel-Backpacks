@@ -1,0 +1,18 @@
+{
+  "resource_pack_name": "Travel Backpacks",
+  "texture_name": "atlas.terrain",
+  "num_mip_levels": 4,
+  "padding": 8,
+  "texture_data": {
+    "ender_addon_pack:null": { "textures": "textures/null" },
+
+    // Backpacks
+    "travel_backpack:backpack_base": { "textures": "textures/travel_backpack/blocks/backpack_base" },
+    "travel_backpack:leather_tier": { "textures": "textures/travel_backpack/blocks/leather_tier" },
+    "travel_backpack:copper_tier": { "textures": "textures/travel_backpack/blocks/copper_tier" },
+    "travel_backpack:iron_tier": { "textures": "textures/travel_backpack/blocks/iron_tier" },
+    "travel_backpack:gold_tier": { "textures": "textures/travel_backpack/blocks/gold_tier" },
+    "travel_backpack:diamond_tier": { "textures": "textures/travel_backpack/blocks/diamond_tier" },
+    "travel_backpack:netherite_tier": { "textures": "textures/travel_backpack/blocks/netherite_tier" }
+  }
+}

@@ -1,0 +1,81 @@
+## --------------------------------------------------
+## Block
+## --------------------------------------------------
+
+## Backpack
+tile.travel_backpack:leather_backpack.name=Mochila de Couro
+tile.travel_backpack:copper_backpack.name=Mochila de Cobre
+tile.travel_backpack:iron_backpack.name=Mochila de Ferro
+tile.travel_backpack:gold_backpack.name=Mochila de Ouro
+tile.travel_backpack:diamond_backpack.name=Mochila de Diamante
+tile.travel_backpack:netherite_backpack.name=Mochila de Netherita
+
+
+
+## --------------------------------------------------
+## Entity
+## --------------------------------------------------
+
+entity.travel_backpack:backpack.name=Mochila
+entity.travel_backpack:chunk_loader.name=Carregador de Chunk
+
+
+
+## --------------------------------------------------
+## Item
+## --------------------------------------------------
+
+item.bedrock_awakening:travel_backpack=§kTravel Backpack
+
+## Backpack
+item.travel_backpack:leather_backpack=Mochila de Couro\n§9Travel Backpacks
+item.travel_backpack:copper_backpack=Mochila de Cobre\n§9Travel Backpacks
+item.travel_backpack:iron_backpack=Mochila de Ferro\n§9Travel Backpacks
+item.travel_backpack:gold_backpack=Mochila de Ouro\n§9Travel Backpacks
+item.travel_backpack:diamond_backpack=Mochila de Diamante\n§9Travel Backpacks
+item.travel_backpack:netherite_backpack=Mochila de Netherita\n§9Travel Backpacks
+
+## Upgrade
+item.travel_backpack:upgrade_template=Base de Melhoria\n§9Travel Backpacks
+
+## Upgrade Tier
+item.travel_backpack:copper_upgrade_tier=§rMelhoria de Nível de Cobre\n§9Travel Backpacks
+item.travel_backpack:iron_upgrade_tier=Melhoria de Nível de Ferro\n§9Travel Backpacks
+item.travel_backpack:gold_upgrade_tier=Melhoria de Nível de Ouro\n§9Travel Backpacks
+item.travel_backpack:diamond_upgrade_tier=Melhoria de Nível de Diamante\n§9Travel Backpacks
+item.travel_backpack:netherite_upgrade_tier=Melhoria de Nível de Netherita\n§9Travel Backpacks
+
+
+
+## --------------------------------------------------
+## Item Catalog
+## --------------------------------------------------
+
+travel_backpack:itemGroup.name.backpacks=Mochilas
+travel_backpack:itemGroup.name.upgrade_tier=Melhorias de Nível
+
+
+
+## --------------------------------------------------
+## Item Lore
+## --------------------------------------------------
+
+lore.travel_backpack:backpack.id=Mochila: %1
+
+
+
+## --------------------------------------------------
+## UI
+## --------------------------------------------------
+
+## Custom Chest
+ui.travel_backpack:backpack.size.0=Mochila de Couro
+ui.travel_backpack:backpack.size.1=Mochila de Cobre
+ui.travel_backpack:backpack.size.2=Mochila de Ferro
+ui.travel_backpack:backpack.size.3=Mochila de Ouro
+ui.travel_backpack:backpack.size.4=Mochila de Diamante
+ui.travel_backpack:backpack.size.5=Mochila de Netherita
+
+
+
+pack.description=§5Endermen76428§r não escreveu a descrição.
