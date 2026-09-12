@@ -1,4 +1,4 @@
-import { world, EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, GameMode, world } from "@minecraft/server";
 import { spawnBackpack } from "../lib/backpack/spawn";
 import { apiWarn } from "../lib/player/warn";
 export const placeBackpack = new class PlaceBackpack {

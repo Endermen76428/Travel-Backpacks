@@ -1,10 +1,11 @@
-import { world, system, Entity, EntityComponentTypes, Container, ItemLockMode, ItemStack, Player, StructureSaveMode } from "@minecraft/server"
+import { Container, Entity, EntityComponentTypes, ItemLockMode, ItemStack, Player, StructureSaveMode, system, world } from "@minecraft/server"
 import { spawnBackpack } from "../lib/backpack/spawn"
 import { apiWarn } from "../lib/player/warn"
 
 const backpackPlayersListenList: { [key: string]: [Player, Entity, Container, number] } = {} // Player Id > Player Entity, Backpack Entity, Inventory, Last Slot
 const playersSneaking: { [key: string]: boolean } = {} // Player Id > Is Sneaking
 let amountOfListeners = 0
+const maxTick = 19 // 19 é o 20° Tick
 
 function startInverval(executeTime = 0): void {
   const players = Object.entries(backpackPlayersListenList)
@@ -59,7 +60,7 @@ function startInverval(executeTime = 0): void {
       continue
     }
 
-    if(executeTime == 9){ // 9 é o 10° tick
+    if(executeTime == maxTick){
       const id = `travel_backpack:${backpack.id}`
       const maxHeight = player.dimension.heightRange.max -1
       let savePos = {x: player.location.x, y: Math.min(player.location.y +5, maxHeight), z: player.location.z}
@@ -69,6 +70,7 @@ function startInverval(executeTime = 0): void {
         savePos.y = Math.min(savePos.y +5, maxHeight)
         loop++
       }
+      savePos.y += 0.5
       backpack.teleport(savePos, {dimension: player.dimension})
 
       world.structureManager.delete(id)
@@ -90,7 +92,7 @@ function startInverval(executeTime = 0): void {
   }
 
   // Reinicia o loop depois de 1 tick
-  system.run(() => startInverval(executeTime >= 9 ? 0 : executeTime + 1))
+  system.run(() => startInverval(executeTime >= maxTick ? 0 : executeTime + 1))
 }
 
 function deleteInfo(playerId: string): void {
@@ -111,7 +113,7 @@ export function addPlayerHoldListen(player: Player, item: ItemStack, slot: numbe
     if(!entity){
       const structure = world.structureManager.get(`travel_backpack:${itemBackpackId}`)
       if(structure){
-        const pos = {x: player.location.x, y: player.dimension.heightRange.max -1, z: player.location.z}
+        const pos = {x: player.location.x, y: player.dimension.heightRange.max -0.5, z: player.location.z}
         world.structureManager.place(structure, player.dimension, pos, {includeBlocks: false})
         entity = player.dimension.getEntities({type: "travel_backpack:backpack", location: pos, maxDistance: 1})[0]
       } else {
@@ -159,7 +161,7 @@ function removePlayerHoldListen(player: Player, slot: number, sneaking = false):
   const entity = world.getEntity(backpackId)
   if(!entity || !entity.isValid) return
 
-  if(!sneaking) entity.triggerEvent("travel_backpack:add_timer")
+  if(!sneaking && !entity.hasTag("can_enable_timer")) entity.triggerEvent("travel_backpack:add_timer")
 
   const savePos = {x: player.location.x, y: player.dimension.heightRange.min +1, z: player.location.z}
   const maxHeight = player.dimension.heightRange.max
@@ -169,6 +171,7 @@ function removePlayerHoldListen(player: Player, slot: number, sneaking = false):
     savePos.y = Math.min(savePos.y +5, maxHeight)
     loop++
   }
+  savePos.y += 0.5
   entity.teleport(savePos, {dimension: player.dimension})
 
   const id = `travel_backpack:${entity.id}`

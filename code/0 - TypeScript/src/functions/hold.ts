@@ -1,4 +1,4 @@
-import { world, system, Entity, EntityComponentTypes, Container, ItemLockMode, ItemStack, Player, StructureSaveMode } from "@minecraft/server"
+import { Container, Entity, EntityComponentTypes, ItemLockMode, ItemStack, Player, StructureSaveMode, system, world } from "@minecraft/server"
 import { spawnBackpack } from "../lib/backpack/spawn"
 import { apiWarn } from "../lib/player/warn"
 

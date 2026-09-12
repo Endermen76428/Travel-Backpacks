@@ -1,4 +1,4 @@
-import { world, system, EntityComponentTypes, ItemLockMode, StructureSaveMode } from "@minecraft/server";
+import { EntityComponentTypes, ItemLockMode, StructureSaveMode, system, world } from "@minecraft/server";
 import { spawnBackpack } from "../lib/backpack/spawn";
 import { apiWarn } from "../lib/player/warn";
 const backpackPlayersListenList = {};

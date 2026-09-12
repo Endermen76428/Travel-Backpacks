@@ -1,4 +1,4 @@
-import { world, Block, Direction, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack, Player, Vector3, system } from "@minecraft/server"
+import { Block, Direction, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack, Player, Vector3, world } from "@minecraft/server"
 import { spawnBackpack } from "../lib/backpack/spawn"
 import { apiWarn } from "../lib/player/warn"
 
