@@ -12,6 +12,7 @@ futuramente da pra fazer um sistema que salva a backpack e os players que estão
 
 Travel Backpacks v0.2.5 Alpha
 > Additions:
+- Colorful backpacks Added in 16 color variations;
 - Backpacks equipped on chest have armor points depending the backpack's material;
 - Added Furnace Upgrade with the BACS compatibility;
 > Changed:

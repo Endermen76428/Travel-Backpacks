@@ -102,11 +102,13 @@ const addFunctions = {
     },
     "travel_backpack:furnace_upgrade": (entity, inventory, endSlot) => {
         const firstSlot = endSlot + 25;
-        if (inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot")
+        if (!entity.hasTag("030")) {
+            entity.addTag("030");
+        }
+        else if (inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot")
             return;
         for (let i = firstSlot, len = firstSlot + 3; i < len; i++)
             inventory.setItem(i, undefined);
-        entity.addTag("furnace");
         furnaceUpgradeFunctions.add(entity, inventory, firstSlot);
     }
 };

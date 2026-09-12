@@ -126,11 +126,12 @@ const addFunctions: { [key: string]: (entity: Entity, inventory: Container, endS
   "travel_backpack:furnace_upgrade": (entity, inventory, endSlot) => {
     const firstSlot = endSlot +25
     // Evita de substituir os itens da fornalha caso coloque outro upgrade de fornalha
-    if(inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot") return
+    if(!entity.hasTag("030")){
+      entity.addTag("030") // 0.3.0 Evitar bug com as backpacks já geradas
+    } else if(inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot") return
 
     for(let i = firstSlot, len = firstSlot +3; i < len; i++) inventory.setItem(i, undefined)
 
-    entity.addTag("furnace")
     furnaceUpgradeFunctions.add(entity, inventory, firstSlot)
   }
 }
