@@ -1,4 +1,4 @@
-import { world, EntityComponentTypes, Player } from "@minecraft/server"
+import { EntityComponentTypes, Player, world } from "@minecraft/server"
 
 world.afterEvents.entityContainerClosed.subscribe(({entity: backpack, closeSource}) => {
   const player = closeSource.entity
