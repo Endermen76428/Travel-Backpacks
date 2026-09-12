@@ -1,8 +1,8 @@
+import { furnaceUpgradeFunctions } from "../functions/upgrades/furnace/upFurnaceHandler"
 import { craftUpgradeFunctions } from "../functions/upgrades/craft/upCraftHandler"
 import { removePlayerUpgradeListen } from "../functions/upgrades/controller"
 import { world, EntityComponentTypes, Player } from "@minecraft/server"
 import { backpackUpgradesIndex } from "../lib/variables"
-import { furnaceUpgradeFunctions } from "../functions/upgrades/furnace/upFurnaceHandler"
 
 world.afterEvents.entityContainerClosed.subscribe(({entity: backpack, closeSource}) => {
   const player = closeSource.entity
@@ -15,7 +15,10 @@ world.afterEvents.entityContainerClosed.subscribe(({entity: backpack, closeSourc
   const [lastSlot] = backpackUpgradesIndex[inventory.size] ?? []
   if(!lastSlot) return
 
-  for(let i = 0, len = lastSlot +19; i < len; i++){
+  const ignoreCraft = lastSlot +20
+  const ignoreFurnace = lastSlot +27
+  for(let i = 0, len = inventory.size; i < len; i++){
+    if(i == ignoreCraft || i == ignoreFurnace) continue
     const item = inventory.getItem(i)
     if(item && item.hasTag("travel_backpack:backpack")){
       player.dimension.spawnItem(item, player.location)

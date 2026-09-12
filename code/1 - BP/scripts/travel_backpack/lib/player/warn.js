@@ -27,6 +27,6 @@ export const apiWarn = new class ApiWarn {
 };
 const notifyTypes = new class notifyTypes {
     "chat"(player, message) { player.sendMessage(typeof message == "string" ? { translate: message } : message); }
-    "actionbar"(player, message) { player.onScreenDisplay.setActionBar(typeof message == "string" ? { translate: message } : message); }
+    "action_bar"(player, message) { player.onScreenDisplay.setActionBar(typeof message == "string" ? { translate: message } : message); }
     "title"(player, message) { player.onScreenDisplay.setTitle(typeof message == "string" ? { translate: message } : message); }
 };
