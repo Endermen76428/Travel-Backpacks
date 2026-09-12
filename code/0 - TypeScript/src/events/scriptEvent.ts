@@ -1,4 +1,4 @@
-import { system, Block, Entity, EntityComponentTypes } from "@minecraft/server"
+import { system, Block, Entity, EntityComponentTypes, world, StructureSaveMode } from "@minecraft/server"
 import { backpackSizeTier } from "../lib/variables"
 import { paintBackpack } from "../functions/paint"
 
@@ -19,8 +19,11 @@ const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, 
 
   "travel_backpack:archive": (message, entity) => {
     if(entity?.isValid){
+      const id = `travel_backpack:${entity.id}`
+      world.structureManager.delete(id)
+      world.structureManager.createFromWorld(id, entity.dimension, entity.location, entity.location, {saveMode: StructureSaveMode.World, includeBlocks: false})
       entity.addTag("can_remove")
-      entity?.remove()
+      entity.remove()
     }
   },
 

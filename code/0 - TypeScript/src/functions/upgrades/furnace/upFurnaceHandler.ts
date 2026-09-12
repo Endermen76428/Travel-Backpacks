@@ -35,58 +35,26 @@ function startInverval(): void {
     const input = backpackInv.getItem(firstSlot)
     // Se o player não estiver mais dentro da interface e se não haver mais combustivel ou progresso ele vai parar a execução e ativar o timer de arquivamento da backpack
     if(tryStop){
-      if(fuelTime == 0 && progress == 0){
+      if(fuelTime == 0 && progress <= 0){
+        backpack.setDynamicProperty("f", undefined)
+        backpack.setDynamicProperty("fm", undefined)
+        backpack.setDynamicProperty("p", undefined)
+        backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
+
         furnaceUpgradeFunctions.remove(backpack)
-        console.warn("§aNão há mais processos.")
         backpack.getProperty("travel_backpack:on_ground") == false && backpack.triggerEvent("travel_backpack:add_timer")
         continue
       }
-
-      // console.warn("fazer o teleporte da entidade caso ela não seja uma backpack no chão")
     }
 
     // Se não tiver mais um item no input ele reseta o progresso
     if(input == undefined){
       if(progress > 0){
-        console.warn("Acabou")
         backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
         info.progress = 0
+        backpack.setDynamicProperty("p", undefined)
       }
       continue
-    }
-
-    // Se não haver mais combustivel, tentará pegar um novo do slot de fuel. Se não haver decrementará o progressp
-    if(fuelTime == 0){
-      const fuel = backpackInv.getItem(firstSlot +1)
-      if(fuel == undefined){
-        if(progress > 0){
-          const levelOld = Math.floor(((progress +1) * inverseProgress) *22)
-          const level = Math.floor((progress * inverseProgress) *22)
-          if(level != levelOld) backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
-          info.progress -= 2
-        }
-        continue
-      }
-
-      const gettedFuelTime = furnaceFuelList[fuel.typeId]
-      if(gettedFuelTime == undefined){
-        if(progress > 0){
-          const levelOld = Math.floor(((progress +1) * inverseProgress) *22)
-          const level = Math.floor((progress * inverseProgress) *22)
-          if(level != levelOld) backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
-          info.progress -= 2
-        }
-        continue
-      }
-
-      if(fuel.amount -1 == 0){
-        backpackInv.setItem(firstSlot +1, undefined)
-      } else {
-        fuel.amount--
-        backpackInv.setItem(firstSlot +1, fuel)
-      }
-      info.fuelTime = gettedFuelTime *200 // 200 ticks = 10s tempo de assar 1 item na fornalha
-      info.fuelMax = 1 / (gettedFuelTime *200) // é a função inversa, já que a multiplicação é mais rapida doque divisão, e o max fuel vai ser usado muito la em cima pra atualizar o nivel da chama
     }
 
     let output = backpackInv.getItem(firstSlot +2)
@@ -104,32 +72,76 @@ function startInverval(): void {
       if(progress > 0){
         backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
         info.progress = 0
+        backpack.setDynamicProperty("p", undefined)
       }
       continue
     }
 
+    // Se não haver mais combustivel, tentará pegar um novo do slot de fuel. Se não haver decrementará o progressp
+    if(fuelTime == 0){
+      const fuel = backpackInv.getItem(firstSlot +1)
+      if(fuel == undefined){
+        if(progress > 0){
+          const levelOld = Math.floor(((progress +1) * inverseProgress) *22)
+          const level = Math.floor((progress * inverseProgress) *22)
+          if(level != levelOld) backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
+          info.progress -= 2
+          backpack.setDynamicProperty("p", info.progress)
+        }
+        continue
+      }
+
+      const gettedFuelTime = furnaceFuelList[fuel.typeId]
+      if(gettedFuelTime == undefined){
+        if(progress > 0){
+          const levelOld = Math.floor(((progress +1) * inverseProgress) *22)
+          const level = Math.floor((progress * inverseProgress) *22)
+          if(level != levelOld) backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
+          info.progress -= 2
+          backpack.setDynamicProperty("p", info.progress)
+        }
+        continue
+      }
+
+      if(fuel.amount -1 == 0){
+        backpackInv.setItem(firstSlot +1, undefined)
+      } else {
+        fuel.amount--
+        backpackInv.setItem(firstSlot +1, fuel)
+      }
+      info.fuelTime = gettedFuelTime *200 // 200 ticks = 10s tempo de assar 1 item na fornalha
+      info.fuelMax = 1 / (gettedFuelTime *200) // é a função inversa, já que a multiplicação é mais rapida doque divisão, e o max fuel vai ser usado muito la em cima pra atualizar o nivel da chama
+      backpack.setDynamicProperty("fm", gettedFuelTime *200) // Salva o maxFuel pra caso o player saia do mapa
+    }
+
     const levelOld = Math.floor(((progress -1) * inverseProgress) *22)
     const level = Math.floor((progress * inverseProgress) *22)
-    if(level != levelOld) backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
+    if(level != levelOld){
+      backpackInv.setItem(firstSlot +4, furnaceArrowIcons[level])
+      backpack.setDynamicProperty("f", fuelTime)
+      backpack.setDynamicProperty("p", progress)
+    }
 
     info.progress++
+    // Gera o resultado
     if(info.progress == 200){
       if(output == undefined){
         output = new ItemStack(expectedOutput)
       } else {
         output.amount++
       }
+      console.warn("§aFundido:§r", output.amount, output.typeId)
+      backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0]) // Sempre reseta o progresso ao fundir um item, evita bugs visuais
+      // Decremetanta o input
       backpackInv.setItem(firstSlot +2, output)
       if(input.amount -1 == 0){
         backpackInv.setItem(firstSlot, undefined)
-        backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
       } else {
         input.amount--
         backpackInv.setItem(firstSlot, input)
       }
       info.progress = 0
     }
-    // console.warn(input.typeId, "=>", output?.typeId)
   }
 
   // Cancela o loop se não tiver mais backpacks
@@ -144,10 +156,17 @@ function startInverval(): void {
 
 export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
   add(backpack: Entity, backpackInv: Container, firstSlot: number): void {
-    // console.warn("Fazer ele pegar o progresso atual e o combustivel atual, pra ele continuar de onde parou")
+    if(backpack.getProperty("travel_backpack:on_ground") == false){
+      backpack.triggerEvent("travel_backpack:remove_timer")
+      backpack.addTag("can_enable_timer")
+    }
+
     const info = furnaceListenList[backpack.id]
     if(info == undefined){
-      furnaceListenList[backpack.id] = { backpack, backpackInv, firstSlot, tryStop: false, fuelMax: 0, fuelTime: 0, progress: 0 }
+      const fuelTime = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("f"))
+      const fuelMax = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("fm"))
+      const progress = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("p"))
+      furnaceListenList[backpack.id] = { backpack, backpackInv, firstSlot, tryStop: false, fuelMax: 1 / fuelMax, fuelTime, progress }
     } else {
       info.tryStop = false
     }
@@ -162,7 +181,6 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
   }
 
   remove(backpack: Entity): void {
-    // console.warn("Não sei se vai preicsar fazer ele salvar as informações de fuelTime e progress em dynamic, acho que não")
     delete furnaceListenList[backpack.id]
   }
 }

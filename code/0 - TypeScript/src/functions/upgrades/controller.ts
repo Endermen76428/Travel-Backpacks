@@ -161,7 +161,6 @@ const removeFunctions: { [key: string]: (player: Player, entity: Entity, invento
     }
     if(upgradesEnabled > 0) return
 
-    // console.warn("Aumentar de 28 pra 30 pra resetar a flecha e fogo quando tirar o upgrade")
     for(let i = firstSlot +25, len = firstSlot +30; i < len; i++){
       const item = inventory.getItem(i)
       item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location)
