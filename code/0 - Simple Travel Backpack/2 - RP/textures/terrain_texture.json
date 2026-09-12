@@ -8,6 +8,23 @@
 
     // Backpacks
     "travel_backpack:backpack_base": { "textures": "textures/travel_backpack/blocks/backpack_base" },
+    "travel_backpack:backpack_base_white": { "textures": "textures/travel_backpack/blocks/backpack_base_white" },
+    "travel_backpack:backpack_base_light_gray": { "textures": "textures/travel_backpack/blocks/backpack_base_light_gray" },
+    "travel_backpack:backpack_base_gray": { "textures": "textures/travel_backpack/blocks/backpack_base_gray" },
+    "travel_backpack:backpack_base_black": { "textures": "textures/travel_backpack/blocks/backpack_base_black" },
+    "travel_backpack:backpack_base_brown": { "textures": "textures/travel_backpack/blocks/backpack_base_brown" },
+    "travel_backpack:backpack_base_red": { "textures": "textures/travel_backpack/blocks/backpack_base_red" },
+    "travel_backpack:backpack_base_orange": { "textures": "textures/travel_backpack/blocks/backpack_base_orange" },
+    "travel_backpack:backpack_base_yellow": { "textures": "textures/travel_backpack/blocks/backpack_base_yellow" },
+    "travel_backpack:backpack_base_lime": { "textures": "textures/travel_backpack/blocks/backpack_base_lime" },
+    "travel_backpack:backpack_base_green": { "textures": "textures/travel_backpack/blocks/backpack_base_green" },
+    "travel_backpack:backpack_base_cyan": { "textures": "textures/travel_backpack/blocks/backpack_base_cyan" },
+    "travel_backpack:backpack_base_light_blue": { "textures": "textures/travel_backpack/blocks/backpack_base_light_blue" },
+    "travel_backpack:backpack_base_blue": { "textures": "textures/travel_backpack/blocks/backpack_base_blue" },
+    "travel_backpack:backpack_base_purple": { "textures": "textures/travel_backpack/blocks/backpack_base_purple" },
+    "travel_backpack:backpack_base_magenta": { "textures": "textures/travel_backpack/blocks/backpack_base_magenta" },
+    "travel_backpack:backpack_base_pink": { "textures": "textures/travel_backpack/blocks/backpack_base_pink" },
+
     "travel_backpack:leather_tier": { "textures": "textures/travel_backpack/blocks/leather_tier" },
     "travel_backpack:copper_tier": { "textures": "textures/travel_backpack/blocks/copper_tier" },
     "travel_backpack:iron_tier": { "textures": "textures/travel_backpack/blocks/iron_tier" },
