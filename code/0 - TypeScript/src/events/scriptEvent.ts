@@ -1,4 +1,4 @@
-import { system, Block, Entity, EntityComponentTypes, world, StructureSaveMode } from "@minecraft/server"
+import { Block, Entity, EntityComponentTypes, StructureSaveMode, system, world } from "@minecraft/server"
 import { backpackSizeTier } from "../lib/variables"
 import { paintBackpack } from "../functions/paint"
 
@@ -39,7 +39,6 @@ const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, 
       const tier = backpackSizeTier[inv.size]
       if(tier == undefined) return
 
-      console.warn("§cTier inválido!")
       level = tier
       entity.triggerEvent(`travel_backpack:inventory${tier}`)
     }

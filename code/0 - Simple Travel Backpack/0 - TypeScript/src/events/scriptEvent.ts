@@ -39,7 +39,6 @@ const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, 
       const tier = backpackSizeTier[inv.size]
       if(tier == undefined) return
 
-      console.warn("§cTier inválido!")
       level = tier
       entity.triggerEvent(`travel_backpack:inventory${tier}`)
     }

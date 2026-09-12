@@ -1,4 +1,4 @@
-import { world, system, BlockPermutation, Entity, EntityComponentTypes, EquipmentSlot, ItemStack, Player } from "@minecraft/server"
+import { BlockPermutation, Entity, EntityComponentTypes, EquipmentSlot, ItemStack, Player, system } from "@minecraft/server"
 import { apiEquippable } from "../../lib/player/equippable"
 import { backpackSizeTier } from "../../lib/variables"
 import { apiWarn } from "../../lib/player/warn"

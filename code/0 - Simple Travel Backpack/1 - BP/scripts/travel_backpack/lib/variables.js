@@ -1,6 +1,13 @@
-import { world, system, EntityComponentTypes, EquipmentSlot } from "@minecraft/server";
+import { EntityComponentTypes, EquipmentSlot, system, world } from "@minecraft/server";
 import { addPlayerHoldListen } from "../functions/hold";
-export const globalBackpackPos = { x: 0.5, y: 384, z: 0.5 };
+export const backpackTypeTier = {
+    0: "travel_backpack:leather_backpack",
+    1: "travel_backpack:copper_backpack",
+    2: "travel_backpack:iron_backpack",
+    3: "travel_backpack:gold_backpack",
+    4: "travel_backpack:diamond_backpack",
+    5: "travel_backpack:netherite_backpack"
+};
 export const backpackSizeTier = {
     27: 0,
     36: 1,
