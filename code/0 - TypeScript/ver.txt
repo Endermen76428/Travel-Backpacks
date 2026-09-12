@@ -11,6 +11,9 @@ acho que ficara mais otimizado se eu fazer um unico loop global para todos os up
 futuramente da pra fazer um sistema que salva a backpack e os players que estão com ela aberta, facilitando a hora de mandar mensagem pra eles
 
 Travel Backpacks v0.2.5 Alpha
+> Additions:
+- Backpacks equipped on chest have armor points depending the backpack's material;
+- Added Furnace Upgrade with the BACS compatibility;
 > Changed:
 - Slightly increased the size of the backpack on the back;
 - Reduced backpack's UI size to fit small screens;
