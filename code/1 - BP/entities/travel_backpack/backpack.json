@@ -161,7 +161,7 @@
       "minecraft:interact": {
         "interactions": [
           {
-            "interact_text": "action.interact.travel_backpack:backpack.paint",
+            "interact_text": "action.interact.travel_backpack:backpack.unpaint",
             "use_item": true,
             "on_interact": {
               "filters": {

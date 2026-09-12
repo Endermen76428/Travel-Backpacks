@@ -3,9 +3,10 @@ import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart"
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual"
 import { addPlayerHoldListen } from "../functions/hold"
 import { apiScoreboard } from "./math/scoreboard"
+import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes"
 
-export const globalBackpackPos = {x: 0.5, y: 384, z: 0.5}
 export let lockSlotItem: ItemStack
+export let coalItem: ItemStack
 
 export const backpackSizeFill: { [key: number]: number } = {
   0: 28,  // 27  slot padrão + 1 upgrade slot
@@ -43,18 +44,28 @@ export const backpackUpgradesIndex: { [key: number]: [number, number] } = {
   155: [120, 6]
 }
 
-export let furnaceScore: ScoreboardObjective
+export let furnaceReloadScore: ScoreboardObjective
+export let furnaceRecipeScore: ScoreboardObjective
+export let BACSFurnaceRecipeScore: ScoreboardObjective
+export let BACSFurnaceRecipeDenyScore: ScoreboardObjective
 
 system.run(() => {
   world.gameRules.showTags = false
 
-  furnaceScore = apiScoreboard.getObj("travel_backpack:furnace")
-  restartFurnaceFunction(furnaceScore)
+  furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace")
+  furnaceRecipeScore = apiScoreboard.getObj("travel_backpack:furnace_r")
+  BACSFurnaceRecipeScore = apiScoreboard.getObj("BACS:furnace_recipes")
+  BACSFurnaceRecipeDenyScore = apiScoreboard.getObj("BACS:furnace_recipes_deny")
+
+  BACSLoadFurnaceRecipe(BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore)
 
   const players = world.getAllPlayers()
 
   lockSlotItem = new ItemStack("travel_backpack:lock_slot")
+  coalItem = new ItemStack("minecraft:coal")
   createFurnaceIcons()
+
+  restartFurnaceFunction(furnaceReloadScore)
 
   if(players.length > 0){
     // Adiciona os jogadores ao Listener caso executem um /reload

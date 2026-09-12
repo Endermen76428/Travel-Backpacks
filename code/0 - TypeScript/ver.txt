@@ -8,8 +8,7 @@ E no de magnet ter uma opção pra deletar os itens puxados (um combo com o void
 adicionar block_culling nas backpack
 alterar a backpack de diamante e netherite pra ter 1 scrolling e somente 9 linhas igual a backpack de ouro
 acho que ficara mais otimizado se eu fazer um unico loop global para todos os upgrades, (tipo vai ficar do jeito que tá, mas ao invez da logica do upgrade ficar dentro do loop, vai ficar em uma função que se o upgrade estiver ativo ele vai executar somente as funções certas no loop principal, tipo um sistema de threads)
-
-NãO ESQUECE DA TRADUÇÂO DO BOTÂO DE INTERACT DA ENTIDADE DA BACKPACK PRA PINTAR ELA QUE APARECE EM CELULAR
+futuramente da pra fazer um sistema que salva a backpack e os players que estão com ela aberta, facilitando a hora de mandar mensagem pra eles
 
 Travel Backpacks v0.2.5 Alpha
 > Changed:

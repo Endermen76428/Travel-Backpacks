@@ -3,8 +3,9 @@ import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart";
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
 import { addPlayerHoldListen } from "../functions/hold";
 import { apiScoreboard } from "./math/scoreboard";
-export const globalBackpackPos = { x: 0.5, y: 384, z: 0.5 };
+import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes";
 export let lockSlotItem;
+export let coalItem;
 export const backpackSizeFill = {
     0: 28,
     1: 38,
@@ -37,14 +38,22 @@ export const backpackUpgradesIndex = {
     135: [100, 5],
     155: [120, 6]
 };
-export let furnaceScore;
+export let furnaceReloadScore;
+export let furnaceRecipeScore;
+export let BACSFurnaceRecipeScore;
+export let BACSFurnaceRecipeDenyScore;
 system.run(() => {
     world.gameRules.showTags = false;
-    furnaceScore = apiScoreboard.getObj("travel_backpack:furnace");
-    restartFurnaceFunction(furnaceScore);
+    furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace");
+    furnaceRecipeScore = apiScoreboard.getObj("travel_backpack:furnace_r");
+    BACSFurnaceRecipeScore = apiScoreboard.getObj("BACS:furnace_recipes");
+    BACSFurnaceRecipeDenyScore = apiScoreboard.getObj("BACS:furnace_recipes_deny");
+    BACSLoadFurnaceRecipe(BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore);
     const players = world.getAllPlayers();
     lockSlotItem = new ItemStack("travel_backpack:lock_slot");
+    coalItem = new ItemStack("minecraft:coal");
     createFurnaceIcons();
+    restartFurnaceFunction(furnaceReloadScore);
     if (players.length > 0) {
         for (let i = 0, len = players.length; i < len; i++) {
             const player = players[i];

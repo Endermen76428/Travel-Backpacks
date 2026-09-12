@@ -118,6 +118,18 @@ tile.travel_backpack:pink_netherite_backpack.name=Mochila de Netherita Rosa
 
 entity.travel_backpack:backpack.name=Mochila
 entity.travel_backpack:chunk_loader.name=Carregador de Chunk
+
+### Action
+
+action.interact.travel_backpack:backpack.unpaint=Remover Cor
+action.interact.travel_backpack:backpack.paint=Pintar
+
+### Warn
+
+entity.warn.travel_backpack:furnace.start_search=§r não foi encontrado no banco de dados, espere 10s enquanto procuramos pela receita.
+entity.warn.travel_backpack:furnace.unexpected_error=§cAlgo interferiu na pesquisa, tente novamente.
+entity.warn.travel_backpack:furnace.recipe_not_found=§r Não foi encontrado como uma receita válida.
+entity.warn.travel_backpack:furnace.recipe_found=§r Registrado como resultado de §a
 ## #endregion
 
 ## --------------------------------------------------

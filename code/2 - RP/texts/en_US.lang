@@ -118,6 +118,18 @@ tile.travel_backpack:pink_netherite_backpack.name=Pink Netherite Backpack
 
 entity.travel_backpack:backpack.name=Backpack
 entity.travel_backpack:chunk_loader.name=Chunk Loader
+
+### Action
+
+action.interact.travel_backpack:backpack.unpaint=Unpaint
+action.interact.travel_backpack:backpack.paint=Paint
+
+### Warn
+
+entity.warn.travel_backpack:furnace.start_search=§r wasn't found in the database, please wait 10s while we search for the recipe.
+entity.warn.travel_backpack:furnace.unexpected_error=§cSomething interfered with the search, please try again.
+entity.warn.travel_backpack:furnace.recipe_not_found=§r wasn't found to be a valid recipe.
+entity.warn.travel_backpack:furnace.recipe_found=§r Registered as a result of §a
 ## #endregion
 
 ## --------------------------------------------------
@@ -264,8 +276,6 @@ item.warn.travel_backpack:backpack.need_shift.remove=§cYou need to be crouching
 travel_backpack:itemGroup.name.backpacks=Backpacks
 travel_backpack:itemGroup.name.upgrade_tier=Upgrades Tier
 travel_backpack:itemGroup.name.upgrade_functions=Functional Upgrades
-
-## #endregion
 ## #endregion
 
 ## --------------------------------------------------

@@ -1,8 +1,9 @@
-import { ItemStack, system } from "@minecraft/server";
-import { furnaceRecipeList } from "./recipes";
+import { BACSFurnaceRecipeDenyScore, BACSFurnaceRecipeScore, coalItem, furnaceReloadScore } from "../../../lib/variables";
+import { BlockComponentTypes, ItemStack, system } from "@minecraft/server";
+import { furnaceRecipeDenyList, furnaceRecipeList } from "./recipes";
 import { furnaceArrowIcons, furnaceFlameIcons } from "./visual";
+import { apiWarn } from "../../../lib/player/warn";
 import { furnaceFuelList } from "./fuel";
-import { furnaceScore } from "../../../lib/variables";
 const furnaceListenList = {};
 let amountOfListeners = 0;
 const inverseProgress = 1 / 200;
@@ -15,12 +16,14 @@ function startInverval() {
         const [key, info] = backpacks[i] ?? [];
         if (key == undefined || info == undefined)
             continue;
-        const { backpack, backpackInv, firstSlot, tryStop, fuelMax, fuelTime, progress } = info;
+        const { backpack, backpackInv, firstSlot, tryStop, fuelMax, fuelTime, progress, gettingRecipe } = info;
         if (!backpack.isValid) {
             invalidPlayers++;
             delete furnaceListenList[key];
             continue;
         }
+        if (gettingRecipe != undefined)
+            continue;
         if (fuelTime > 0) {
             const levelOld = Math.floor(((fuelTime + 1) * fuelMax) * 13);
             const level = Math.floor((fuelTime * fuelMax) * 13);
@@ -31,7 +34,6 @@ function startInverval() {
         const input = backpackInv.getItem(firstSlot);
         if (tryStop) {
             if (fuelTime == 0 && progress <= 0) {
-                console.warn("§aNão há mais processos");
                 backpack.setDynamicProperty("f", undefined);
                 backpack.setDynamicProperty("fm", undefined);
                 backpack.setDynamicProperty("p", undefined);
@@ -54,6 +56,53 @@ function startInverval() {
             continue;
         const expectedOutput = furnaceRecipeList[input.typeId];
         if (expectedOutput == undefined) {
+            if (furnaceRecipeDenyList[input.typeId] == true)
+                continue;
+            const furnaceBlock = backpack.dimension.getBlock({ x: backpack.location.x, y: backpack.dimension.heightRange.min, z: backpack.location.z });
+            if (furnaceBlock == undefined || !furnaceBlock.isValid)
+                continue;
+            (furnaceBlock.typeId != "minecraft:furnace" && furnaceBlock.typeId != "minecraft:lit_furnace") && furnaceBlock.setType("minecraft:furnace");
+            const inv = furnaceBlock.getComponent(BlockComponentTypes.Inventory)?.container;
+            if (inv == undefined)
+                continue;
+            inv.clearAll();
+            inv.setItem(0, new ItemStack(input.typeId));
+            inv.setItem(1, coalItem);
+            info.gettingRecipe = furnaceBlock;
+            const players = backpack.dimension.getPlayers({ location: backpack.location, maxDistance: 7 });
+            for (let pI = 0, pLen = players.length; pI < pLen; pI++) {
+                const player = players[pI];
+                player && apiWarn.notify(player, { rawtext: [{ text: "§a" }, { translate: input.localizationKey }, { translate: "entity.warn.travel_backpack:furnace.start_search" }] }, { sound: "warn.ender_addon_pack:levelup" });
+            }
+            system.runTimeout(() => {
+                delete info.gettingRecipe;
+                const players = backpack.dimension.getPlayers({ location: backpack.location, maxDistance: 7 });
+                if (!furnaceBlock.isValid || !inv.isValid) {
+                    for (let pI = 0, pLen = players.length; pI < pLen; pI++) {
+                        const player = players[pI];
+                        player && apiWarn.notify(player, { translate: "entity.warn.travel_backpack:furnace.unexpected_error" }, { sound: "warn.ender_addon_pack:break" });
+                    }
+                    return;
+                }
+                const output = inv.getItem(2);
+                inv.clearAll();
+                furnaceBlock.setType("minecraft:bedrock");
+                if (output == undefined) {
+                    furnaceRecipeDenyList[input.typeId] = true;
+                    BACSFurnaceRecipeDenyScore.setScore(input.typeId, 0);
+                    for (let pI = 0, pLen = players.length; pI < pLen; pI++) {
+                        const player = players[pI];
+                        player && apiWarn.notify(player, { rawtext: [{ text: "§c" }, { translate: input.localizationKey }, { translate: "entity.warn.travel_backpack:furnace.recipe_not_found" }] }, { sound: "warn.ender_addon_pack:bass" });
+                    }
+                    return;
+                }
+                furnaceRecipeList[input.typeId] = output.typeId;
+                BACSFurnaceRecipeScore.setScore(`${input.typeId}/${output.typeId}`, 0);
+                for (let pI = 0, pLen = players.length; pI < pLen; pI++) {
+                    const player = players[pI];
+                    player && apiWarn.notify(player, { rawtext: [{ text: "§e" }, { translate: output.localizationKey }, { translate: "entity.warn.travel_backpack:furnace.recipe_found" }, { translate: input.localizationKey }] }, { sound: "warn.ender_addon_pack:pop" });
+                }
+            }, 201);
             continue;
         }
         if (output != undefined && expectedOutput != output.typeId) {
@@ -115,7 +164,6 @@ function startInverval() {
             else {
                 output.amount++;
             }
-            console.warn("§aFundido:§r", output.amount, output.typeId);
             backpackInv.setItem(firstSlot + 4, furnaceArrowIcons[0]);
             backpackInv.setItem(firstSlot + 2, output);
             if (input.amount - 1 == 0) {
@@ -140,7 +188,7 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
             backpack.triggerEvent("travel_backpack:remove_timer");
             backpack.addTag("can_enable_timer");
         }
-        furnaceScore.setScore(backpack.id, 0);
+        furnaceReloadScore.setScore(backpack.id, 0);
         const info = furnaceListenList[backpack.id];
         if (info == undefined) {
             const fuelTime = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("f"));
@@ -160,7 +208,7 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
         info.tryStop = true;
     }
     remove(backpack) {
-        furnaceScore.removeParticipant(backpack.id);
+        furnaceReloadScore.removeParticipant(backpack.id);
         delete furnaceListenList[backpack.id];
     }
 };

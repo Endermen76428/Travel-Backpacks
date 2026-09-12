@@ -1,3 +1,22 @@
+export function BACSLoadFurnaceRecipe(recipe, deny) {
+    const denied = deny.getParticipants();
+    for (let i = 0, len = denied.length; i < len; i++) {
+        const id = denied[i]?.displayName;
+        if (id == undefined)
+            continue;
+        furnaceRecipeDenyList[id] = true;
+    }
+    const recipes = recipe.getParticipants();
+    for (let i = 0, len = recipes.length; i < len; i++) {
+        const id = recipes[i]?.displayName;
+        if (id == undefined)
+            continue;
+        const [input, output] = id.split("/", 2);
+        if (input == undefined || output == undefined)
+            continue;
+        furnaceRecipeList[input] = output;
+    }
+}
 export const furnaceRecipeList = {
     "minecraft:acacia_leaves": "minecraft:leaf_litter",
     "minecraft:acacia_log": "minecraft:charcoal",
@@ -155,3 +174,4 @@ export const furnaceRecipeList = {
     "minecraft:white_terracotta": "minecraft:white_glazed_terracotta",
     "minecraft:yellow_terracotta": "minecraft:yellow_glazed_terracotta"
 };
+export const furnaceRecipeDenyList = {};
