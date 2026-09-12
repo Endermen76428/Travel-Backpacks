@@ -1,6 +1,8 @@
-import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@minecraft/server"
+import { EntityComponentTypes, EquipmentSlot, ItemStack, ScoreboardObjective, system, world } from "@minecraft/server"
+import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart"
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual"
 import { addPlayerHoldListen } from "../functions/hold"
+import { apiScoreboard } from "./math/scoreboard"
 
 export const globalBackpackPos = {x: 0.5, y: 384, z: 0.5}
 export let lockSlotItem: ItemStack
@@ -41,8 +43,13 @@ export const backpackUpgradesIndex: { [key: number]: [number, number] } = {
   155: [120, 6]
 }
 
+export let furnaceScore: ScoreboardObjective
+
 system.run(() => {
   world.gameRules.showTags = false
+
+  furnaceScore = apiScoreboard.getObj("travel_backpack:furnace")
+  restartFurnaceFunction(furnaceScore)
 
   const players = world.getAllPlayers()
 

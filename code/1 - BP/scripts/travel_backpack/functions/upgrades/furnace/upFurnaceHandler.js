@@ -2,6 +2,7 @@ import { ItemStack, system } from "@minecraft/server";
 import { furnaceRecipeList } from "./recipes";
 import { furnaceArrowIcons, furnaceFlameIcons } from "./visual";
 import { furnaceFuelList } from "./fuel";
+import { furnaceScore } from "../../../lib/variables";
 const furnaceListenList = {};
 let amountOfListeners = 0;
 const inverseProgress = 1 / 200;
@@ -30,6 +31,7 @@ function startInverval() {
         const input = backpackInv.getItem(firstSlot);
         if (tryStop) {
             if (fuelTime == 0 && progress <= 0) {
+                console.warn("§aNão há mais processos");
                 backpack.setDynamicProperty("f", undefined);
                 backpack.setDynamicProperty("fm", undefined);
                 backpack.setDynamicProperty("p", undefined);
@@ -138,6 +140,7 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
             backpack.triggerEvent("travel_backpack:remove_timer");
             backpack.addTag("can_enable_timer");
         }
+        furnaceScore.setScore(backpack.id, 0);
         const info = furnaceListenList[backpack.id];
         if (info == undefined) {
             const fuelTime = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("f"));
@@ -157,6 +160,7 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
         info.tryStop = true;
     }
     remove(backpack) {
+        furnaceScore.removeParticipant(backpack.id);
         delete furnaceListenList[backpack.id];
     }
 };

@@ -2,6 +2,7 @@ import { Container, Entity, ItemStack, system } from "@minecraft/server"
 import { furnaceRecipeList } from "./recipes"
 import { furnaceArrowIcons, furnaceFlameIcons } from "./visual"
 import { furnaceFuelList } from "./fuel"
+import { furnaceScore } from "../../../lib/variables"
 
 const furnaceListenList: { [key: string]: IntervalInfo } = {} // Backpack Id > Interval Info
 let amountOfListeners = 0
@@ -36,6 +37,7 @@ function startInverval(): void {
     // Se o player não estiver mais dentro da interface e se não haver mais combustivel ou progresso ele vai parar a execução e ativar o timer de arquivamento da backpack
     if(tryStop){
       if(fuelTime == 0 && progress <= 0){
+        console.warn("§aNão há mais processos")
         backpack.setDynamicProperty("f", undefined)
         backpack.setDynamicProperty("fm", undefined)
         backpack.setDynamicProperty("p", undefined)
@@ -161,6 +163,8 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
       backpack.addTag("can_enable_timer")
     }
 
+    furnaceScore.setScore(backpack.id, 0)
+
     const info = furnaceListenList[backpack.id]
     if(info == undefined){
       const fuelTime = (r => typeof r != "number" ? 0 : r)(backpack.getDynamicProperty("f"))
@@ -181,6 +185,7 @@ export const furnaceUpgradeFunctions = new class FurnaceUpgradeFunctions {
   }
 
   remove(backpack: Entity): void {
+    furnaceScore.removeParticipant(backpack.id)
     delete furnaceListenList[backpack.id]
   }
 }
