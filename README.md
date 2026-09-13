@@ -1,8 +1,9 @@
-# Travel-Backpacks
+# Travel Backpacks
+
 Travel Backpacks is a simple addon to help with your full inventory problem.
 See below how to craft it and use:
 
-# Craft
+## Craft
 
 Using **1 chest, 4 leather and 4 strings** you can craft a **Leather Backpack** the first tier of others backpacks.
 
@@ -13,7 +14,7 @@ To place your Backpack on the ground you just need to **crouch and interact with
 
 ![Open Backpack](doc/1.1%20-%20Open%20Backpack.gif)
 
-# Inventory UI
+## Inventory UI
 
 Each backpack has a custom UI that is compatible with other custom UIs.
 
@@ -30,13 +31,13 @@ Using a dye on your backpack on the ground you can paint it.
 ![Painting Backpack](doc/2.7%20-%20Paint%20Backpack.gif)
 ![Backpack Colors](doc/2.8%20-%20Backpack%20Colors.gif)
 
-# Upgrade Template
+## Upgrade Template
 
 To craft any upgrades you will need an **Upgrade Template**.
 
 ![Upgrade Template Craft](doc/2.0%20-%20Craft%20Template%20Upgrade.png)
 
-# Upgrade Tiers
+## Upgrade Tiers
 
 To increase the storage space of your backpacks you can craft **Upgrades Tier**.
 
@@ -52,7 +53,7 @@ Hold the upgrade on your hand and interact with the backpack to upgrade its tier
 
 ![Upgrading Backpack](doc/2.6%20-%20Upgrade%20Backpack.gif)
 
-# Craft Upgrade
+## Craft Upgrade
 
 The **Craft Upgrade** unlock an craft panel on your backpack that works as a vanilla crafting table. **(It's compatible with any addon's recipes)**.
 
@@ -60,7 +61,7 @@ The **Craft Upgrade** unlock an craft panel on your backpack that works as a van
 
 ![Craft Terminal](doc/4.1%20-%20Craft%20Upgrade.gif)
 
-# Furnace Upgrade
+## Furnace Upgrade
 
 The **Furnace Upgrade** unlock an furnace panel on your backpack that works as a vanilla furnace. **(It's compatible with any addon's recipes)**.
 
