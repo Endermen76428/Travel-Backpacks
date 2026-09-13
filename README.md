@@ -47,7 +47,8 @@ To increase the storage space of your backpacks you can craft **Upgrades Tier**.
 ![Netherite Upgrade](doc/2.5%20-%20Craft%20Netherite%20Upgrade.png)
 
 Hold the upgrade on your hand and interact with the backpack to upgrade its tier.
-TIP: You don't need to follow the tier progress, you can craft the last tier and apply it in a letter backpack.
+
+**TIP: You don't need to follow the tier progress**, you can craft the **netherite tier** and apply it in a **letter backpack**.
 
 ![Upgrading Backpack](doc/2.6%20-%20Upgrade%20Backpack.gif)
 
