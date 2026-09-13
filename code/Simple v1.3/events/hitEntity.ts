@@ -1,0 +1,15 @@
+import { removeBackpack } from "../functions/remove"
+import { world, Player } from "@minecraft/server"
+import { apiWarn } from "../lib/player/warn"
+
+world.afterEvents.entityHitEntity.subscribe(({damagingEntity: player, hitEntity: entity}) => {
+  if(!(player instanceof Player)) return
+
+  if(entity.typeId != "travel_backpack:backpack") return
+
+  if(player.isSneaking){
+    removeBackpack.remove(player, entity)
+  } else {
+    apiWarn.notify(player, "item.warn.travel_backpack:backpack.need_shift.remove", {type: "action_bar", sound: "warn.ender_addon_pack:bass"})
+  }
+})
