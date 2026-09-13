@@ -3,6 +3,8 @@
 Travel Backpacks is a simple addon to help with your full inventory problem.
 See below how to craft it and use:
 
+![Logo](logo/Travel%20Backpacks%20-%20MCPEDL%20v0.1.gif)
+
 ## Craft
 
 Using **1 chest, 4 leather and 4 strings** you can craft a **Leather Backpack** the first tier of others backpacks.
