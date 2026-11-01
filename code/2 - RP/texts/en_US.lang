@@ -371,6 +371,8 @@ item.travel_backpack:craft_upgrade=§c§r§a§f§t§rCraft Upgrade\n§9Travel Ba
 item.travel_backpack:craft_upgrade.bacs=§c§r§a§f§t§rCraft Upgrade
 item.travel_backpack:furnace_upgrade=§f§u§r§n§a§rFurnace Upgrade\n§9Travel Backpacks
 item.travel_backpack:furnace_upgrade.bacs=§f§u§r§n§a§rFurnace Upgrade
+item.travel_backpack:feed_upgrade=§f§e§e§d§rFeed Upgrade\n§9Travel Backpacks
+item.travel_backpack:feed_upgrade.bacs=§f§e§e§d§rFeed Upgrade
 
 ### Warn
 

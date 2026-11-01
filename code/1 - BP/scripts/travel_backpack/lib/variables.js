@@ -1,9 +1,9 @@
 import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@minecraft/server";
 import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart";
+import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes";
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
 import { addPlayerHoldListen } from "../functions/hold";
 import { apiScoreboard } from "./math/scoreboard";
-import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes";
 export let lockSlotItem;
 export let coalItem;
 export const backpackSizeFill = {
@@ -23,20 +23,20 @@ export const backpackTypeTier = {
     5: "travel_backpack:netherite_backpack"
 };
 export const backpackSizeTier = {
-    62: 0,
-    74: 1,
-    89: 2,
-    116: 3,
-    135: 4,
-    155: 5
+    507: 0,
+    508: 1,
+    509: 2,
+    510: 3,
+    511: 4,
+    512: 5
 };
 export const backpackUpgradesIndex = {
-    62: [27, 1],
-    74: [36, 2],
-    89: [54, 3],
-    116: [81, 4],
-    135: [100, 5],
-    155: [120, 6]
+    507: [27, 1],
+    508: [36, 2],
+    509: [54, 3],
+    510: [81, 4],
+    511: [100, 5],
+    512: [120, 6]
 };
 export let furnaceReloadScore;
 export let furnaceRecipeScore;

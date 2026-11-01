@@ -15,6 +15,7 @@
     // Upgrade Function
     "travel_backpack:craft_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/craft_upgrade" },
     "travel_backpack:furnace_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/furnace_upgrade" },
+    "travel_backpack:feed_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/feed_upgrade" },
 
     // Furnace - Arrow
     "travel_backpack:arrow_0": { "textures": "textures/null" },
