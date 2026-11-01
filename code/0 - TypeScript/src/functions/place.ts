@@ -1,6 +1,5 @@
 import { Block, Direction, EntityComponentTypes, EquipmentSlot, GameMode, ItemStack, Player, Vector3, world } from "@minecraft/server"
 import { spawnBackpack } from "../lib/backpack/spawn"
-import { apiWarn } from "../lib/player/warn"
 
 export const placeBackpack = new class PlaceBackpack {
   place(player: Player, item: ItemStack, blockTarget: Block, direction: Direction): void {
@@ -8,15 +7,7 @@ export const placeBackpack = new class PlaceBackpack {
 
     const block = blockTarget.hasTag("travel_backpack:backpack") ? blockTarget : blockTarget.offset(offset)
     if(!block || !block.isValid) return
-
     if(!block.hasTag("travel_backpack:backpack")) return
-
-    if(!player.isSneaking){
-      block.setType("minecraft:air")
-      player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, item)
-      apiWarn.notify(player, "item.warn.travel_backpack:backpack.need_shift.place", {type: "action_bar", sound: "warn.ender_addon_pack:pop"})
-      return
-    }
 
     // Remove a backpack no criativo para evitar bug
     if(player.getGameMode() == GameMode.Creative){
