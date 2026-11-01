@@ -10,4 +10,5 @@ export function paintBackpack(entity, dye) {
     if (type == undefined)
         return;
     block.setPermutation(BlockPermutation.resolve(dye == "undye" ? type : type.replace(":", `:${dye}_`), block.permutation.getAllStates()));
+    block.dimension.playSound("sign.dye.use", block.center());
 }
