@@ -1,10 +1,11 @@
 import { Player, system } from "@minecraft/server";
 import { placeBackpack } from "../functions/place";
-system.beforeEvents.startup.subscribe(({ itemComponentRegistry: customI }) => {
+system.beforeEvents.startup.subscribe(({ itemComponentRegistry: customI, dimensionRegistry: customD }) => {
     customI.registerCustomComponent("travel_backpack:backpack", {
         onUseOn: ({ source, block, blockFace, itemStack: item }) => {
             if (source instanceof Player)
                 placeBackpack.place(source, item, block, blockFace);
         }
     });
+    customD.registerCustomDimension("travel_backpack:backpack");
 });
