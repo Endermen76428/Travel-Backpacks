@@ -52,8 +52,7 @@
                       ]
                     }
                   },
-                  { "upgrade_functions@travel_backpack-upgrades.upgrade_functions_panel": { "ignored": "(not $is_desktop)" } },
-                  { "upgrade_functions_mobile@travel_backpack-upgrades.upgrade_functions_mobile_panel": { "ignored": "$is_desktop" } },
+                  { "upgrade_functions@travel_backpack-upgrades.upgrade_functions_panel": {} },
                   { "background@travel_backpack-common.backpack_background": { "size": [ "100%", "100% + 12px" ] } },
                   { "item_grid@travel_backpack-backpack.inventory_grid_panel": { "ignored": "(not $is_desktop)" } },
                   { "item_grid_scrolling@travel_backpack-backpack.inventory_grid_panel_scrolling": { "ignored": "$is_desktop" } }

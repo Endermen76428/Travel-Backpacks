@@ -123,14 +123,6 @@
                       ]
                     }
                   }
-                  // {
-                  //   "horizontal_elements": {
-                  //     "type": "stack_panel",
-                  //     "orientation": "horizontal",
-                  //     "controls": [
-                  //     ]
-                  //   }
-                  // }
                 ],
                 "bindings": [
                   {
@@ -147,45 +139,23 @@
       }
     ],
     "bindings": [
+      { "binding_type": "view", "source_control_name": "hover_data_control_1", "source_property_name": "#preserved_text", "target_property_name": "#info_1" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_2", "source_property_name": "#preserved_text", "target_property_name": "#info_2" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_3", "source_property_name": "#preserved_text", "target_property_name": "#info_3" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_4", "source_property_name": "#preserved_text", "target_property_name": "#info_4" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_5", "source_property_name": "#preserved_text", "target_property_name": "#info_5" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_6", "source_property_name": "#preserved_text", "target_property_name": "#info_6" },
+
+      { "binding_type": "view", "source_control_name": "hover_data_control_1", "source_property_name": "#has_item", "target_property_name": "#item_1" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_2", "source_property_name": "#has_item", "target_property_name": "#item_2" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_3", "source_property_name": "#has_item", "target_property_name": "#item_3" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_4", "source_property_name": "#has_item", "target_property_name": "#item_4" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_5", "source_property_name": "#has_item", "target_property_name": "#item_5" },
+      { "binding_type": "view", "source_control_name": "hover_data_control_6", "source_property_name": "#has_item", "target_property_name": "#item_6" },
+
       {
         "binding_type": "view",
-        "source_control_name": "hover_data_control_1",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_1"
-      },
-      {
-        "binding_type": "view",
-        "source_control_name": "hover_data_control_2",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_2"
-      },
-      {
-        "binding_type": "view",
-        "source_control_name": "hover_data_control_3",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_3"
-      },
-      {
-        "binding_type": "view",
-        "source_control_name": "hover_data_control_4",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_4"
-      },
-      {
-        "binding_type": "view",
-        "source_control_name": "hover_data_control_5",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_5"
-      },
-      {
-        "binding_type": "view",
-        "source_control_name": "hover_data_control_6",
-        "source_property_name": "#preserved_hover_text",
-        "target_property_name": "#info_6"
-      },
-      {
-        "binding_type": "view",
-        "source_property_name": "((('%.21s' * #info_1) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_2) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_3) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_4) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_5) = '§f§f§u§r§n§a§r') or (('%.21s' * #info_6) = '§f§f§u§r§n§a§r'))", /* Cada-combinação-de-§-considerá-como-3-e-possui-um-§f-no-inicio-de-todo-hover_text-por-algum-motivo,-sofri-pra-descobrir-isso-:( */
+        "source_property_name": "( (('%.21s' * #info_1) = '§f§f§u§r§n§a§r' and #item_1) or (('%.21s' * #info_2) = '§f§f§u§r§n§a§r' and #item_2) or (('%.21s' * #info_3) = '§f§f§u§r§n§a§r' and #item_3) or (('%.21s' * #info_4) = '§f§f§u§r§n§a§r' and #item_4) or (('%.21s' * #info_5) = '§f§f§u§r§n§a§r' and #item_5) or (('%.21s' * #info_6) = '§f§f§u§r§n§a§r' and #item_6) )", /* Cada-combinação-de-§-considerá-como-3-e-possui-um-§f-no-inicio-de-todo-hover_text-por-algum-motivo,-sofri-pra-descobrir-isso-:( */
         "target_property_name": "#visible"
       }
     ]
