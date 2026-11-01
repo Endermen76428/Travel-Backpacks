@@ -97,7 +97,8 @@
                       "anchor_to": "top_middle",
                       "controls": [
                         { "craft_toggle@travel_backpack-upgrade_craft.upgrade_craft_panel": {} },
-                        { "furnace_toggle@travel_backpack-upgrade_furnace.upgrade_furnace_panel": {} }
+                        { "furnace_toggle@travel_backpack-upgrade_furnace.upgrade_furnace_panel": {} },
+                        { "feed_toggle@travel_backpack-upgrade_feed.upgrade_feed_panel": {} }
                       ]
                     }
                   }

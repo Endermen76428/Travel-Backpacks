@@ -12,8 +12,7 @@ export function spawnBackpack(player, itemId) {
     const fillStart = backpackSizeFill[inventoryTier];
     if (!fillStart)
         return entity;
-    for (let i = fillStart, len = inventory.size; i < len; i++) {
+    for (let i = fillStart, len = inventory.size; i < len; i++)
         inventory.setItem(i, lockSlotItem);
-    }
     return entity;
 }

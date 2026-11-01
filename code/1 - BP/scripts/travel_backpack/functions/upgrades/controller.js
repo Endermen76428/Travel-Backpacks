@@ -110,7 +110,8 @@ const addFunctions = {
         for (let i = firstSlot, len = firstSlot + 3; i < len; i++)
             inventory.setItem(i, undefined);
         furnaceUpgradeFunctions.add(entity, inventory, firstSlot);
-    }
+    },
+    "travel_backpack:feed_upgrade": (entity, inventory, endSlot) => { }
 };
 const removeFunctions = {
     "travel_backpack:craft_upgrade": (player, entity, inventory, firstSlot, oldUpgrades) => {
@@ -144,7 +145,8 @@ const removeFunctions = {
             inventory.setItem(i, lockSlotItem);
         }
         furnaceUpgradeFunctions.remove(entity);
-    }
+    },
+    "travel_backpack:feed_upgrade": (upgrades, entity, inventory, firstSlot, oldUpgrades) => { }
 };
 const enableUpgrades = {
     "travel_backpack:craft_upgrade": (upgrades, entity, inventory, firstSlot) => {
@@ -158,5 +160,6 @@ const enableUpgrades = {
             return;
         upgrades.furnace = true;
         furnaceUpgradeFunctions.add(entity, inventory, firstSlot + 25);
-    }
+    },
+    "travel_backpack:feed_upgrade": (upgrades, entity, inventory, firstSlot) => { }
 };

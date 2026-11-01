@@ -23,20 +23,20 @@ export const backpackTypeTier = {
     5: "travel_backpack:netherite_backpack"
 };
 export const backpackSizeTier = {
-    507: 0,
-    508: 1,
-    509: 2,
-    510: 3,
-    511: 4,
-    512: 5
+    250: 0,
+    251: 1,
+    252: 2,
+    253: 3,
+    255: 4,
+    256: 5
 };
 export const backpackUpgradesIndex = {
-    507: [27, 1],
-    508: [36, 2],
-    509: [54, 3],
-    510: [81, 4],
-    511: [100, 5],
-    512: [120, 6]
+    250: [27, 1],
+    251: [36, 2],
+    252: [54, 3],
+    253: [81, 4],
+    255: [100, 5],
+    256: [120, 6]
 };
 export let furnaceReloadScore;
 export let furnaceRecipeScore;
@@ -49,11 +49,11 @@ system.run(() => {
     BACSFurnaceRecipeScore = apiScoreboard.getObj("BACS:furnace_recipes");
     BACSFurnaceRecipeDenyScore = apiScoreboard.getObj("BACS:furnace_recipes_deny");
     BACSLoadFurnaceRecipe(BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore);
-    const players = world.getAllPlayers();
     lockSlotItem = new ItemStack("travel_backpack:lock_slot");
     coalItem = new ItemStack("minecraft:coal");
     createFurnaceIcons();
     restartFurnaceFunction(furnaceReloadScore);
+    const players = world.getAllPlayers();
     if (players.length > 0) {
         for (let i = 0, len = players.length; i < len; i++) {
             const player = players[i];
