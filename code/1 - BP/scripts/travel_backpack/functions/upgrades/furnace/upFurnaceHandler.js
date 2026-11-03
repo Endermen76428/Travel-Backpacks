@@ -2,7 +2,7 @@ import { BACSFurnaceRecipeDenyScore, BACSFurnaceRecipeScore, coalItem, furnaceRe
 import { BlockComponentTypes, ItemStack, system } from "@minecraft/server";
 import { furnaceRecipeDenyList, furnaceRecipeList } from "./recipes";
 import { furnaceArrowIcons, furnaceFlameIcons } from "./visual";
-import { apiWarn } from "../../../lib/player/warn";
+import { apiWarn } from "../../../../0-lib/player/warn";
 import { furnaceFuelList } from "./fuel";
 const furnaceListenList = {};
 let amountOfListeners = 0;

@@ -1,6 +1,6 @@
 import { EntityComponentTypes, ItemLockMode, StructureSaveMode, system, world } from "@minecraft/server";
 import { spawnBackpack } from "../lib/backpack/spawn";
-import { apiWarn } from "../lib/player/warn";
+import { apiWarn } from "../../0-lib/player/warn";
 const backpackPlayersListenList = {};
 const playersSneaking = {};
 let amountOfListeners = 0;

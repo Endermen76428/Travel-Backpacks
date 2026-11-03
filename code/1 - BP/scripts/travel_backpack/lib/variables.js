@@ -2,8 +2,8 @@ import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@
 import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart";
 import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes";
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
+import { apiScoreboard } from "./../../0-lib/math/scoreboard";
 import { addPlayerHoldListen } from "../functions/hold";
-import { apiScoreboard } from "./math/scoreboard";
 export let lockSlotItem;
 export let coalItem;
 export const backpackSizeFill = {
@@ -39,13 +39,12 @@ export const backpackUpgradesIndex = {
     256: [120, 6]
 };
 export let furnaceReloadScore;
-export let furnaceRecipeScore;
 export let BACSFurnaceRecipeScore;
 export let BACSFurnaceRecipeDenyScore;
+export const openedBackpacks = {};
 system.run(() => {
     world.gameRules.showTags = false;
     furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace");
-    furnaceRecipeScore = apiScoreboard.getObj("travel_backpack:furnace_r");
     BACSFurnaceRecipeScore = apiScoreboard.getObj("BACS:furnace_recipes");
     BACSFurnaceRecipeDenyScore = apiScoreboard.getObj("BACS:furnace_recipes_deny");
     BACSLoadFurnaceRecipe(BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore);

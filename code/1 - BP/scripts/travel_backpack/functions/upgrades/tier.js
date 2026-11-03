@@ -1,7 +1,7 @@
 import { BlockPermutation, EntityComponentTypes, EquipmentSlot, system } from "@minecraft/server";
 import { backpackSizeTier, backpackUpgradesIndex, lockSlotItem } from "../../lib/variables";
 import { apiEquippable } from "../../lib/player/equippable";
-import { apiWarn } from "../../lib/player/warn";
+import { apiWarn } from "../../../0-lib/player/warn";
 export const upgradeBackpackTier = new class UpgradeBackpack {
     install(player, backpack, item) {
         const [upgradeSize, backpackType] = upgradeTier[item.typeId] ?? [];
