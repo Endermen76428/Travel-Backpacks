@@ -7,7 +7,7 @@ system.afterEvents.scriptEventReceive.subscribe(({id, message, sourceEntity, sou
   if(exe) exe(message, sourceEntity, sourceBlock)
 }, {namespaces: ["travel_backpack"]})
 
-const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, block?: Block) => void } = {
+const scriptEventFunctions: { [key: string]: (message: string, entity?: Entity, block?: Block) => void } = {
   "travel_backpack:return": (message, entity) => {
     if(!entity) return
 
@@ -19,6 +19,7 @@ const scriptEventFunctions: { [jey: string]: (message: string, entity?: Entity, 
 
   "travel_backpack:archive": (message, entity) => {
     if(entity?.isValid){
+      console.warn("Arquivado:§a", entity.id)
       const id = `travel_backpack:${entity.id}`
       world.structureManager.delete(id)
       world.structureManager.createFromWorld(id, entity.dimension, entity.location, entity.location, {saveMode: StructureSaveMode.World, includeBlocks: false})
