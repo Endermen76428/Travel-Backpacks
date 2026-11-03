@@ -4,7 +4,7 @@
     "name": "Travel Backpacks v0.3 (Texture / Alpha)",
     "description": "pack.description",
     "uuid": "41f521d3-0f86-453a-9d0b-fce0bd42b730",
-    "min_engine_version": [1, 26, 20],
+    "min_engine_version": [1, 26, 30],
     "version": [0, 3, 0],
     "pack_scope": "world"
   },

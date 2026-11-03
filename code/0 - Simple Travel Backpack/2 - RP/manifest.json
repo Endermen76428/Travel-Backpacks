@@ -4,7 +4,7 @@
     "name": "Simple Travel Backpacks v1.3 (Texture)",
     "description": "pack.description",
     "uuid": "a3a14b76-86e2-4278-9331-b057b8698bf1",
-    "min_engine_version": [1, 26, 20],
+    "min_engine_version": [1, 26, 30],
     "version": [1, 3, 0],
     "pack_scope": "world"
   },
