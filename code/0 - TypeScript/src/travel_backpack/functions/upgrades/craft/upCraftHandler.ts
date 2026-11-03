@@ -13,7 +13,7 @@ function startInverval(): void {
   for(let i = 0; i < length; i++){
     const [ key, info ] = backpacks[i] ?? []
     if(key == undefined || info == undefined) continue
-    const { backpack, backpackInv, firstSlot, lastItem } = info
+    const { backpack, backpackInv, firstSlot, amount, lastItem } = info
 
     // Remove a backpack da lista quando ela fica inválida
     if(!backpack.isValid){
@@ -30,6 +30,8 @@ function startInverval(): void {
       craftPattern += (item?.typeId ?? "") + (i - firstSlot == 8 ? "" : "/")
       items[i - firstSlot] = item
     }
+
+    console.warn(`Craft: ${amount}`)
 
     const currentOutputItem = backpackInv.getItem(firstSlot +10)
 
@@ -82,7 +84,15 @@ function startInverval(): void {
 
 export const craftUpgradeFunctions = new class CraftUpgradeFunctions {
   add(backpack: Entity, backpackInv: Container, firstSlot: number): void {
-    craftListenList[backpack.id] = { backpack, backpackInv, firstSlot }
+    const itemCraftAmount = backpackInv.getItem(firstSlot +11)
+    let amount = 1
+    if(itemCraftAmount == undefined || !itemCraftAmount.hasTag("travel_backpack:craft_amount")){
+      backpackInv.setItem(firstSlot +11, new ItemStack("travel_backpack:craft_amount_1"))
+    } else {
+      amount = craftAmountByItem[itemCraftAmount.typeId] ?? 1
+    }
+
+    craftListenList[backpack.id] = { backpack, backpackInv, firstSlot, amount }
     amountOfListeners == 0 && startInverval()
   }
 
@@ -91,9 +101,20 @@ export const craftUpgradeFunctions = new class CraftUpgradeFunctions {
   }
 }
 
+const craftAmountByItem: { [key: string]: number } = {
+  "travel_backpack:craft_amount_1":  1,
+  "travel_backpack:craft_amount_2":  2,
+  "travel_backpack:craft_amount_4":  4,
+  "travel_backpack:craft_amount_8":  8,
+  "travel_backpack:craft_amount_16": 16,
+  "travel_backpack:craft_amount_32": 32,
+  "travel_backpack:craft_amount_64": 64
+}
+
 interface IntervalInfo {
   backpack: Entity
   backpackInv: Container
   firstSlot: number
+  amount: number
   lastItem?: string
 }

@@ -19,7 +19,7 @@ const scriptEventFunctions: { [key: string]: (message: string, entity?: Entity, 
 
   "travel_backpack:archive": (message, entity) => {
     if(entity?.isValid){
-      console.warn("Arquivado:§a", entity.id)
+      console.warn("Arquivado:§a", entity.id, "§r|", JSON.stringify(entity.location))
       const id = `travel_backpack:${entity.id}`
       world.structureManager.delete(id)
       world.structureManager.createFromWorld(id, entity.dimension, entity.location, entity.location, {saveMode: StructureSaveMode.World, includeBlocks: false})

@@ -120,7 +120,9 @@
                   {
                     "config": {
                       "type": "stack_panel",
-                      "offset": [ "100%", "100%" ],
+                      "offset": [ "100% -8px", "100% -8px" ],
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
                       "orientation": "horizontal",
                       "collection_name": "container_items",
                       "controls": [
