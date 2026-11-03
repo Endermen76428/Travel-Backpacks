@@ -350,6 +350,16 @@ item.travel_backpack:magenta_netherite_backpack.bacs=Magenta Netherite Backpack
 item.travel_backpack:pink_netherite_backpack=Pink Netherite Backpack\n§9Travel Backpacks
 item.travel_backpack:pink_netherite_backpack.bacs=Pink Netherite Backpack
 
+### Config
+## Craft
+item.travel_backpack:craft_amount_1=Craft: 1 Item
+item.travel_backpack:craft_amount_2=Craft: 2 Items
+item.travel_backpack:craft_amount_4=Craft: 4 Items
+item.travel_backpack:craft_amount_8=Craft: 8 Items
+item.travel_backpack:craft_amount_16=Craft: 16 Items
+item.travel_backpack:craft_amount_32=Craft: 32 Items
+item.travel_backpack:craft_amount_64=Craft: 64 Items
+
 ## upgrade
 item.travel_backpack:upgrade_template=Template Upgrade\n§9Travel Backpacks
 item.travel_backpack:upgrade_template.bacs=Template Upgrade

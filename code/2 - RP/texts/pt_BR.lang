@@ -350,6 +350,16 @@ item.travel_backpack:magenta_netherite_backpack.bacs=Mochila de Netherita Magent
 item.travel_backpack:pink_netherite_backpack=Mochila de Netherita Rosa\n§9Travel Backpacks
 item.travel_backpack:pink_netherite_backpack.bacs=Mochila de Netherita Rosa
 
+### Config
+## Craft
+item.travel_backpack:craft_amount_1=Fabricar: 1 Item
+item.travel_backpack:craft_amount_2=Fabricar: 2 Itens
+item.travel_backpack:craft_amount_4=Fabricar: 4 Itens
+item.travel_backpack:craft_amount_8=Fabricar: 8 Itens
+item.travel_backpack:craft_amount_16=Fabricar: 16 Itens
+item.travel_backpack:craft_amount_32=Fabricar: 32 Itens
+item.travel_backpack:craft_amount_64=Fabricar: 64 Itens
+
 ## Upgrade
 item.travel_backpack:upgrade_template=Base de Melhoria\n§9Travel Backpacks
 item.travel_backpack:upgrade_template.bacs=Base de Melhoria
