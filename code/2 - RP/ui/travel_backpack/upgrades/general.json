@@ -54,6 +54,7 @@
   },
 
   "functional_button@common.container_slot_button_prototype": {
+    "sound_name": "random.click",
     "button_mappings": [
       {
         "from_button_id": "button.menu_select",
