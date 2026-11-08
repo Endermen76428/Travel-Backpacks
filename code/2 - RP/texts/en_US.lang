@@ -351,6 +351,9 @@ item.travel_backpack:pink_netherite_backpack=Pink Netherite Backpack\n§9Travel 
 item.travel_backpack:pink_netherite_backpack.bacs=Pink Netherite Backpack
 
 ### Config
+item.travel_backpack:ui_mode_default=§1§rUI Default
+item.travel_backpack:ui_mode_scrolling=§2§rUI Scrolling
+
 item.travel_backpack:organize_alphabetical=Organize by Name
 item.travel_backpack:organize_numeric=Organize by Amount
 

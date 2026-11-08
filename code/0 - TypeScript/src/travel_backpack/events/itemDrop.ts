@@ -19,6 +19,9 @@ world.afterEvents.entityItemDrop.subscribe(({entity: player, items}) => {
 }, {entityFilter: {type: "minecraft:player"}})
 
 const itemDroppedFunctions: { [key: string]: (id: string, inventory: Container, size: number) => void } = {
+  "travel_backpack:ui_mode_default": (id, inventory, size) => { inventory.setItem(size +6, new ItemStack("travel_backpack:ui_mode_scrolling")) },
+  "travel_backpack:ui_mode_scrolling": (id, inventory, size) => { inventory.setItem(size +6, new ItemStack("travel_backpack:ui_mode_default")) },
+
   "travel_backpack:organize_alphabetical": (id, inventory, size) => { inventory.setItem(size +7, new ItemStack("travel_backpack:organize_alphabetical")), backpackOrganize.alphabetical(inventory, size) },
   "travel_backpack:organize_numeric": (id, inventory, size) => { inventory.setItem(size +8, new ItemStack("travel_backpack:organize_numeric")), backpackOrganize.numeric(inventory, size) },
 

@@ -104,6 +104,7 @@ export function addPlayerUpgradeListen(player: Player, backpack: Entity): void {
     upgrades[i - firstSlot] = item.typeId
   }
 
+  if(backpackInv.getItem(firstSlot +6)?.hasTag("travel_backpack:organize") != true) backpackInv.setItem(firstSlot +6, new ItemStack("travel_backpack:ui_mode_default"))
   if(backpackInv.getItem(firstSlot +7)?.hasTag("travel_backpack:organize") != true) backpackInv.setItem(firstSlot +7, new ItemStack("travel_backpack:organize_alphabetical"))
   if(backpackInv.getItem(firstSlot +8)?.hasTag("travel_backpack:organize") != true) backpackInv.setItem(firstSlot +8, new ItemStack("travel_backpack:organize_numeric"))
 
