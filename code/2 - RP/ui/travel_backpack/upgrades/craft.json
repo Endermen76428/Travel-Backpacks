@@ -127,12 +127,46 @@
                       "collection_name": "container_items",
                       "controls": [
                         {
-                          "change_amount@common.container_item": {
+                          "change_amount_button@common.container_item": {
                             "size": [ 16, 16 ],
                             "$background_images": "common.empty_panel",
                             "$button_ref": "travel_backpack-upgrade_general.functional_button",
                             "$item_collection_name": "container_items",
                             "collection_index": "($inventory_size +21)"
+                          }
+                        },
+                        {
+                          "change_amount_image_panel": {
+                            "type": "panel",
+                            "size": [ 16, 16 ],
+                            "controls": [
+                              {
+                                "change_amount_image_stack_panel": {
+                                  "type": "stack_panel",
+                                  "collection_name": "container_items",
+                                  "size": [ 16, 16 ],
+                                  "offset": [ -16, 0 ],
+                                  "controls": [
+                                    {
+                                      "change_amount_image": {
+                                        "collection_index": "($inventory_size +21)",
+                                        "type": "image",
+                                        "size": [ 16, 16 ],
+                                        "layer": 10,
+                                        "bindings": [
+                                          { "binding_type": "view", "source_control_name": "hover_data_control_craft_amount", "source_property_name": "#preserved_text", "target_property_name": "#info" },
+                                          {
+                                            "binding_type": "view",
+                                            "source_property_name": "( ('textures/travel_backpack/ui/upgrades/craft/amount/' + ('%.6s' * #info) - '§') )",
+                                            "target_property_name": "#texture"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
                           }
                         }
                       ]

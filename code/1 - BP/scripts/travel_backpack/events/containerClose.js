@@ -1,8 +1,8 @@
 import { furnaceUpgradeFunctions } from "../functions/upgrades/furnace/upFurnaceHandler";
 import { craftUpgradeFunctions } from "../functions/upgrades/craft/upCraftHandler";
 import { removePlayerUpgradeListen } from "../functions/upgrades/controller";
+import { backpackUpgradesIndex, openedBackpacks } from "../lib/variables";
 import { world, EntityComponentTypes, Player } from "@minecraft/server";
-import { backpackUpgradesIndex } from "../lib/variables";
 world.afterEvents.entityContainerClosed.subscribe(({ entity: backpack, closeSource }) => {
     const player = closeSource.entity;
     if (!player || !player.isValid)
@@ -26,6 +26,7 @@ world.afterEvents.entityContainerClosed.subscribe(({ entity: backpack, closeSour
             inventory.setItem(i);
         }
     }
+    delete openedBackpacks[player.id];
     removePlayerUpgradeListen(player);
     craftUpgradeFunctions.remove(backpack);
     furnaceUpgradeFunctions.enableTryStop(backpack);

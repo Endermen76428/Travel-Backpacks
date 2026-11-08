@@ -3,7 +3,7 @@ import { furnaceReloadScore } from "../lib/variables"
 import { world } from "@minecraft/server"
 
 world.afterEvents.entityLoad.subscribe(({entity}) => {
-  if(entity.typeId == "travel_backpack:backpack"){
+  if(entity.isValid && entity.typeId == "travel_backpack:backpack"){
 
     if(furnaceReloadScore.hasParticipant(entity.id)){ restartFurnaceFunction(furnaceReloadScore, entity.id) }
 

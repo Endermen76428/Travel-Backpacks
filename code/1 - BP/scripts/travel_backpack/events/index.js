@@ -10,4 +10,5 @@ import "./scriptEvent";
 import "./entityHurt";
 import "./entityLoad";
 import "./hitEntity";
+import "./itemDrop";
 import "./startUp";

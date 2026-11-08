@@ -1,6 +1,6 @@
 ## --------------------------------------------------
 ## #region Block
-## ------------------------------------------------
+## --------------------------------------------------
 
 ## Backpack
 tile.travel_backpack:leather_backpack.name=Leather Backpack
@@ -352,13 +352,13 @@ item.travel_backpack:pink_netherite_backpack.bacs=Pink Netherite Backpack
 
 ### Config
 ## Craft
-item.travel_backpack:craft_amount_1=Craft: 1 Item
-item.travel_backpack:craft_amount_2=Craft: 2 Items
-item.travel_backpack:craft_amount_4=Craft: 4 Items
-item.travel_backpack:craft_amount_8=Craft: 8 Items
-item.travel_backpack:craft_amount_16=Craft: 16 Items
-item.travel_backpack:craft_amount_32=Craft: 32 Items
-item.travel_backpack:craft_amount_64=Craft: 64 Items
+item.travel_backpack:craft_amount_1=§1§rCraft: 1 Item
+item.travel_backpack:craft_amount_2=§2§rCraft: 2 Items
+item.travel_backpack:craft_amount_4=§3§rCraft: 4 Items
+item.travel_backpack:craft_amount_8=§4§rCraft: 8 Items
+item.travel_backpack:craft_amount_16=§5§rCraft: 16 Items
+item.travel_backpack:craft_amount_32=§6§rCraft: 32 Items
+item.travel_backpack:craft_amount_64=§7§rCraft: 64 Items
 
 ## upgrade
 item.travel_backpack:upgrade_template=Template Upgrade\n§9Travel Backpacks

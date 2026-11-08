@@ -86,6 +86,7 @@
             { "hover_data_control_4@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +3)" } },
             { "hover_data_control_5@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +4)" } },
             { "hover_data_control_6@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +5)" } },
+            { "hover_data_control_craft_amount@travel_backpack-upgrades.hover_text_data_control": { "$index": "($inventory_size +21)" } },
             {
               "upgrades_panel@common.empty_panel": {
                 "controls": [

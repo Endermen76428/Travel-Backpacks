@@ -11,29 +11,33 @@ function startInverval() {
         const [key, info] = backpacks[i] ?? [];
         if (key == undefined || info == undefined)
             continue;
-        const { backpack, backpackInv, firstSlot, amount, lastItem } = info;
+        const { backpack, backpackInv, firstSlot, amount, lastItem, lastMin, lastAmount } = info;
         if (!backpack.isValid) {
             invalidPlayers++;
             delete craftListenList[key];
             continue;
         }
         let craftPattern = "";
+        let minAmount = Infinity;
         const items = Array.from({ length: 9 });
         for (let i = firstSlot, len = firstSlot + 9; i < len; i++) {
             const item = backpackInv.getItem(i);
             craftPattern += (item?.typeId ?? "") + (i - firstSlot == 8 ? "" : "/");
             items[i - firstSlot] = item;
+            if (item != undefined)
+                minAmount = Math.min(minAmount, item.amount);
         }
-        console.warn(`Craft: ${amount}`);
+        minAmount = Math.min(minAmount, amount);
         const currentOutputItem = backpackInv.getItem(firstSlot + 10);
         const craft = craftUpgradeRecipes.getResult(backpack, craftPattern, items);
         if (craft) {
             if (lastItem && !currentOutputItem) {
+                const decrementAmount = Math.min(lastMin ?? Infinity, minAmount, Math.floor((lastAmount ?? 0) / craft.amount));
                 for (let i = firstSlot, len = firstSlot + 9; i < len; i++) {
                     const item = backpackInv.getItem(i);
                     if (item) {
-                        if (item.amount > 1) {
-                            item.amount--;
+                        if (item.amount > decrementAmount) {
+                            item.amount -= decrementAmount;
                             backpackInv.setItem(i, item);
                         }
                         else
@@ -51,9 +55,13 @@ function startInverval() {
                 }
                 delete info.lastItem;
             }
-            else if (craft.output != lastItem) {
-                backpackInv.setItem(firstSlot + 10, new ItemStack(craft.output, craft.amount));
-                info.lastItem = craft.output;
+            else if (lastItem == undefined || craft.output != lastItem[0] || amount != lastItem[1] || minAmount != lastMin) {
+                const outputItem = new ItemStack(craft.output, craft.amount);
+                outputItem.amount = Math.min(outputItem.amount * minAmount, Math.floor(outputItem.maxAmount / craft.amount) * craft.amount);
+                backpackInv.setItem(firstSlot + 10, outputItem);
+                info.lastItem = [craft.output, amount];
+                info.lastMin = minAmount;
+                info.lastAmount = outputItem.amount;
             }
         }
         else {
@@ -82,6 +90,12 @@ export const craftUpgradeFunctions = new class CraftUpgradeFunctions {
     }
     remove(backpack) {
         delete craftListenList[backpack.id];
+    }
+    updateAmount(backpackId, amount) {
+        const info = craftListenList[backpackId];
+        if (info == undefined)
+            return;
+        info.amount = amount;
     }
 };
 const craftAmountByItem = {

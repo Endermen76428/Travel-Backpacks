@@ -1,6 +1,5 @@
 import { Container, EntityComponentTypes, EquipmentSlot, ItemStack, ScoreboardObjective, system, world } from "@minecraft/server"
 import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart"
-import { BACSLoadFurnaceRecipe } from "../functions/upgrades/furnace/recipes"
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual"
 import { apiScoreboard } from "./../../0-lib/math/scoreboard"
 import { addPlayerHoldListen } from "../functions/hold"
@@ -45,19 +44,13 @@ export const backpackUpgradesIndex: { [key: number]: [number, number] } = {
 }
 
 export let furnaceReloadScore: ScoreboardObjective
-export let BACSFurnaceRecipeScore: ScoreboardObjective
-export let BACSFurnaceRecipeDenyScore: ScoreboardObjective
 
-export const openedBackpacks: { [key: string]: Container } = {} // Player ID > Backpack Inventory
+export const openedBackpacks: { [key: string]: [string, Container, number] } = {} // Player ID > [ Backpack Id, Backpack Inventory, Backpack Size]
 
 system.run(() => {
   world.gameRules.showTags = false
 
   furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace")
-  BACSFurnaceRecipeScore = apiScoreboard.getObj("BACS:furnace_recipes")
-  BACSFurnaceRecipeDenyScore = apiScoreboard.getObj("BACS:furnace_recipes_deny")
-
-  BACSLoadFurnaceRecipe(BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore)
 
   lockSlotItem = new ItemStack("travel_backpack:lock_slot")
   coalItem = new ItemStack("minecraft:coal")
