@@ -1,6 +1,7 @@
 import { EntityComponentTypes, ItemStack, world } from "@minecraft/server";
 import { craftUpgradeFunctions } from "../functions/upgrades/craft/upCraftHandler";
 import { openedBackpacks } from "../lib/variables";
+import { backpackOrganize } from "../functions/organize";
 world.afterEvents.entityItemDrop.subscribe(({ entity: player, items }) => {
     if (items.length > 1)
         return;
@@ -17,8 +18,8 @@ world.afterEvents.entityItemDrop.subscribe(({ entity: player, items }) => {
     }
 }, { entityFilter: { type: "minecraft:player" } });
 const itemDroppedFunctions = {
-    "travel_backpack:organize_alphabetical": (id, inventory, size) => { inventory.setItem(size + 6, new ItemStack("travel_backpack:organize_alphabetical")); },
-    "travel_backpack:organize_numeric": (id, inventory, size) => { inventory.setItem(size + 7, new ItemStack("travel_backpack:organize_numeric")); },
+    "travel_backpack:organize_alphabetical": (id, inventory, size) => { inventory.setItem(size + 7, new ItemStack("travel_backpack:organize_alphabetical")), backpackOrganize.alphabetical(inventory, size); },
+    "travel_backpack:organize_numeric": (id, inventory, size) => { inventory.setItem(size + 8, new ItemStack("travel_backpack:organize_numeric")), backpackOrganize.numeric(inventory, size); },
     "travel_backpack:craft_amount_1": (id, inventory, size) => { inventory.setItem(size + 21, new ItemStack("travel_backpack:craft_amount_2")), craftUpgradeFunctions.updateAmount(id, 2); },
     "travel_backpack:craft_amount_2": (id, inventory, size) => { inventory.setItem(size + 21, new ItemStack("travel_backpack:craft_amount_4")), craftUpgradeFunctions.updateAmount(id, 4); },
     "travel_backpack:craft_amount_4": (id, inventory, size) => { inventory.setItem(size + 21, new ItemStack("travel_backpack:craft_amount_8")), craftUpgradeFunctions.updateAmount(id, 8); },

@@ -85,10 +85,10 @@ export function addPlayerUpgradeListen(player, backpack) {
         exe && exe(upgradesToEnable, backpack, backpackInv, firstSlot, upgrades);
         upgrades[i - firstSlot] = item.typeId;
     }
-    if (backpackInv.getItem(firstSlot + 6)?.hasTag("travel_backpack:organize") != true)
-        backpackInv.setItem(firstSlot + 6, new ItemStack("travel_backpack:organize_alphabetical"));
     if (backpackInv.getItem(firstSlot + 7)?.hasTag("travel_backpack:organize") != true)
-        backpackInv.setItem(firstSlot + 7, new ItemStack("travel_backpack:organize_numeric"));
+        backpackInv.setItem(firstSlot + 7, new ItemStack("travel_backpack:organize_alphabetical"));
+    if (backpackInv.getItem(firstSlot + 8)?.hasTag("travel_backpack:organize") != true)
+        backpackInv.setItem(firstSlot + 8, new ItemStack("travel_backpack:organize_numeric"));
     backpackPlayersListenList[player.id] = { player, backpack, playerInv, backpackInv, slots: info, upgrades };
     amountOfListeners == 0 && startInverval();
 }
