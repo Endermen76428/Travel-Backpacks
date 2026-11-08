@@ -351,6 +351,9 @@ item.travel_backpack:pink_netherite_backpack=Mochila de Netherita Rosa\n§9Trave
 item.travel_backpack:pink_netherite_backpack.bacs=Mochila de Netherita Rosa
 
 ### Config
+item.travel_backpack:organize_alphabetical=Organizar por Nome
+item.travel_backpack:organize_numeric=Organizar por Quantia
+
 ## Craft
 item.travel_backpack:craft_amount_1=§1§rFabricar: 1 Item
 item.travel_backpack:craft_amount_2=§2§rFabricar: 2 Itens

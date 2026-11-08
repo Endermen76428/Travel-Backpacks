@@ -17,15 +17,6 @@
     "travel_backpack:furnace_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/furnace_upgrade" },
     "travel_backpack:feed_upgrade": { "textures": "textures/travel_backpack/items/upgrade_function/feed_upgrade" },
 
-    // Config - Craft - Amount
-    "travel_backpack:craft_amount_1_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f1" },
-    "travel_backpack:craft_amount_2_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f2" },
-    "travel_backpack:craft_amount_4_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f3" },
-    "travel_backpack:craft_amount_8_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f4" },
-    "travel_backpack:craft_amount_16_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f5" },
-    "travel_backpack:craft_amount_32_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f6" },
-    "travel_backpack:craft_amount_64_config": { "textures": "textures/travel_backpack/ui/upgrades/craft/amount/f7" },
-
     // Visual - Furnace - Arrow
     "travel_backpack:arrow_0": { "textures": "textures/null" },
     "travel_backpack:arrow_1": { "textures": "textures/travel_backpack/ui/upgrades/furnace/arrow/arrow_1" },

@@ -58,5 +58,81 @@
       //   }
       // }
     ]
+  },
+
+  "organize_panel": {
+    "type": "stack_panel",
+    "offset": [ -9, -5.5 ],
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "orientation": "horizontal",
+    "collection_name": "container_items",
+    "controls": [
+      {
+        "organize_alphabetical_button@common.container_item": {
+          "size": [ 16, 16 ],
+          "$background_images": "common.empty_panel",
+          "$button_ref": "travel_backpack-upgrade_general.functional_button",
+          "$item_collection_name": "container_items",
+          "collection_index": "($inventory_size +6)"
+        }
+      },
+      { "padding@common.empty_panel": { "size": [ 2, 0] } },
+      {
+        "organize_numeric_button@common.container_item": {
+          "size": [ 16, 16 ],
+          "$background_images": "common.empty_panel",
+          "$button_ref": "travel_backpack-upgrade_general.functional_button",
+          "$item_collection_name": "container_items",
+          "collection_index": "($inventory_size +7)"
+        }
+      },
+      {
+        "organize_alphabetical_image_panel": {
+          "type": "panel",
+          "size": [ 16, 16 ],
+          "controls": [
+            {
+              "organize_alphabetical_image_stack_panel": {
+                "type": "stack_panel",
+                "collection_name": "container_items",
+                "size": [ 16, 16 ],
+                "offset": [ -34, 0 ],
+                "controls": [
+                  {
+                    "organize_alphabetical_image": {
+                      "collection_index": "($inventory_size +6)",
+                      "type": "image",
+                      "texture": "textures/travel_backpack/ui/organize_alphabetical",
+                      "size": [ 16, 16 ],
+                      "layer": 10
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "organize_numeric_image_stack_panel": {
+                "type": "stack_panel",
+                "collection_name": "container_items",
+                "size": [ 16, 16 ],
+                "offset": [ -16, 0 ],
+                "controls": [
+                  {
+                    "organize_numeric_image": {
+                      "collection_index": "($inventory_size +6)",
+                      "type": "image",
+                      "texture": "textures/travel_backpack/ui/organize_numeric",
+                      "size": [ 16, 16 ],
+                      "layer": 10
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

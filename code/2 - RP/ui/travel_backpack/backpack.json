@@ -52,6 +52,7 @@
                       ]
                     }
                   },
+                  { "organize_panel@travel_backpack-common.organize_panel": {} },
                   { "upgrade_functions@travel_backpack-upgrades.upgrade_functions_panel": {} },
                   { "background@travel_backpack-common.backpack_background": { "size": [ "100%", "100% + 12px" ] } },
                   { "item_grid@travel_backpack-backpack.inventory_grid_panel": { "ignored": "(not $is_desktop)" } },

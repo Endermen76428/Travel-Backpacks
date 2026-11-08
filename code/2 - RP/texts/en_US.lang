@@ -351,6 +351,9 @@ item.travel_backpack:pink_netherite_backpack=Pink Netherite Backpack\n§9Travel 
 item.travel_backpack:pink_netherite_backpack.bacs=Pink Netherite Backpack
 
 ### Config
+item.travel_backpack:organize_alphabetical=Organize by Name
+item.travel_backpack:organize_numeric=Organize by Amount
+
 ## Craft
 item.travel_backpack:craft_amount_1=§1§rCraft: 1 Item
 item.travel_backpack:craft_amount_2=§2§rCraft: 2 Items
