@@ -3,6 +3,7 @@ import { craftUpgradeFunctions } from "../functions/upgrades/craft/upCraftHandle
 import { removePlayerUpgradeListen } from "../functions/upgrades/controller";
 import { backpackUpgradesIndex, openedBackpacks } from "../lib/variables";
 import { world, EntityComponentTypes, Player } from "@minecraft/server";
+import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler";
 world.afterEvents.entityContainerClosed.subscribe(({ entity: backpack, closeSource }) => {
     const player = closeSource.entity;
     if (!player || !player.isValid)
@@ -30,4 +31,5 @@ world.afterEvents.entityContainerClosed.subscribe(({ entity: backpack, closeSour
     removePlayerUpgradeListen(player);
     craftUpgradeFunctions.remove(backpack);
     furnaceUpgradeFunctions.enableTryStop(backpack);
+    feedUpgradeFunctions.remove(backpack);
 }, { entityFilter: { type: "travel_backpack:backpack" } });

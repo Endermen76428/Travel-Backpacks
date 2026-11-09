@@ -20,3 +20,14 @@ world.beforeEvents.playerInteractWithEntity.subscribe(ev => {
     }
   }
 })
+
+world.afterEvents.itemUse.subscribe(({source, itemStack}) => {
+  if(itemStack.typeId != "minecraft:stick") return
+
+  const hunger = source.getComponent("minecraft:player.hunger")
+  const saturation = source.getComponent("minecraft:player.saturation")
+  if(hunger == undefined || saturation == undefined) return
+
+  hunger.setCurrentValue(10)
+  saturation.setCurrentValue(0)
+})

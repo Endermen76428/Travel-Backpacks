@@ -1,6 +1,6 @@
 import { BACSFurnaceRecipeDenyScore, BACSFurnaceRecipeScore } from "../../../../1-bacs/recipes/variables"
 import { furnaceRecipeDenyList, furnaceRecipeList } from "../../../../1-bacs/recipes/furnace/recipes"
-import { Block, BlockComponentTypes, Container, Entity, ItemStack, system } from "@minecraft/server"
+import { Block, BlockComponentTypes, Container, Entity, ItemStack, system, world } from "@minecraft/server"
 import { coalItem, furnaceReloadScore } from "../../../lib/variables"
 import { furnaceArrowIcons, furnaceFlameIcons } from "./visual"
 import { apiWarn } from "../../../../0-lib/player/warn"

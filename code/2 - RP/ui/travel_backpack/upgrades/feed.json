@@ -29,99 +29,67 @@
             {
               "feed_panel": {
                 "type": "panel",
-                "size": [ 87, 64 ],
-                // "controls": [
-                //   {
-                //     "feed_label": {
-                //       "type": "label",
-                //       "text": "container.feed",
-                //       "localize": true,
-                //       "offset": [ 23, 6 ],
-                //       "text_alignment": "left",
-                //       "anchor_from": "top_left",
-                //       "anchor_to": "top_left"
-                //     }
-                //   },
-                //   {
-                //     "column_1": {
-                //       "type": "stack_panel",
-                //       "size": [ 54, 18 ],
-                //       "orientation": "vertical",
-                //       "collection_name": "container_items",
-                //       "controls": [
-                //         { "input@chest.chest_grid_item": { "collection_index": "($inventory_size +25)" } },
-                //         {
-                //           "flame_panel@common.empty_panel": {
-                //             "size": [ 18, 20 ],
-                //             "controls": [
-                //               {
-                //                 "empty_flame": {
-                //                   "type": "image",
-                //                   "texture": "textures/ui/flame_empty_image",
-                //                   "size": [ 13, 13 ]
-                //                 }
-                //               },
-                //               {
-                //                 "flame_stack": {
-                //                   "type": "stack_panel",
-                //                   "offset": [ 1.5, -0.5 ],
-                //                   "collection_name": "container_items",
-                //                   "controls": [
-                //                     { "flame@travel_backpack-upgrade_general.item_visual": { "collection_index": "($inventory_size +28)" } }
-                //                   ]
-                //                 }
-                //               }
-                //             ]
-                //           }
-                //         },
-                //         { "fuel@chest.chest_grid_item": { "collection_index": "($inventory_size +26)" } }
-                //       ]
-                //     }
-                //   },
-                //   {
-                //     "column_2@common.empty_panel": {
-                //       "controls": [
-                //         {
-                //           "arrow": {
-                //             "type": "image",
-                //             "texture": "textures/ui/arrow_inactive",
-                //             "size": [ 22, 15 ],
-                //             "offset": [ 11, 19 ]
-                //           }
-                //         },
-                //         {
-                //           "arrow_stack": {
-                //             "type": "stack_panel",
-                //             "size": [ 22, 22 ],
-                //             "offset": [ 11, 19 ],
-                //             "collection_name": "container_items",
-                //             "controls": [
-                //               { "arrow@travel_backpack-upgrade_general.item_visual": { "collection_index": "($inventory_size +29)", "$item_render_size": [ 22, 22 ] } }
-                //             ]
-                //           }
-                //         }
-                //       ]
-                //     }
-                //   },
-                //   {
-                //     "output": {
-                //       "type": "stack_panel",
-                //       "offset": [ 74.5, 19 ],
-                //       "collection_name": "container_items",
-                //       "controls": [
-                //         {
-                //           "output@common.container_item": {
-                //             "size": [ 26, 26 ],
-                //             "$button_ref": "travel_backpack-upgrade_general.output_button",
-                //             "$cell_image_size": [ 26, 26 ],
-                //             "$item_collection_name": "container_items",
-                //             "collection_index": "($inventory_size +27)"
-                //           }
-                //         }
-                //       ]
-                //     }
-                //   }
-                // ],
+                "size": [ 54, 64 ],
+                "controls": [
+                  {
+                    "feed_label": {
+                      "type": "label",
+                      "text": "container.feed",
+                      "localize": true,
+                      "offset": [ 10, -5 ],
+                      "text_alignment": "left",
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left"
+                    }
+                  },
+                  {
+                    "grid_3x3": {
+                      "type": "stack_panel",
+                      "offset": [ 0, 7 ],
+                      "controls": [
+                        {
+                          "layer_1": {
+                            "type": "stack_panel",
+                            "size": [ 54, 18 ],
+                            "orientation": "horizontal",
+                            "collection_name": "container_items",
+                            "controls": [
+                              { "slot_1@chest.chest_grid_item": { "collection_index": "($inventory_size +32)" } },
+                              { "slot_2@chest.chest_grid_item": { "collection_index": "($inventory_size +33)" } },
+                              { "slot_3@chest.chest_grid_item": { "collection_index": "($inventory_size +34)" } }
+                            ]
+                          }
+                        },
+                        {
+                          "layer_2": {
+                            "type": "stack_panel",
+                            "size": [ 54, 18 ],
+                            "orientation": "horizontal",
+                            "collection_name": "container_items",
+                            "controls": [
+                              { "slot_4@chest.chest_grid_item": { "collection_index": "($inventory_size +35)" } },
+                              { "slot_5@chest.chest_grid_item": { "collection_index": "($inventory_size +36)" } },
+                              { "slot_6@chest.chest_grid_item": { "collection_index": "($inventory_size +37)" } }
+                            ]
+                          }
+                        },
+                        {
+                          "layer_3": {
+                            "type": "stack_panel",
+                            "size": [ 54, 18 ],
+                            "orientation": "horizontal",
+                            "collection_name": "container_items",
+                            "controls": [
+                              { "slot_7@chest.chest_grid_item": { "collection_index": "($inventory_size +38)" } },
+                              { "slot_8@chest.chest_grid_item": { "collection_index": "($inventory_size +39)" } },
+                              { "slot_9@chest.chest_grid_item": { "collection_index": "($inventory_size +40)" } }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
                 "bindings": [
                   {
                     "binding_type": "view",
