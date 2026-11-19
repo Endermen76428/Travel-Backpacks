@@ -221,7 +221,7 @@
           "$show_background": false,
           "$scrolling_content": "travel_backpack-backpack.items_grid_scrolling",
           "$scroll_size": [ 5, "100% -4px" ],
-          "$scrolling_pane_size": [ "100% - 4px", "100% -13px" ],
+          "$scrolling_pane_size": [ "100% - 4px", "100% -11.75px" ],
           "$scrolling_pane_offset": [ 7, 0 ],
           "$scroll_bar_right_padding_size": [ 0, 0 ]
         }
@@ -242,8 +242,7 @@
           "grid_item_template": "chest.chest_grid_item",
           "collection_name": "container_items"
         }
-      },
-      { "padding@common.empty_panel": { "size": [ 0, 1 ] } }
+      }
     ]
   }
 }

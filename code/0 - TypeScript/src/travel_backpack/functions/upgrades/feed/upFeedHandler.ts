@@ -1,12 +1,12 @@
 import { Container, Entity, EntityComponentTypes, EquipmentSlot, ItemComponentTypes, Player, system } from "@minecraft/server"
 import { addToGlobalLoop, removeFromGlobalLoop } from "../../../../1-bacs/globalLoop"
-import { travelBackpackFuncFeed } from "./feedListener"
+import { IFoodInfo, travelBackpackFuncFeed } from "./feedListener"
 
-const craftListenList: { [key: string]: IntervalInfo } = {} // Backpack Id > Interval Info
+const feedPatternListenList: { [key: string]: IIntervalInfo } = {} // Backpack Id > Interval Info
 let amountOfListeners = 0
 
 function startInverval(): void {
-  const backpacks = Object.entries(craftListenList)
+  const backpacks = Object.entries(feedPatternListenList)
   const length = backpacks.length
   let invalidPlayers = 0
   amountOfListeners = length
@@ -14,12 +14,12 @@ function startInverval(): void {
   for(let i = 0; i < length; i++){
     const [ key, info ] = backpacks[i] ?? []
     if(key == undefined || info == undefined) continue
-    const { player, backpack, backpackInv, firstSlot, pattern } = info
+    const { player, backpack, backpackInv, firstSlot, pattern, slot: playerHand, justOneLoop } = info
 
     // Remove a backpack da lista quando ela fica inválida
     if(!backpack.isValid){
       invalidPlayers++
-      delete craftListenList[key]
+      delete feedPatternListenList[key]
       continue
     }
 
@@ -33,7 +33,7 @@ function startInverval(): void {
       }
 
       const foodComp = item.getComponent(ItemComponentTypes.Food)
-      if(foodComp == undefined && feedFoodList[item.typeId] == undefined){
+      if(foodComp == undefined && vanillaFoodList[item.typeId] == undefined){
         backpack.dimension.spawnItem(item, backpack.location)
         backpackInv.setItem(slot, undefined)
         continue
@@ -43,10 +43,10 @@ function startInverval(): void {
     }
 
     if(pattern != currentParttern){
-      const equipComp = player.getComponent(EntityComponentTypes.Equippable)
-      if(equipComp == undefined) continue
+      const invComp = player.getComponent(EntityComponentTypes.Inventory)?.container
+      if(invComp == undefined) continue
 
-      const item = equipComp.getEquipment(EquipmentSlot.Mainhand)
+      const item = invComp.getItem(playerHand)
       if(item == undefined || item.getDynamicProperty("id") != backpack.id) continue
 
       info.pattern = currentParttern
@@ -56,13 +56,19 @@ function startInverval(): void {
         item.setDynamicProperty("pattern", undefined)
         removeFromGlobalLoop("travelBackpackFeedListener")
         travelBackpackFuncFeed.remove(player)
+        backpack.removeTag("can_enable_timer")
       } else {
         item.setDynamicProperty("pattern", currentParttern)
         player.addTag("travel_backpack:feed")
         addToGlobalLoop("travelBackpackFeedListener")
         travelBackpackFuncFeed.add(player, currentParttern)
+        backpack.addTag("can_enable_timer")
       }
-      equipComp.setEquipment(EquipmentSlot.Mainhand, item)
+      invComp.setItem(playerHand, item)
+    }
+
+    if(justOneLoop){
+      delete feedPatternListenList[key]
     }
   }
 
@@ -77,61 +83,88 @@ function startInverval(): void {
 }
 
 export const feedUpgradeFunctions = new class FeedUpgradeFunctions {
-  add(player: Player, backpack: Entity, backpackInv: Container, firstSlot: number): void {
-    craftListenList[backpack.id] = { player, backpack, backpackInv, firstSlot, pattern: "" }
+  add(player: Player, backpack: Entity, backpackInv: Container, firstSlot: number, slot: number, justOneLoop = false): void {
+    feedPatternListenList[backpack.id] = { player, backpack, backpackInv, firstSlot, pattern: "", slot, justOneLoop }
     amountOfListeners == 0 && startInverval()
   }
 
   remove(backpack: Entity): void {
-    delete craftListenList[backpack.id]
+    delete feedPatternListenList[backpack.id]
   }
 }
 
-export const feedFoodList: { [key: string]: {hunger: number, saturation: number} } = {
-  "minecraft:apple": { hunger: 5, saturation: 6 },
-  "minecraft:baked_potato": { hunger: 5, saturation: 6 },
-  "minecraft:beef": { hunger: 5, saturation: 6 },
-  "minecraft:beetroot": { hunger: 5, saturation: 6 },
-  "minecraft:beetroot_soup": { hunger: 5, saturation: 6 },
-  "minecraft:bread": { hunger: 5, saturation: 6 },
-  "minecraft:carrot": { hunger: 5, saturation: 6 },
-  "minecraft:chicken": { hunger: 5, saturation: 6 },
-  "minecraft:chorus_fruit": { hunger: 5, saturation: 6 },
-  "minecraft:cod": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_beef": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_chicken": { hunger: 6, saturation: 7.2 },
-  "minecraft:cooked_cod": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_mutton": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_porkchop": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_rabbit": { hunger: 5, saturation: 6 },
-  "minecraft:cooked_salmon": { hunger: 5, saturation: 6 },
-  "minecraft:cookie": { hunger: 5, saturation: 6 },
-  "minecraft:dried_kelp": { hunger: 5, saturation: 6 },
-  "minecraft:enchanted_golden_apple": { hunger: 5, saturation: 6 },
-  "minecraft:glow_berries": { hunger: 5, saturation: 6 },
-  "minecraft:golden_apple": { hunger: 5, saturation: 6 },
-  "minecraft:golden_carrot": { hunger: 5, saturation: 6 },
-  "minecraft:honey_bottle": { hunger: 5, saturation: 6 },
-  "minecraft:melon_slice": { hunger: 5, saturation: 6 },
-  "minecraft:mushroom_stew": { hunger: 5, saturation: 6 },
-  "minecraft:mutton": { hunger: 5, saturation: 6 },
-  "minecraft:porkchop": { hunger: 5, saturation: 6 },
-  "minecraft:potato": { hunger: 5, saturation: 6 },
-  "minecraft:pufferfish": { hunger: 5, saturation: 6 },
-  "minecraft:pumpkin_pie": { hunger: 5, saturation: 6 },
-  "minecraft:rabbi": { hunger: 5, saturation: 6 },
-  "minecraft:rabbit_stew": { hunger: 5, saturation: 6 },
-  "minecraft:rotten_flesh": { hunger: 5, saturation: 6 },
-  "minecraft:salmon": { hunger: 5, saturation: 6 },
-  "minecraft:spider_eye": { hunger: 5, saturation: 6 },
-  "minecraft:sweet_berries": { hunger: 5, saturation: 6 },
-  "minecraft:tropical_fish": { hunger: 5, saturation: 6 }
+export const vanillaFoodList: { [key: string]: TFoodList } = {
+  "minecraft:apple":                  { food: 4,  saturation: 2.4 },
+  "minecraft:baked_potato":           { food: 5,  saturation: 6 },
+  "minecraft:beetroot":               { food: 1,  saturation: 1.2 },
+  "minecraft:beetroot_soup":          { food: 6,  saturation: 7.2 },
+  "minecraft:bread":                  { food: 5,  saturation: 6 },
+  "minecraft:cake":                   { food: 14, saturation: 2.8 },
+  "minecraft:carrot":                 { food: 3,  saturation: 3.6 },
+  "minecraft:chorus_fruit":           { food: 4,  saturation: 2.4 }, // Teleporta o player
+  "minecraft:cooked_chicken":         { food: 6,  saturation: 7.2 },
+  "minecraft:cooked_cod":             { food: 5,  saturation: 6 },
+  "minecraft:cooked_mutton":          { food: 6,  saturation: 9.6 },
+  "minecraft:cooked_porkchop":        { food: 8,  saturation: 12.8 },
+  "minecraft:cooked_rabbit":          { food: 5,  saturation: 6 },
+  "minecraft:cooked_salmon":          { food: 6,  saturation: 9.6 },
+  "minecraft:cookie":                 { food: 2,  saturation: 0.4 },
+  "minecraft:dried_kelp":             { food: 1,  saturation: 0.2 },
+  "minecraft:enchanted_golden_apple": { food: 4,  saturation: 9.6, effects: [
+    { id: "minecraft:regeneration", time: 30, amplifier: 1, chance: 1 },
+    { id: "minecraft:absorption", time: 120, amplifier: 3, chance: 1 },
+    { id: "minecraft:resistance", time: 300, amplifier: 0, chance: 1 },
+    { id: "minecraft:fire_resistance", time: 300, amplifier: 0, chance: 1 }
+  ] },
+  "minecraft:glow_berries":           { food: 2,  saturation: 0.4 },
+  "minecraft:golden_apple":           { food: 4,  saturation: 9.6, effects: [
+    { id: "minecraft:regeneration", time: 5, amplifier: 1, chance: 1 },
+    { id: "minecraft:absorption", time: 120, amplifier: 0, chance: 1 }
+  ] },
+  "minecraft:golden_carrot":          { food: 6,  saturation: 14.4 },
+  "minecraft:honey_bottle":           { food: 6,  saturation: 1.2, convert: "minecraft:glass_bottle" }, // Limpa efeito e é convertido pra garrafa vazia
+  "minecraft:melon_slice":            { food: 2,  saturation: 1.2 },
+  "minecraft:mushroom_stew":          { food: 6,  saturation: 7.2 },
+  "minecraft:poisonous_potato":       { food: 2,  saturation: 1.2, effects: [
+    {id: "minecraft:poison", time: 5, amplifier: 0, chance: 0.6}
+  ] },
+  "minecraft:potato":                 { food: 1,  saturation: 0.6 },
+  "minecraft:pufferfish":             { food: 1,  saturation: 0.2, effects: [
+    { id: "minecraft:poison", time: 60, amplifier: 1, chance: 1 },
+    { id: "minecraft:nausea", time: 15, amplifier: 0, chance: 1 },
+    { id: "minecraft:hunger", time: 15, amplifier: 2, chance: 1 }
+  ] },
+  "minecraft:pumpkin_pie":            { food: 8,  saturation: 4.8 },
+  "minecraft:rabbit_stew":            { food: 10, saturation: 12 },
+  "minecraft:beef":                   { food: 3,  saturation: 1.8 },
+  "minecraft:chicken":                { food: 2,  saturation: 1.2, effects: [
+    { id: "minecraft:hunger", time: 30, amplifier: 0, chance: 0.3 }
+  ] },
+  "minecraft:cod":                    { food: 2,  saturation: 0.4 },
+  "minecraft:mutton":                 { food: 2,  saturation: 1.2 },
+  "minecraft:porkchop":               { food: 3,  saturation: 1.8 },
+  "minecraft:rabbit":                 { food: 3,  saturation: 1.8 },
+  "minecraft:salmon":                 { food: 2,  saturation: 0.4 },
+  "minecraft:rotten_flesh":           { food: 4,  saturation: 0.8, effects: [
+    { id: "minecraft:hunger", time: 30, amplifier: 0, chance: 0.8 }
+  ] },
+  "minecraft:spider_eye":             { food: 2,  saturation: 3.2, effects: [
+    {id: "minecraft:poison", time: 5, amplifier: 0, chance: 1}
+  ] },
+  "minecraft:cooked_beef":            { food: 8,  saturation: 12.8 },
+  "minecraft:suspicious_stew":        { food: 6,  saturation: 7.2 },
+  "minecraft:sweet_berries":          { food: 2,  saturation: 1.2 },
+  "minecraft:tropical_fish":          { food: 1,  saturation: 0.2 }
 }
 
-interface IntervalInfo {
+interface IIntervalInfo {
   player: Player
   backpack: Entity
   backpackInv: Container
   firstSlot: number
   pattern: string
+  slot: number
+  justOneLoop: boolean
 }
+
+type TFoodList = Omit<IFoodInfo, "type">

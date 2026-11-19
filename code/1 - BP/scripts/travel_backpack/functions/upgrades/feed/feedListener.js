@@ -1,7 +1,7 @@
 import { EntityComponentTypes, world } from "@minecraft/server";
 import { removeFromGlobalLoop } from "../../../../1-bacs/globalLoop";
-import { feedFoodList } from "./upFeedHandler";
 import { backpackUpgradesIndex } from "../../../lib/variables";
+import { vanillaFoodList } from "./upFeedHandler";
 const playersInfo = {};
 let execution = 0;
 export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
@@ -19,13 +19,13 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
             const item = items[i];
             if (item == undefined)
                 continue;
-            const info = feedFoodList[item];
+            const info = vanillaFoodList[item];
             if (info == undefined) {
                 continue;
             }
-            nutrition.push({ type: item, nutrition: info.hunger, saturation: info.saturation });
+            nutrition.push({ type: item, food: info.food, saturation: info.saturation, effects: info.effects, convert: info.convert, noConsume: info.noConsume });
         }
-        nutrition.sort((a, b) => a.nutrition - b.nutrition);
+        nutrition.sort((a, b) => a.food - b.food);
         playersInfo[player.id] = { player, inventory, hungerComp, saturationComp, nutrition, pattern };
     }
     remove(player) {
@@ -56,19 +56,16 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
                 delete playersInfo[key];
                 continue;
             }
-            if (hungerComp.effectiveMax - hungerComp.currentValue >= minNutritionInfo.nutrition || hungerComp.currentValue <= 6) {
+            if (hungerComp.effectiveMax - hungerComp.currentValue >= minNutritionInfo.food || hungerComp.currentValue <= 6) {
                 let targetNutrition = minNutritionInfo;
                 for (let i = 1, len = nutrition.length; i < len; i++) {
                     const nutriInfo = nutrition[i];
                     if (nutriInfo == undefined)
                         continue;
-                    console.warn(hungerComp.currentValue + nutriInfo.saturation, ">", hungerComp.effectiveMax, "=", hungerComp.currentValue + nutriInfo.saturation > hungerComp.effectiveMax);
                     if (hungerComp.currentValue + nutriInfo.saturation > hungerComp.effectiveMax)
                         continue;
-                    console.warn(targetNutrition.nutrition, ">", nutriInfo.nutrition, "=", targetNutrition.nutrition < nutriInfo.nutrition);
-                    if (targetNutrition.nutrition > nutriInfo.nutrition)
+                    if (targetNutrition.food > nutriInfo.food)
                         continue;
-                    console.warn("Selecionado:", nutriInfo.type, nutriInfo.nutrition);
                     targetNutrition = nutriInfo;
                 }
                 for (let i = 0, len = inventory.size; i < len; i++) {
@@ -103,16 +100,27 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
                     }
                     if (food == undefined || slot == undefined)
                         continue;
-                    if (food.amount <= 1) {
-                        backpackInv.setItem(slot, undefined);
+                    if (targetNutrition.noConsume == undefined) {
+                        if (food.amount <= 1) {
+                            backpackInv.setItem(slot, undefined);
+                        }
+                        else {
+                            food.amount--;
+                            backpackInv.setItem(slot, food);
+                        }
                     }
-                    else {
-                        food.amount--;
-                        backpackInv.setItem(slot, food);
+                    hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.food, hungerComp.effectiveMax));
+                    saturationComp.setCurrentValue(Math.min(saturationComp.currentValue + targetNutrition.saturation, hungerComp.currentValue, saturationComp.effectiveMax));
+                    if (targetNutrition.effects) {
+                        for (let i = 0, len = targetNutrition.effects.length; i < len; i++) {
+                            const effect = targetNutrition.effects[i];
+                            if (effect == undefined)
+                                continue;
+                            if (Math.random() < effect.chance) {
+                                player.addEffect(effect.id, effect.time * 20, { amplifier: effect.amplifier });
+                            }
+                        }
                     }
-                    hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.nutrition, hungerComp.effectiveMax));
-                    saturationComp.setCurrentValue(Math.min(saturationComp.currentValue + targetNutrition.saturation, saturationComp.effectiveMax));
-                    console.warn(targetNutrition.type, hungerComp.currentValue, saturationComp.currentValue);
                 }
             }
         }

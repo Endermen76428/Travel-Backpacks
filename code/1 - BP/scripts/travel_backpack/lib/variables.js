@@ -3,6 +3,7 @@ import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart";
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
 import { apiScoreboard } from "./../../0-lib/math/scoreboard";
 import { addPlayerHoldListen } from "../functions/hold";
+import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler";
 export let lockSlotItem;
 export let coalItem;
 export const backpackSizeFill = {
@@ -46,6 +47,7 @@ system.run(() => {
     coalItem = new ItemStack("minecraft:coal");
     createFurnaceIcons();
     restartFurnaceFunction(furnaceReloadScore);
+    world.tickingAreaManager.createTickingArea("backpack", { from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 }, dimension: world.getDimension("travel_backpack:backpack") });
     const players = world.getAllPlayers();
     if (players.length > 0) {
         for (let i = 0, len = players.length; i < len; i++) {
@@ -53,9 +55,39 @@ system.run(() => {
             if (!player)
                 continue;
             const item = player.getComponent(EntityComponentTypes.Equippable)?.getEquipment(EquipmentSlot.Mainhand);
-            if (item?.hasTag("travel_backpack:backpack")) {
+            if (item?.hasTag("travel_backpack:backpack"))
                 addPlayerHoldListen(player, item, player.selectedSlotIndex);
+            const inventory = player.getComponent(EntityComponentTypes.Inventory)?.container;
+            if (inventory == undefined)
+                return;
+            for (let i = 0, len = inventory.size; i < len; i++) {
+                const item = inventory.getItem(i);
+                if (item == undefined)
+                    continue;
+                if (item.hasTag("travel_backpack:backpack") == false)
+                    continue;
+                if (item.getDynamicProperty("pattern") == undefined)
+                    continue;
+                const backpackId = item.getDynamicProperty("id");
+                if (typeof backpackId != "string")
+                    continue;
+                const backpackEntity = world.getEntity(backpackId);
+                if (backpackEntity == undefined || backpackEntity.isValid == false)
+                    continue;
+                const backpackInv = backpackEntity.getComponent(EntityComponentTypes.Inventory)?.container;
+                if (backpackInv == undefined)
+                    continue;
+                const firstSlot = backpackUpgradesIndex[backpackInv.size]?.[0];
+                if (firstSlot == undefined)
+                    continue;
+                feedUpgradeFunctions.add(player, backpackEntity, backpackInv, firstSlot + 32, i, true);
+                world.sendMessage(player.nameTag + " possui backpack com feed upgrade");
             }
         }
     }
+});
+system.runInterval(() => {
+    world.getPlayers().forEach(player => {
+        player.onScreenDisplay.setActionBar(`Food: ${player.getComponent(EntityComponentTypes.Hunger)?.currentValue} | Saturation: ${player.getComponent(EntityComponentTypes.Saturation)?.currentValue}`);
+    });
 });

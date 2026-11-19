@@ -1,12 +1,7 @@
-import { compatibleAddonsTranslation, BACSFurnaceRecipeScore, BACSFurnaceRecipeDenyScore } from "../../../../1-bacs/recipes/variables"
-import { furnaceRecipeList, furnaceRecipeDenyList, furnaceHasRecipe } from "../../../../1-bacs/recipes/furnace/recipes"
-import { Block, BlockComponentTypes, Container, Entity, EntityComponentTypes, EntityHungerComponent, EntitySaturationComponent, ItemStack, Player, system, world } from "@minecraft/server"
-import { furnaceFuelList } from "../../../../1-bacs/recipes/furnace/fuel"
+import { Container, EntityComponentTypes, EntityHungerComponent, EntitySaturationComponent, ItemStack, Player, world } from "@minecraft/server"
 import { removeFromGlobalLoop } from "../../../../1-bacs/globalLoop"
-import { apiNumbers } from "../../../../0-lib/math/numbers"
-import { apiWarn } from "../../../../0-lib/player/warn"
-import { feedFoodList } from "./upFeedHandler"
 import { backpackUpgradesIndex } from "../../../lib/variables"
+import { vanillaFoodList } from "./upFeedHandler"
 
 const playersInfo: { [key: string]: IIntervalInfo } = {}
 let execution = 0
@@ -26,16 +21,16 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
       const item = items[i]
       if(item == undefined) continue
 
-      const info = feedFoodList[item]
+      const info = vanillaFoodList[item]
       if(info == undefined){
         // tentar pegar o component de food
         continue
       }
 
-      nutrition.push({type: item, nutrition: info.hunger, saturation: info.saturation})
+      nutrition.push({type: item, food: info.food, saturation: info.saturation, effects: info.effects, convert: info.convert, noConsume: info.noConsume})
     }
 
-    nutrition.sort((a, b) => a.nutrition - b.nutrition)
+    nutrition.sort((a, b) => a.food - b.food)
 
     playersInfo[player.id] = { player, inventory, hungerComp, saturationComp, nutrition, pattern }
   }
@@ -75,21 +70,21 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
         continue
       }
 
-      if(hungerComp.effectiveMax - hungerComp.currentValue >= minNutritionInfo.nutrition || hungerComp.currentValue <= 6){
+      if(hungerComp.effectiveMax - hungerComp.currentValue >= minNutritionInfo.food || hungerComp.currentValue <= 6){
         let targetNutrition = minNutritionInfo
 
         for(let i = 1, len = nutrition.length; i < len; i++){
           const nutriInfo = nutrition[i]
           if(nutriInfo == undefined) continue
 
-          console.warn(hungerComp.currentValue + nutriInfo.saturation, ">", hungerComp.effectiveMax, "=", hungerComp.currentValue + nutriInfo.saturation > hungerComp.effectiveMax)
+          // console.warn("Test1:", hungerComp.currentValue, "+", nutriInfo.saturation, ">", hungerComp.effectiveMax, "=", hungerComp.currentValue + nutriInfo.saturation > hungerComp.effectiveMax)
           if(hungerComp.currentValue + nutriInfo.saturation > hungerComp.effectiveMax) continue
-          console.warn(targetNutrition.nutrition, ">", nutriInfo.nutrition, "=", targetNutrition.nutrition < nutriInfo.nutrition)
-          if(targetNutrition.nutrition > nutriInfo.nutrition) continue
+          // console.warn("Test2:", targetNutrition.food, ">", nutriInfo.food, "=", targetNutrition.food < nutriInfo.food)
+          if(targetNutrition.food > nutriInfo.food) continue
 
-          console.warn("Selecionado:", nutriInfo.type, nutriInfo.nutrition)
           targetNutrition = nutriInfo
         }
+        // console.warn("Selected:", targetNutrition.type, targetNutrition.food, targetNutrition.saturation)
 
         for(let i = 0, len = inventory.size; i < len; i++){
           const item = inventory.getItem(i)
@@ -121,17 +116,28 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
 
           if(food == undefined || slot == undefined) continue
 
-          if(food.amount <= 1){
-            backpackInv.setItem(slot, undefined)
-          } else {
-            food.amount--
-            backpackInv.setItem(slot, food)
+          if(targetNutrition.noConsume == undefined){
+            if(food.amount <= 1){
+              backpackInv.setItem(slot, undefined)
+            } else {
+              food.amount--
+              backpackInv.setItem(slot, food)
+            }
           }
 
-          hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.nutrition, hungerComp.effectiveMax))
-          saturationComp.setCurrentValue(Math.min(saturationComp.currentValue + targetNutrition.saturation, saturationComp.effectiveMax))
+          hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.food, hungerComp.effectiveMax))
+          saturationComp.setCurrentValue(Math.min(saturationComp.currentValue + targetNutrition.saturation, hungerComp.currentValue, saturationComp.effectiveMax)) // A saturação nunca é maior doque a quantia de fome do player
 
-          console.warn(targetNutrition.type, hungerComp.currentValue, saturationComp.currentValue)
+          if(targetNutrition.effects){
+            for(let i = 0, len = targetNutrition.effects.length; i < len; i++){
+              const effect = targetNutrition.effects[i]
+              if(effect == undefined) continue
+
+              if(Math.random() < effect.chance){
+                player.addEffect(effect.id, effect.time *20, {amplifier: effect.amplifier})
+              }
+            }
+          }
         }
       }
     }
@@ -152,8 +158,11 @@ interface IIntervalInfo {
   nutrition: IFoodInfo[]
 }
 
-interface IFoodInfo {
+export interface IFoodInfo {
   type: string
-  nutrition: number
+  food: number
   saturation: number
+  effects?: ({id: string, time: number, amplifier: number, chance: number})[]
+  convert?: string
+  noConsume?: true // Usado para itens que não são consumidos ao comer, tipo a carne infinita do trinkets
 }

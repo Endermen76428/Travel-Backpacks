@@ -47,7 +47,7 @@ function startInverval(): void {
         backpackInv.setItem(firstSlot +4, furnaceArrowIcons[0])
 
         furnaceUpgradeFunctions.remove(backpack)
-        backpack.getProperty("travel_backpack:on_ground") == false && backpack.triggerEvent("travel_backpack:add_timer")
+        backpack.hasTag("can_enable_timer") == false && backpack.getProperty("travel_backpack:on_ground") == false && backpack.triggerEvent("travel_backpack:add_timer")
         continue
       }
     }

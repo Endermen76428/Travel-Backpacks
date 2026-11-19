@@ -51,17 +51,50 @@
           "orientation": "vertical",
           "collection_name": "container_items",
           "controls": [
-            { "slot_1@chest.chest_grid_item": { "collection_index": "($inventory_size)" } },
+            { "slot_1@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size)" } },
             { "padding@common.empty_panel": { "size": [ 0, 2], "ignored": "$slot_visibility_1" } },
-            { "slot_2@chest.chest_grid_item": { "collection_index": "($inventory_size +1)", "ignored": "$slot_visibility_1" } },
+            { "slot_2@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size +1)", "$slot_ignored": "$slot_visibility_1" } },
             { "padding@common.empty_panel": { "size": [ 0, 2], "ignored": "$slot_visibility_2" } },
-            { "slot_3@chest.chest_grid_item": { "collection_index": "($inventory_size +2)", "ignored": "$slot_visibility_2" } },
+            { "slot_3@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size +2)", "$slot_ignored": "$slot_visibility_2" } },
             { "padding@common.empty_panel": { "size": [ 0, 2], "ignored": "$slot_visibility_3" } },
-            { "slot_4@chest.chest_grid_item": { "collection_index": "($inventory_size +3)", "ignored": "$slot_visibility_3" } },
+            { "slot_4@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size +3)", "$slot_ignored": "$slot_visibility_3" } },
             { "padding@common.empty_panel": { "size": [ 0, 2], "ignored": "$slot_visibility_4" } },
-            { "slot_5@chest.chest_grid_item": { "collection_index": "($inventory_size +4)", "ignored": "$slot_visibility_4" } },
+            { "slot_5@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size +4)", "$slot_ignored": "$slot_visibility_4" } },
             { "padding@common.empty_panel": { "size": [ 0, 2], "ignored": "$slot_visibility_5" } },
-            { "slot_6@chest.chest_grid_item": { "collection_index": "($inventory_size +5)", "ignored": "$slot_visibility_5" } }
+            { "slot_6@travel_backpack-upgrades.upgrade_slot": { "$slot_index": "($inventory_size +5)", "$slot_ignored": "$slot_visibility_5" } }
+          ]
+        }
+      }
+    ]
+  },
+
+  "upgrade_slot@common.empty_panel": {
+    "$slot_index": "$inventory_size",
+    "$slot_ignored": false,
+    "size": [ "100%c", "100%c" ],
+    "controls": [
+      {
+        "main_panel@common.empty_panel": {
+          "size": [ 18, 18 ],
+          "ignored": "$slot_ignored",
+          "controls": [
+            {
+              "slot_panel": {
+                "type": "stack_panel",
+                "collection_name": "container_items",
+                "controls": [
+                  { "slot@chest.chest_grid_item": { "collection_index": "$slot_index" } }
+                ]
+              }
+            },
+            {
+              "holder": {
+                "type": "image",
+                "texture": "textures/travel_backpack/ui/upgrades/upgrade_slot_holder",
+                "size": [ 16, 16 ],
+                "layer": 7
+              }
+            }
           ]
         }
       }

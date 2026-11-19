@@ -81,6 +81,7 @@ function deleteInfo(playerId) {
     delete backpackPlayersListenList[playerId];
     delete playersSneaking[playerId];
 }
+const center = { x: 0, y: 0, z: 0 };
 export function addPlayerHoldListen(player, item, slot) {
     const inventory = player.getComponent(EntityComponentTypes.Inventory)?.container;
     if (!inventory)
@@ -91,6 +92,7 @@ export function addPlayerHoldListen(player, item, slot) {
         entity = world.getEntity(itemBackpackId);
         if (!entity) {
             const structure = world.structureManager.get(`travel_backpack:${itemBackpackId}`);
+            console.warn("§cUsou o Structure!");
             if (structure) {
                 const pos = { x: player.location.x, y: player.dimension.heightRange.max - 0.5, z: player.location.z };
                 world.structureManager.place(structure, player.dimension, pos, { includeBlocks: false });
@@ -101,11 +103,13 @@ export function addPlayerHoldListen(player, item, slot) {
                     return;
                 apiWarn.notify(player, "§cError on get backpack, resetting backpack!", { sound: "warn.ender_addon_pack:break" });
                 entity = spawnBackpack(player, item.typeId);
+                console.warn("§cNão consegui encontrar no Structure!");
             }
         }
     }
     else {
         entity = spawnBackpack(player, item.typeId);
+        console.warn("§cGerou nova backpack!");
     }
     if (!entity || !entity.isValid)
         return;
@@ -137,7 +141,7 @@ function removePlayerHoldListen(player, slot, sneaking = false) {
     const entity = world.getEntity(backpackId);
     if (!entity || !entity.isValid)
         return;
-    if (!sneaking && !entity.hasTag("can_enable_timer"))
+    if (!sneaking && entity.hasTag("can_enable_timer") == false)
         entity.triggerEvent("travel_backpack:add_timer");
     const savePos = { x: player.location.x, y: player.dimension.heightRange.min + 1, z: player.location.z };
     const maxHeight = player.dimension.heightRange.max;

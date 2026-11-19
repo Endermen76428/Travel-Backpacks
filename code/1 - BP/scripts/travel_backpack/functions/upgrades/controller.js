@@ -121,9 +121,9 @@ const addFunctions = {
         const firstSlot = endSlot + 32;
         if (inventory.getItem(firstSlot)?.typeId != "travel_backpack:lock_slot")
             return;
-        for (let i = firstSlot, len = firstSlot + 9; i < len; i++)
+        for (let i = firstSlot, len = firstSlot + 10; i < len; i++)
             inventory.setItem(i, undefined);
-        feedUpgradeFunctions.add(player, entity, inventory, firstSlot);
+        feedUpgradeFunctions.add(player, entity, inventory, firstSlot, player.selectedSlotIndex);
     }
 };
 const removeFunctions = {
@@ -168,8 +168,7 @@ const removeFunctions = {
         }
         if (upgradesEnabled > 0)
             return;
-        console.warn("Removendo feed upgrade");
-        for (let i = firstSlot + 32, len = firstSlot + 41; i < len; i++) {
+        for (let i = firstSlot + 32, len = firstSlot + 42; i < len; i++) {
             const item = inventory.getItem(i);
             item && !item.hasTag("travel_backpack:lock_slot") && player.dimension.spawnItem(item, player.location);
             inventory.setItem(i, lockSlotItem);
@@ -194,6 +193,6 @@ const enableUpgrades = {
         if (upgrades.feed == true)
             return;
         upgrades.feed = true;
-        feedUpgradeFunctions.add(player, entity, inventory, firstSlot + 32);
+        feedUpgradeFunctions.add(player, entity, inventory, firstSlot + 32, player.selectedSlotIndex);
     }
 };
