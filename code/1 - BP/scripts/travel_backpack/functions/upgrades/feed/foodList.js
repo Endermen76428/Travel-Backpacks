@@ -8,8 +8,6 @@ export function getFoodInfo(item) {
         return;
     const convert = foodComp.usingConvertsTo == "" ? getConvert(item) : foodComp.usingConvertsTo;
     const effects = getEffect(item);
-    console.warn("Convert:", JSON.stringify(convert));
-    console.warn("Effects:", JSON.stringify(effects));
     const info = {
         food: Math.max(foodComp.nutrition, 1),
         saturation: foodComp.nutrition * foodComp.saturationModifier * 2,

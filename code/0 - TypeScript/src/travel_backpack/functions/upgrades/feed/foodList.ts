@@ -11,9 +11,6 @@ export function getFoodInfo(item: ItemStack): IFoodInfo | undefined {
   const convert = foodComp.usingConvertsTo == "" ? getConvert(item) : foodComp.usingConvertsTo
   const effects = getEffect(item)
 
-  console.warn("Convert:", JSON.stringify(convert))
-  console.warn("Effects:", JSON.stringify(effects))
-
   const info: TfoodList = {
     food: Math.max(foodComp.nutrition, 1),
     saturation: foodComp.nutrition * foodComp.saturationModifier * 2, // Esse é o calculo da saturação que ta na documentação, é muito estranho

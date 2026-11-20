@@ -30,7 +30,6 @@ world.afterEvents.playerSpawn.subscribe(({player, initialSpawn}) => {
       if(firstSlot == undefined) continue
 
       feedUpgradeFunctions.add(player, backpackEntity, backpackInv, firstSlot +32, i, true)
-      console.warn(player.nameTag, "possui backpack com feed upgrade")
     }
   }
 })
