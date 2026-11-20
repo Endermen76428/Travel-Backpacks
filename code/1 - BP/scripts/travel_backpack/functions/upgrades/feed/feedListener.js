@@ -1,7 +1,7 @@
-import { EntityComponentTypes, world } from "@minecraft/server";
+import { EntityComponentTypes, ItemStack, world } from "@minecraft/server";
 import { removeFromGlobalLoop } from "../../../../1-bacs/globalLoop";
 import { backpackUpgradesIndex } from "../../../lib/variables";
-import { vanillaFoodList } from "./upFeedHandler";
+import { foodList } from "./foodList";
 const playersInfo = {};
 let execution = 0;
 export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
@@ -19,7 +19,7 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
             const item = items[i];
             if (item == undefined)
                 continue;
-            const info = vanillaFoodList[item];
+            const info = foodList[item];
             if (info == undefined) {
                 continue;
             }
@@ -107,6 +107,11 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
                         else {
                             food.amount--;
                             backpackInv.setItem(slot, food);
+                        }
+                        if (targetNutrition.convert) {
+                            const convertItem = backpackInv.addItem(new ItemStack(targetNutrition.convert));
+                            if (convertItem != undefined)
+                                player.dimension.spawnItem(convertItem, player.location);
                         }
                     }
                     hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.food, hungerComp.effectiveMax));

@@ -1,7 +1,7 @@
 import { Container, EntityComponentTypes, EntityHungerComponent, EntitySaturationComponent, ItemStack, Player, world } from "@minecraft/server"
 import { removeFromGlobalLoop } from "../../../../1-bacs/globalLoop"
 import { backpackUpgradesIndex } from "../../../lib/variables"
-import { vanillaFoodList } from "./upFeedHandler"
+import { foodList } from "./foodList"
 
 const playersInfo: { [key: string]: IIntervalInfo } = {}
 let execution = 0
@@ -21,7 +21,7 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
       const item = items[i]
       if(item == undefined) continue
 
-      const info = vanillaFoodList[item]
+      const info = foodList[item]
       if(info == undefined){
         // tentar pegar o component de food
         continue
@@ -123,6 +123,11 @@ export const travelBackpackFuncFeed = new class TravelBackpackFuncFeed {
               food.amount--
               backpackInv.setItem(slot, food)
             }
+
+            if(targetNutrition.convert){
+              const convertItem = backpackInv.addItem(new ItemStack(targetNutrition.convert))
+              if(convertItem != undefined) player.dimension.spawnItem(convertItem, player.location) // o AddItem Retorna o proprio item se ele não conseguir colocar dentro do container, por exemplo se ele tiver cheio
+            }
           }
 
           hungerComp.setCurrentValue(Math.min(hungerComp.currentValue + targetNutrition.food, hungerComp.effectiveMax))
@@ -162,7 +167,9 @@ export interface IFoodInfo {
   type: string
   food: number
   saturation: number
-  effects?: ({id: string, time: number, amplifier: number, chance: number})[]
+  effects?: TFoodEffect
   convert?: string
   noConsume?: true // Usado para itens que não são consumidos ao comer, tipo a carne infinita do trinkets
 }
+
+export type TFoodEffect = ({id: string, time: number, amplifier: number, chance: number})[]
