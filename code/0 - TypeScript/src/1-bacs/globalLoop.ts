@@ -13,7 +13,6 @@ function loop(tick: number): void {
 
   // Travel Backpack
   if(enabledFunctions.travelBackpackFeedListener && tick == 19) travelBackpackFuncFeed.update()
-  // if(enabledFunctions.temporalBottleBrewingStand) temporalBottleFuncBrewingStand.update()
 
   // Reinicia o Loop no proximo tick
   system.run(() => { loop(tick == 19 ? 0 : tick +1) })

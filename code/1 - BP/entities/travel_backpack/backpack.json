@@ -137,7 +137,7 @@
 
       "travel_backpack:timer": {
         "minecraft:tick_world": {},
-        "minecraft:timer": { "time": 5.0, "time_down_event": { "event": "travel_backpack:archive" } }
+        "minecraft:timer": { "time": 60.0, "time_down_event": { "event": "travel_backpack:archive" } }
       },
 
       "travel_backpack:inventory0": { "minecraft:inventory": { "container_type": "container", "inventory_size": 250 } }, /* 27,-10-Upgrade,-15-Craft,-10-Furnace  - Leather */

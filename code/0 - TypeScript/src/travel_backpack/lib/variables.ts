@@ -1,12 +1,14 @@
-import { Container, EntityComponentTypes, EquipmentSlot, ItemStack, ScoreboardObjective, system, world } from "@minecraft/server"
+import { Container, Dimension, EntityComponentTypes, EquipmentSlot, ItemStack, ScoreboardObjective, system, world } from "@minecraft/server"
+import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler"
 import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart"
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual"
 import { apiScoreboard } from "./../../0-lib/math/scoreboard"
 import { addPlayerHoldListen } from "../functions/hold"
-import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler"
 
 export let lockSlotItem: ItemStack
 export let coalItem: ItemStack
+export let BackpackDimension: Dimension
+export const dimensionCenter = {x: 0, y: 0, z: 0}
 
 export const backpackSizeFill: { [key: number]: number } = {
   0: 28,  // 27  slot padrão + 1 upgrade slot
@@ -51,6 +53,7 @@ export const openedBackpacks: { [key: string]: [string, Container, number] } = {
 system.run(() => {
   world.gameRules.showTags = false
 
+  BackpackDimension = world.getDimension("travel_backpack:backpack")
   furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace")
 
   lockSlotItem = new ItemStack("travel_backpack:lock_slot")
@@ -97,10 +100,4 @@ system.run(() => {
       }
     }
   }
-})
-
-system.runInterval(() => {
-  world.getPlayers().forEach(player => {
-    player.onScreenDisplay.setActionBar(`Food: ${player.getComponent(EntityComponentTypes.Hunger)?.currentValue} | Saturation: ${player.getComponent(EntityComponentTypes.Saturation)?.currentValue}`)
-  })
 })

@@ -1,6 +1,7 @@
 import { Container, Entity, EntityComponentTypes, ItemLockMode, ItemStack, Player, StructureSaveMode, system, world } from "@minecraft/server"
 import { spawnBackpack } from "../lib/backpack/spawn"
 import { apiWarn } from "../../0-lib/player/warn"
+import { BackpackDimension, dimensionCenter } from "../lib/variables"
 
 const backpackPlayersListenList: { [key: string]: [Player, Entity, Container, number] } = {} // Player Id > Player Entity, Backpack Entity, Inventory, Last Slot
 const playersSneaking: { [key: string]: boolean } = {} // Player Id > Is Sneaking
@@ -60,22 +61,22 @@ function startInverval(executeTime = 0): void {
       continue
     }
 
-    if(executeTime == maxTick){
-      const id = `travel_backpack:${backpack.id}`
-      const maxHeight = player.dimension.heightRange.max -1
-      let savePos = {x: player.location.x, y: Math.min(player.location.y +5, maxHeight), z: player.location.z}
-      let loop = 0
-      while(loop < 10){
-        if(player.dimension.getEntitiesAtBlockLocation(savePos).length == 0) break
-        savePos.y = Math.min(savePos.y +5, maxHeight)
-        loop++
-      }
-      savePos.y += 0.5
-      backpack.teleport(savePos, {dimension: player.dimension})
+    // if(executeTime == maxTick){
+    //   const id = `travel_backpack:${backpack.id}`
+    //   const maxHeight = player.dimension.heightRange.max -1
+    //   let savePos = {x: player.location.x, y: Math.min(player.location.y +5, maxHeight), z: player.location.z}
+    //   let loop = 0
+    //   while(loop < 10){
+    //     if(player.dimension.getEntitiesAtBlockLocation(savePos).length == 0) break
+    //     savePos.y = Math.min(savePos.y +5, maxHeight)
+    //     loop++
+    //   }
+    //   savePos.y += 0.5
+    //   backpack.teleport(savePos, {dimension: player.dimension})
 
-      world.structureManager.delete(id)
-      world.structureManager.createFromWorld(id, backpack.dimension, savePos, savePos, {includeBlocks: false, saveMode: StructureSaveMode.World})
-    }
+    //   world.structureManager.delete(id)
+    //   world.structureManager.createFromWorld(id, backpack.dimension, savePos, savePos, {includeBlocks: false, saveMode: StructureSaveMode.World})
+    // }
 
     const playerHead = player.getHeadLocation()
 
@@ -100,8 +101,6 @@ function deleteInfo(playerId: string): void {
   delete playersSneaking[playerId]
 }
 
-const center = {x: 0, y: 0, z: 0}
-
 export function addPlayerHoldListen(player: Player, item: ItemStack, slot: number): void {
   const inventory = player.getComponent(EntityComponentTypes.Inventory)?.container
   if(!inventory) return
@@ -112,26 +111,16 @@ export function addPlayerHoldListen(player: Player, item: ItemStack, slot: numbe
   if(typeof itemBackpackId == "string"){
     // Pega a entidade que está na região de salvamento
     entity = world.getEntity(itemBackpackId)
-    // console.warn("Pego backpack:", entity?.id)
     if(!entity){
-      const structure = world.structureManager.get(`travel_backpack:${itemBackpackId}`)
-      console.warn("§cUsou o Structure!")
-      if(structure){
-        const pos = {x: player.location.x, y: player.dimension.heightRange.max -0.5, z: player.location.z}
-        world.structureManager.place(structure, player.dimension, pos, {includeBlocks: false})
-        entity = player.dimension.getEntities({type: "travel_backpack:backpack", location: pos, maxDistance: 1})[0]
-      } else {
-        if(player.dimension.isChunkLoaded(player.location) == false) return
-        apiWarn.notify(player, "§cError on get backpack, resetting backpack!", {sound: "warn.ender_addon_pack:break"})
-        // Gera uma mochila nova se der algum erro na hora de pegar a backpack salva
-        entity = spawnBackpack(player, item.typeId)
-        console.warn("§cNão consegui encontrar no Structure!")
-      }
+      item.lockMode = ItemLockMode.none
+      inventory.setItem(slot, item)
+
+      return console.warn("§4Entity not found!")
     }
   } else {
     // Gera uma mochila nova pois nunca foi colocada no chão para gerar o primeiro id
     entity = spawnBackpack(player, item.typeId)
-    console.warn("§cGerou nova backpack!")
+    // console.warn("§cCreate a new backpack!")
   }
 
   if(!entity || !entity.isValid) return
@@ -169,20 +158,20 @@ function removePlayerHoldListen(player: Player, slot: number, sneaking = false):
 
   if(!sneaking && entity.hasTag("can_enable_timer") == false) entity.triggerEvent("travel_backpack:add_timer")
 
-  const savePos = {x: player.location.x, y: player.dimension.heightRange.min +1, z: player.location.z}
-  const maxHeight = player.dimension.heightRange.max
-  let loop = 0
-  while(loop < 10){
-    if(player.dimension.getEntitiesAtBlockLocation(savePos).length == 0) break
-    savePos.y = Math.min(savePos.y +5, maxHeight)
-    loop++
-  }
-  savePos.y += 0.5
-  entity.teleport(savePos, {dimension: player.dimension})
+  // const savePos = {x: player.location.x, y: player.dimension.heightRange.min +1, z: player.location.z}
+  // const maxHeight = player.dimension.heightRange.max
+  // let loop = 0
+  // while(loop < 10){
+  //   if(player.dimension.getEntitiesAtBlockLocation(savePos).length == 0) break
+  //   savePos.y = Math.min(savePos.y +5, maxHeight)
+  //   loop++
+  // }
+  // savePos.y += 0.5
+  entity.teleport(dimensionCenter, {dimension: BackpackDimension})
 
-  const id = `travel_backpack:${entity.id}`
-  world.structureManager.delete(id)
-  world.structureManager.createFromWorld(id, entity.dimension, savePos, savePos, {includeBlocks: false, saveMode: StructureSaveMode.World})
+  // const id = `travel_backpack:${entity.id}`
+  // world.structureManager.delete(id)
+  // world.structureManager.createFromWorld(id, entity.dimension, savePos, savePos, {includeBlocks: false, saveMode: StructureSaveMode.World})
 
   item.lockMode = ItemLockMode.none
 

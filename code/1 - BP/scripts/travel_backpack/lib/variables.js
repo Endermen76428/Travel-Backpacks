@@ -1,11 +1,13 @@
 import { EntityComponentTypes, EquipmentSlot, ItemStack, system, world } from "@minecraft/server";
+import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler";
 import { restartFurnaceFunction } from "../functions/upgrades/furnace/restart";
 import { createFurnaceIcons } from "../functions/upgrades/furnace/visual";
 import { apiScoreboard } from "./../../0-lib/math/scoreboard";
 import { addPlayerHoldListen } from "../functions/hold";
-import { feedUpgradeFunctions } from "../functions/upgrades/feed/upFeedHandler";
 export let lockSlotItem;
 export let coalItem;
+export let BackpackDimension;
+export const dimensionCenter = { x: 0, y: 0, z: 0 };
 export const backpackSizeFill = {
     0: 28,
     1: 38,
@@ -42,6 +44,7 @@ export let furnaceReloadScore;
 export const openedBackpacks = {};
 system.run(() => {
     world.gameRules.showTags = false;
+    BackpackDimension = world.getDimension("travel_backpack:backpack");
     furnaceReloadScore = apiScoreboard.getObj("travel_backpack:furnace");
     lockSlotItem = new ItemStack("travel_backpack:lock_slot");
     coalItem = new ItemStack("minecraft:coal");
@@ -85,9 +88,4 @@ system.run(() => {
             }
         }
     }
-});
-system.runInterval(() => {
-    world.getPlayers().forEach(player => {
-        player.onScreenDisplay.setActionBar(`Food: ${player.getComponent(EntityComponentTypes.Hunger)?.currentValue} | Saturation: ${player.getComponent(EntityComponentTypes.Saturation)?.currentValue}`);
-    });
 });

@@ -22,9 +22,7 @@ export const placeBackpack = new class PlaceBackpack {
       const savedEntity = world.getEntity(backpackId)
       if(savedEntity){
         savedEntity.teleport(entityPos, {dimension: player.dimension})
-
         savedEntity.triggerEvent("travel_backpack:add_on_ground")
-
         savedEntity.setDynamicProperty("pos", entityPos)
         return
       }
