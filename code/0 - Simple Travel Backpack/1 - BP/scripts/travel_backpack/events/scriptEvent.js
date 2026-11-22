@@ -1,5 +1,5 @@
-import { EntityComponentTypes, StructureSaveMode, system, world } from "@minecraft/server";
-import { backpackSizeTier } from "../lib/variables";
+import { EntityComponentTypes, system, world } from "@minecraft/server";
+import { backpackSizeTier, dimensionCenter } from "../lib/variables";
 import { paintBackpack } from "../functions/paint";
 system.afterEvents.scriptEventReceive.subscribe(({ id, message, sourceEntity, sourceBlock }) => {
     const exe = scriptEventFunctions[id];
@@ -17,11 +17,8 @@ const scriptEventFunctions = {
     },
     "travel_backpack:archive": (message, entity) => {
         if (entity?.isValid) {
-            const id = `travel_backpack:${entity.id}`;
-            world.structureManager.delete(id);
-            world.structureManager.createFromWorld(id, entity.dimension, entity.location, entity.location, { saveMode: StructureSaveMode.World, includeBlocks: false });
-            entity.addTag("can_remove");
-            entity.remove();
+            entity.triggerEvent("travel_backpack:remove_timer");
+            entity.teleport(dimensionCenter, { dimension: world.getDimension("travel_backpack:backpack") });
         }
     },
     "travel_backpack:update_level": (message, entity) => {

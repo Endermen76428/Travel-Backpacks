@@ -341,6 +341,13 @@ item.travel_backpack:magenta_netherite_backpack.bacs=Mochila de Netherita Magent
 item.travel_backpack:pink_netherite_backpack=Mochila de Netherita Rosa\n§9Travel Backpacks
 item.travel_backpack:pink_netherite_backpack.bacs=Mochila de Netherita Rosa
 
+### Config
+item.travel_backpack:ui_mode_default=§1§rUI Padrão
+item.travel_backpack:ui_mode_scrolling=§2§rUI Compacta
+
+item.travel_backpack:organize_alphabetical=Organizar por Nome
+item.travel_backpack:organize_numeric=Organizar por Quantia
+
 ## Upgrade
 item.travel_backpack:upgrade_template=Base de Melhoria\n§9Travel Backpacks
 item.travel_backpack:upgrade_template.bacs=Base de Melhoria

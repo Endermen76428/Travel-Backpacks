@@ -140,12 +140,12 @@
         "minecraft:timer": { "time": 60.0, "time_down_event": { "event": "travel_backpack:archive" } }
       },
 
-      "travel_backpack:inventory0": { "minecraft:inventory": { "container_type": "container", "inventory_size": 27  } },
-      "travel_backpack:inventory1": { "minecraft:inventory": { "container_type": "container", "inventory_size": 36  } },
-      "travel_backpack:inventory2": { "minecraft:inventory": { "container_type": "container", "inventory_size": 54  } },
-      "travel_backpack:inventory3": { "minecraft:inventory": { "container_type": "container", "inventory_size": 81  } },
-      "travel_backpack:inventory4": { "minecraft:inventory": { "container_type": "container", "inventory_size": 100 } },
-      "travel_backpack:inventory5": { "minecraft:inventory": { "container_type": "container", "inventory_size": 120 } }
+      "travel_backpack:inventory0": { "minecraft:inventory": { "container_type": "container", "inventory_size": 30 } },  /* 27  - Leather */
+      "travel_backpack:inventory1": { "minecraft:inventory": { "container_type": "container", "inventory_size": 39 } },  /* 36  - Copper */
+      "travel_backpack:inventory2": { "minecraft:inventory": { "container_type": "container", "inventory_size": 57 } },  /* 54  - Iron */
+      "travel_backpack:inventory3": { "minecraft:inventory": { "container_type": "container", "inventory_size": 84 } },  /* 81  - Gold */
+      "travel_backpack:inventory4": { "minecraft:inventory": { "container_type": "container", "inventory_size": 103 } }, /* 100 - Diamond */
+      "travel_backpack:inventory5": { "minecraft:inventory": { "container_type": "container", "inventory_size": 123 } }  /* 120 - Netherite */
     },
 
     "components": {

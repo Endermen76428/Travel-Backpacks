@@ -1,0 +1,70 @@
+import { BlockPermutation, Entity, EntityComponentTypes, EquipmentSlot, ItemStack, Player, system } from "@minecraft/server"
+import { backpackSizeTier, backpackUpgradesIndex } from "../../lib/variables"
+import { apiEquippable } from "../../lib/player/equippable"
+import { apiWarn } from "../../../0-lib/player/warn"
+
+export const upgradeBackpackTier = new class UpgradeBackpack {
+  install(player: Player, backpack: Entity, item: ItemStack): boolean {
+    const [upgradeSize, backpackType] = upgradeTier[item.typeId] ?? []
+
+    if(upgradeSize != undefined && backpackType != undefined){
+      const currentBackpackTier = backpackSizeTier[backpack.getComponent(EntityComponentTypes.Inventory)?.container.size ?? 0] ?? 0
+      if(currentBackpackTier >= upgradeSize) return false
+
+      const block = backpack.dimension.getBlock(backpack.location)
+      if(!block) return false
+
+      const backpackInv = backpack.getComponent(EntityComponentTypes.Inventory)?.container
+      if(!backpackInv) return false
+
+      const upgradeIndex = backpackUpgradesIndex[backpackInv.size]
+      if(upgradeIndex == undefined) return false
+
+      const clearIndex = upgradeIndex[0]
+      const configSlots: (undefined | ItemStack)[] = Array.from({length: 3})
+      for(let i = clearIndex, len = clearIndex +3; i < len; i++) configSlots[i - clearIndex] = backpackInv.getItem(i)
+
+      system.run(() => {
+        const ids = block.typeId.split("_")
+        const color = ids.length == 4 ? ids[1] : `${ids[1]}_${ids[2]}`
+        block.setPermutation(BlockPermutation.resolve(ids.length == 3 || color == undefined ? backpackType : `travel_backpack:${color.slice(9)}_${backpackType.slice(16)}`, block.permutation.getAllStates()))
+        block.dimension.spawnParticle("travel_backpack:upgrade_tier", block.center())
+
+        backpack.triggerEvent(`travel_backpack:inventory${upgradeSize}`)
+        backpack.nameTag = `ui.travel_backpack:backpack.size.${upgradeSize}`
+        apiEquippable.decrement(player, EquipmentSlot.Mainhand)
+        apiWarn.playSound(player, "warn.ender_addon_pack:levelup")
+
+        system.run(() => {
+          const inventory = backpack.getComponent(EntityComponentTypes.Inventory)?.container
+          if(!inventory) return
+
+          const index = backpackUpgradesIndex[inventory.size]
+          if(!index) return
+
+          const startFill = index[0] +3
+          // Limpará todos os slots antigos e adicionará a trava aos novos substituindo tudo, por isso salvamos os itens ali atras
+          for(let i = clearIndex, len = startFill; i < len; i++) inventory.setItem(i)
+
+          // Pegará os itens salvos e colocará nos novos lugares corretos
+          const startIndex = index[0]
+          for(let i = startIndex, len = startIndex +3; i < len; i++){
+            const item = configSlots[i - startIndex]
+            item && inventory.setItem(i, item)
+          }
+        })
+      })
+      return true
+    }
+
+    return false
+  }
+}
+
+const upgradeTier: { [key: string]: [number, string] } = { // [ Backpack Event, Block TypeId ]
+  "travel_backpack:copper_upgrade_tier":    [1, "travel_backpack:copper_backpack"],
+  "travel_backpack:iron_upgrade_tier":      [2, "travel_backpack:iron_backpack"],
+  "travel_backpack:gold_upgrade_tier":      [3, "travel_backpack:gold_backpack"],
+  "travel_backpack:diamond_upgrade_tier":   [4, "travel_backpack:diamond_backpack"],
+  "travel_backpack:netherite_upgrade_tier": [5, "travel_backpack:netherite_backpack"]
+}

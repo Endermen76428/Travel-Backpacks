@@ -1,7 +1,7 @@
 import { BlockPermutation, EntityComponentTypes, EquipmentSlot, system } from "@minecraft/server";
+import { backpackSizeTier, backpackUpgradesIndex } from "../../lib/variables";
 import { apiEquippable } from "../../lib/player/equippable";
-import { backpackSizeTier } from "../../lib/variables";
-import { apiWarn } from "../../lib/player/warn";
+import { apiWarn } from "../../../0-lib/player/warn";
 export const upgradeBackpackTier = new class UpgradeBackpack {
     install(player, backpack, item) {
         const [upgradeSize, backpackType] = upgradeTier[item.typeId] ?? [];
@@ -12,13 +12,41 @@ export const upgradeBackpackTier = new class UpgradeBackpack {
             const block = backpack.dimension.getBlock(backpack.location);
             if (!block)
                 return false;
+            const backpackInv = backpack.getComponent(EntityComponentTypes.Inventory)?.container;
+            if (!backpackInv)
+                return false;
+            const upgradeIndex = backpackUpgradesIndex[backpackInv.size];
+            if (upgradeIndex == undefined)
+                return false;
+            const clearIndex = upgradeIndex[0];
+            const configSlots = Array.from({ length: 3 });
+            for (let i = clearIndex, len = clearIndex + 3; i < len; i++)
+                configSlots[i - clearIndex] = backpackInv.getItem(i);
             system.run(() => {
-                block.setPermutation(BlockPermutation.resolve(backpackType, block.permutation.getAllStates()));
+                const ids = block.typeId.split("_");
+                const color = ids.length == 4 ? ids[1] : `${ids[1]}_${ids[2]}`;
+                block.setPermutation(BlockPermutation.resolve(ids.length == 3 || color == undefined ? backpackType : `travel_backpack:${color.slice(9)}_${backpackType.slice(16)}`, block.permutation.getAllStates()));
                 block.dimension.spawnParticle("travel_backpack:upgrade_tier", block.center());
                 backpack.triggerEvent(`travel_backpack:inventory${upgradeSize}`);
                 backpack.nameTag = `ui.travel_backpack:backpack.size.${upgradeSize}`;
                 apiEquippable.decrement(player, EquipmentSlot.Mainhand);
                 apiWarn.playSound(player, "warn.ender_addon_pack:levelup");
+                system.run(() => {
+                    const inventory = backpack.getComponent(EntityComponentTypes.Inventory)?.container;
+                    if (!inventory)
+                        return;
+                    const index = backpackUpgradesIndex[inventory.size];
+                    if (!index)
+                        return;
+                    const startFill = index[0] + 3;
+                    for (let i = clearIndex, len = startFill; i < len; i++)
+                        inventory.setItem(i);
+                    const startIndex = index[0];
+                    for (let i = startIndex, len = startIndex + 3; i < len; i++) {
+                        const item = configSlots[i - startIndex];
+                        item && inventory.setItem(i, item);
+                    }
+                });
             });
             return true;
         }

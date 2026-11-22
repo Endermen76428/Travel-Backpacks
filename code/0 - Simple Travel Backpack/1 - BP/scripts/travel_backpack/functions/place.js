@@ -1,6 +1,5 @@
 import { EntityComponentTypes, EquipmentSlot, GameMode, world } from "@minecraft/server";
 import { spawnBackpack } from "../lib/backpack/spawn";
-import { apiWarn } from "../lib/player/warn";
 export const placeBackpack = new class PlaceBackpack {
     place(player, item, blockTarget, direction) {
         const offset = offsetDirection[direction];
@@ -9,12 +8,6 @@ export const placeBackpack = new class PlaceBackpack {
             return;
         if (!block.hasTag("travel_backpack:backpack"))
             return;
-        if (!player.isSneaking) {
-            block.setType("minecraft:air");
-            player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, item);
-            apiWarn.notify(player, "item.warn.travel_backpack:backpack.need_shift.place", { type: "action_bar", sound: "warn.ender_addon_pack:pop" });
-            return;
-        }
         if (player.getGameMode() == GameMode.Creative) {
             player.getComponent(EntityComponentTypes.Equippable)?.setEquipment(EquipmentSlot.Mainhand, undefined);
         }

@@ -7,35 +7,93 @@
     "size": [ "100%", "100%" ]
   },
 
-  "upgrade_toggle_button": {
-    "$index|default": 1,
-    "$toggle_size|default": [ 20, 20 ],
-    "$padding|default": [ 23, 23 ],
-    "$name|default": "view_toggle",
-    "$off_texture|default": "textures/travel_backpack/items/upgrade_template",
-    "$off_hover_texture|default": "textures/travel_backpack/items/upgrade_template",
-    "$on_texture|default": "textures/travel_backpack/items/upgrade_tier/diamond_tier",
-    "$on_hover_texture|default": "textures/travel_backpack/items/upgrade_tier/diamond_tier",
-    "type": "panel",
-    "size": "$padding",
-    "anchor_from": "center",
-    "anchor_to": "center",
+  "organize_panel": {
+    "type": "stack_panel",
+    "offset": [ -10, -5.5 ],
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "orientation": "horizontal",
+    "collection_name": "container_items",
     "controls": [
       {
-        "custom_toggle@common_toggles.light_text_toggle": {
-          "size": "$toggle_size",
-          "$default_texture": "$off_texture",
-          "$pressed_texture": "$off_hover_texture",
-          "$hover_texture": "$on_texture",
-          "$pressed_no_hover_texture": "$on_hover_texture",
-
-          "$toggle_name": "our_toggle",
-          "$toggle_view_binding_name": "$name",
-          "$toggle_group_default_selected": 1,
-          "$toggle_group_forced_index": "$index",
-          "$default_border_visible": false,
-          "$hover_border_visible": false
+        "organize_alphabetical_button@common.container_item": {
+          "size": [ 16, 16 ],
+          "$background_images": "common.empty_panel",
+          "$button_ref": "travel_backpack-upgrade_general.functional_button",
+          "$item_collection_name": "container_items",
+          "collection_index": "($inventory_size +1)"
         }
+      },
+      { "padding@common.empty_panel": { "size": [ 2, 0] } },
+      {
+        "organize_numeric_button@common.container_item": {
+          "size": [ 16, 16 ],
+          "$background_images": "common.empty_panel",
+          "$button_ref": "travel_backpack-upgrade_general.functional_button",
+          "$item_collection_name": "container_items",
+          "collection_index": "($inventory_size +2)"
+        }
+      },
+      {
+        "organize_alphabetical_image_panel": {
+          "type": "panel",
+          "size": [ 16, 16 ],
+          "controls": [
+            {
+              "organize_alphabetical_image": {
+                "type": "image",
+                "texture": "textures/travel_backpack/ui/config/organize/organize_alphabetical",
+                "size": [ 16, 16 ],
+                "offset": [ -34, 0 ],
+                "layer": 10
+              }
+            },
+            {
+              "organize_alphabetical_image": {
+                "type": "image",
+                "texture": "textures/travel_backpack/ui/config/organize/organize_numeric",
+                "size": [ 16, 16 ],
+                "offset": [ -16, 0 ],
+                "layer": 10
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "hover_text_data_control": {
+    "collection_index": "$index",
+    "type": "panel",
+    "size": [ 0, 0 ],
+    "bindings": [
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "container_items",
+        "binding_name": "#hover_text"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "container_items",
+        "binding_name": "#item_id_aux"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#item_id_aux = -1))", /* Testa-se-tem-um-item-no-slot,-será-utilizado-para-verificar-se-o-player-está-clicando,-pois-por-algum-motivo-o-hover-text-fica-vazio-se-clicar-em-outro-slot,-isso-que-segura-e-cria-compatibilidade-entre-plataformas */
+        "target_property_name": "#has_item"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(((#hover_text = #preserved_text) or (#hover_text = '')))", /* Atualiza-a-visibilidade-do-painel-se-o-texto-preservado-for-igual-ao-texto-atual-ou-se-o-texto-atual-está-vazio */
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "container_items",
+        "binding_condition": "visibility_changed", /* Só-atualiza-o-preserved-text-se-a-visibilidade-desse-painel-for-alterada */
+        "binding_name": "#hover_text",
+        "binding_name_override": "#preserved_text"
       }
     ]
   }

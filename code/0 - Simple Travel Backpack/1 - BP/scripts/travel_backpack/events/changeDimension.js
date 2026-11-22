@@ -1,4 +1,4 @@
-import { EntityComponentTypes, system, world } from "@minecraft/server";
+import { world, EntityComponentTypes, system } from "@minecraft/server";
 import { addPlayerHoldListen } from "../functions/hold";
 world.afterEvents.playerDimensionChange.subscribe(({ player }) => {
     system.runTimeout(() => {

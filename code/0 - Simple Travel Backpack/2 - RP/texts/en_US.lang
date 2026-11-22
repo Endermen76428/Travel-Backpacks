@@ -1,6 +1,6 @@
 ## --------------------------------------------------
 ## #region Block
-## ------------------------------------------------
+## --------------------------------------------------
 
 ## Backpack
 tile.travel_backpack:leather_backpack.name=Leather Backpack
@@ -128,7 +128,7 @@ action.interact.travel_backpack:backpack.paint=Paint
 ## #region Item
 ## --------------------------------------------------
 
-item.bedrock_awakening:simple_travel_backpack=§kSimple Travel Backpack
+item.bedrock_awakening:travel_backpack=§kTravel Backpack
 
 ## Backpack
 item.travel_backpack:leather_backpack=Leather Backpack\n§9Travel Backpacks
@@ -340,6 +340,13 @@ item.travel_backpack:magenta_netherite_backpack=Magenta Netherite Backpack\n§9T
 item.travel_backpack:magenta_netherite_backpack.bacs=Magenta Netherite Backpack
 item.travel_backpack:pink_netherite_backpack=Pink Netherite Backpack\n§9Travel Backpacks
 item.travel_backpack:pink_netherite_backpack.bacs=Pink Netherite Backpack
+
+### Config
+item.travel_backpack:ui_mode_default=§1§rUI Default
+item.travel_backpack:ui_mode_scrolling=§2§rUI Scrolling
+
+item.travel_backpack:organize_alphabetical=Organize by Name
+item.travel_backpack:organize_numeric=Organize by Amount
 
 ## upgrade
 item.travel_backpack:upgrade_template=Template Upgrade\n§9Travel Backpacks
