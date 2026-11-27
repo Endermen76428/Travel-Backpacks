@@ -102,7 +102,7 @@ export function addPlayerHoldListen(player, item, slot) {
     }
     if (!entity || !entity.isValid)
         return;
-    entity.triggerEvent("travel_backpack:remove_timer");
+    system.runTimeout(() => entity.triggerEvent("travel_backpack:remove_timer"), 5);
     if (player.isSneaking) {
         entity.teleport({ x: player.location.x, y: player.dimension.heightRange.min + 1, z: player.location.z }, { dimension: player.dimension });
     }

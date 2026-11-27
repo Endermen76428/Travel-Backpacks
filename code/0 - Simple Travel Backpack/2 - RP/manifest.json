@@ -1,18 +1,18 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Simple Travel Backpacks v1.4 (Texture)",
+    "name": "Simple Travel Backpacks v1.4.1 (Texture)",
     "description": "pack.description",
     "uuid": "41f521d3-0f86-453a-9d0b-fce0bd42b730",
     "min_engine_version": [1, 26, 30],
-    "version": [1, 4, 0],
+    "version": [1, 4, 1],
     "pack_scope": "world"
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "f4989130-586a-4d2c-be4c-b3d94ec081cc",
-      "version": [1, 4, 0]
+      "version": [1, 4, 1]
     }
   ],
   "metadata": {
@@ -24,7 +24,7 @@
   "dependencies": [
     {
       "uuid": "2a1d71a5-b994-4fc9-b833-fa107522262e",
-      "version": [1, 4, 0]
+      "version": [1, 4, 1]
     }
   ]
 }
